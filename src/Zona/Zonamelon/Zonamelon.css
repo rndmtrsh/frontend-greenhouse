@@ -1,0 +1,924 @@
+/* Zonamelon.css - Same Style as Cabai.css but adapted for melon zones */
+
+/* Base styles for all zona melon containers */
+.zona1melon-container,
+.zona2melon-container, 
+.zona3melon-container,
+.zona4melon-container,
+.zona5melon-container {
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 50%, #81c784 100%);
+  background-attachment: fixed;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo Container - Same as Dashboard */
+.zona1melon-container .logo-container,
+.zona2melon-container .logo-container,
+.zona3melon-container .logo-container,
+.zona4melon-container .logo-container,
+.zona5melon-container .logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background: #2d5016;
+  border-radius: 20px;
+  padding: 12px 30px;
+  margin: 0 auto;
+  width: fit-content;
+  min-width: 300px;
+  height: 60px;
+  box-shadow: 0 5px 20px rgba(45, 80, 22, 0.3);
+  animation: slideInDown 0.8s ease-out;
+  position: relative;
+  z-index: 5;
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.zona1melon-container .logo-item,
+.zona2melon-container .logo-item,
+.zona3melon-container .logo-item,
+.zona4melon-container .logo-item,
+.zona5melon-container .logo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.zona1melon-container .logo-item:hover,
+.zona2melon-container .logo-item:hover,
+.zona3melon-container .logo-item:hover,
+.zona4melon-container .logo-item:hover,
+.zona5melon-container .logo-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.zona1melon-container .logo-item img,
+.zona2melon-container .logo-item img,
+.zona3melon-container .logo-item img,
+.zona4melon-container .logo-item img,
+.zona5melon-container .logo-item img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.zona1melon-container .logo-item:hover img,
+.zona2melon-container .logo-item:hover img,
+.zona3melon-container .logo-item:hover img,
+.zona4melon-container .logo-item:hover img,
+.zona5melon-container .logo-item:hover img {
+  transform: scale(1.1);
+}
+
+.zona1melon-container .logo-item span,
+.zona2melon-container .logo-item span,
+.zona3melon-container .logo-item span,
+.zona4melon-container .logo-item span,
+.zona5melon-container .logo-item span {
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Plant Menu Container */
+.zona1melon-container .plant-menu-container,
+.zona2melon-container .plant-menu-container,
+.zona3melon-container .plant-menu-container,
+.zona4melon-container .plant-menu-container,
+.zona5melon-container .plant-menu-container {
+  position: relative;
+}
+
+.zona1melon-container .logo-item-inner,
+.zona2melon-container .logo-item-inner,
+.zona3melon-container .logo-item-inner,
+.zona4melon-container .logo-item-inner,
+.zona5melon-container .logo-item-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.zona1melon-container .logo-item-inner:hover,
+.zona2melon-container .logo-item-inner:hover,
+.zona3melon-container .logo-item-inner:hover,
+.zona4melon-container .logo-item-inner:hover,
+.zona5melon-container .logo-item-inner:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.zona1melon-container .logo-item-inner img,
+.zona2melon-container .logo-item-inner img,
+.zona3melon-container .logo-item-inner img,
+.zona4melon-container .logo-item-inner img,
+.zona5melon-container .logo-item-inner img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.zona1melon-container .logo-item-inner:hover img,
+.zona2melon-container .logo-item-inner:hover img,
+.zona3melon-container .logo-item-inner:hover img,
+.zona4melon-container .logo-item-inner:hover img,
+.zona5melon-container .logo-item-inner:hover img {
+  transform: scale(1.1);
+}
+
+.zona1melon-container .logo-item-inner span,
+.zona2melon-container .logo-item-inner span,
+.zona3melon-container .logo-item-inner span,
+.zona4melon-container .logo-item-inner span,
+.zona5melon-container .logo-item-inner span {
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Dropdown Arrow */
+.zona1melon-container .dropdown-arrow,
+.zona2melon-container .dropdown-arrow,
+.zona3melon-container .dropdown-arrow,
+.zona4melon-container .dropdown-arrow,
+.zona5melon-container .dropdown-arrow {
+  font-size: 10px;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.zona1melon-container .dropdown-arrow.open,
+.zona2melon-container .dropdown-arrow.open,
+.zona3melon-container .dropdown-arrow.open,
+.zona4melon-container .dropdown-arrow.open,
+.zona5melon-container .dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Plant Dropdown */
+.zona1melon-container .plant-dropdown,
+.zona2melon-container .plant-dropdown,
+.zona3melon-container .plant-dropdown,
+.zona4melon-container .plant-dropdown,
+.zona5melon-container .plant-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #2d5016;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(45, 80, 22, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  margin-top: 8px;
+  min-width: 180px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.zona1melon-container .plant-dropdown.show,
+.zona2melon-container .plant-dropdown.show,
+.zona3melon-container .plant-dropdown.show,
+.zona4melon-container .plant-dropdown.show,
+.zona5melon-container .plant-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  animation: dropdownSlideIn 0.3s ease-out;
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Dropdown Items */
+.zona1melon-container .dropdown-item,
+.zona2melon-container .dropdown-item,
+.zona3melon-container .dropdown-item,
+.zona4melon-container .dropdown-item,
+.zona5melon-container .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+}
+
+.zona1melon-container .dropdown-item:last-child,
+.zona2melon-container .dropdown-item:last-child,
+.zona3melon-container .dropdown-item:last-child,
+.zona4melon-container .dropdown-item:last-child,
+.zona5melon-container .dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.zona1melon-container .dropdown-item:hover,
+.zona2melon-container .dropdown-item:hover,
+.zona3melon-container .dropdown-item:hover,
+.zona4melon-container .dropdown-item:hover,
+.zona5melon-container .dropdown-item:hover {
+  background: #6b8e56;
+  transform: translateX(5px);
+  padding-left: 20px;
+}
+
+/* Header */
+.zona1melon-container .header,
+.zona2melon-container .header,
+.zona3melon-container .header,
+.zona4melon-container .header,
+.zona5melon-container .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slideInLeft 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.zona1melon-container .back-btn,
+.zona2melon-container .back-btn,
+.zona3melon-container .back-btn,
+.zona4melon-container .back-btn,
+.zona5melon-container .back-btn {
+  background-color: #2d5016;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(45, 80, 22, 0.2);
+}
+
+.zona1melon-container .back-btn:hover,
+.zona2melon-container .back-btn:hover,
+.zona3melon-container .back-btn:hover,
+.zona4melon-container .back-btn:hover,
+.zona5melon-container .back-btn:hover {
+  background-color: #3a6b1b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+}
+
+.zona1melon-container .page-title,
+.zona2melon-container .page-title,
+.zona3melon-container .page-title,
+.zona4melon-container .page-title,
+.zona5melon-container .page-title {
+  color: #2d5016;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Main Content */
+.zona1melon-container .main-content,
+.zona2melon-container .main-content,
+.zona3melon-container .main-content,
+.zona4melon-container .main-content,
+.zona5melon-container .main-content {
+  display: flex;
+  flex: 1;
+  gap: 24px;
+  animation: slideInUp 0.8s ease-out 0.3s both;
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Sidebar */
+.zona1melon-container .sidebar,
+.zona2melon-container .sidebar,
+.zona3melon-container .sidebar,
+.zona4melon-container .sidebar,
+.zona5melon-container .sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 120px;
+}
+
+.zona1melon-container .zone-btn,
+.zona2melon-container .zone-btn,
+.zona3melon-container .zone-btn,
+.zona4melon-container .zone-btn,
+.zona5melon-container .zone-btn {
+  background-color: #2d5016;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(45, 80, 22, 0.2);
+  animation: scaleIn 0.6s ease-out backwards;
+}
+
+.zona1melon-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
+.zona1melon-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
+.zona1melon-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
+.zona1melon-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
+.zona1melon-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
+.zona1melon-container .zone-btn:nth-child(6) { animation-delay: 0.9s; }
+
+.zona2melon-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
+.zona2melon-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
+.zona2melon-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
+.zona2melon-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
+.zona2melon-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
+.zona2melon-container .zone-btn:nth-child(6) { animation-delay: 0.9s; }
+
+.zona3melon-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
+.zona3melon-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
+.zona3melon-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
+.zona3melon-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
+.zona3melon-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
+.zona3melon-container .zone-btn:nth-child(6) { animation-delay: 0.9s; }
+
+.zona4melon-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
+.zona4melon-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
+.zona4melon-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
+.zona4melon-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
+.zona4melon-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
+.zona4melon-container .zone-btn:nth-child(6) { animation-delay: 0.9s; }
+
+.zona5melon-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
+.zona5melon-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
+.zona5melon-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
+.zona5melon-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
+.zona5melon-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
+.zona5melon-container .zone-btn:nth-child(6) { animation-delay: 0.9s; }
+
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.zona1melon-container .zone-btn:hover,
+.zona2melon-container .zone-btn:hover,
+.zona3melon-container .zone-btn:hover,
+.zona4melon-container .zone-btn:hover,
+.zona5melon-container .zone-btn:hover {
+  background-color: #3a6b1b;
+  transform: translateX(5px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+}
+
+.zona1melon-container .zone-btn.active,
+.zona2melon-container .zone-btn.active,
+.zona3melon-container .zone-btn.active,
+.zona4melon-container .zone-btn.active,
+.zona5melon-container .zone-btn.active {
+  background-color: #1a3009;
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.5);
+  transform: translateX(3px);
+}
+
+/* Content Area */
+.zona1melon-container .content-area,
+.zona2melon-container .content-area,
+.zona3melon-container .content-area,
+.zona4melon-container .content-area,
+.zona5melon-container .content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+}
+
+/* Zone Badge */
+.zona1melon-container .zone-badge,
+.zona2melon-container .zone-badge,
+.zona3melon-container .zone-badge,
+.zona4melon-container .zone-badge,
+.zona5melon-container .zone-badge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: #2d5016;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 10;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+  animation: titleBounce 0.8s ease-out 0.6s both;
+}
+
+@keyframes titleBounce {
+  0% { transform: translateY(-30px) scale(0.8); opacity: 0; }
+  60% { transform: translateY(5px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Monitoring Cards - 3 cards layout for melon (no Moist) */
+.zona1melon-container .monitoring-cards,
+.zona2melon-container .monitoring-cards,
+.zona3melon-container .monitoring-cards,
+.zona4melon-container .monitoring-cards,
+.zona5melon-container .monitoring-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+  animation: fadeInScale 0.8s ease-out 0.8s both;
+  justify-content: center;
+}
+
+@keyframes fadeInScale {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.zona1melon-container .metric-card,
+.zona2melon-container .metric-card,
+.zona3melon-container .metric-card,
+.zona4melon-container .metric-card,
+.zona5melon-container .metric-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid #2d5016;
+  min-width: 150px;
+}
+
+.zona1melon-container .metric-card:hover,
+.zona2melon-container .metric-card:hover,
+.zona3melon-container .metric-card:hover,
+.zona4melon-container .metric-card:hover,
+.zona5melon-container .metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(45, 80, 22, 0.2);
+}
+
+.zona1melon-container .metric-icon,
+.zona2melon-container .metric-icon,
+.zona3melon-container .metric-icon,
+.zona4melon-container .metric-icon,
+.zona5melon-container .metric-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #c8e6c9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #2d5016;
+}
+
+.zona1melon-container .metric-icon img,
+.zona2melon-container .metric-icon img,
+.zona3melon-container .metric-icon img,
+.zona4melon-container .metric-icon img,
+.zona5melon-container .metric-icon img {
+  width: 26px;
+  height: 26px;
+}
+
+.zona1melon-container .metric-value,
+.zona2melon-container .metric-value,
+.zona3melon-container .metric-value,
+.zona4melon-container .metric-value,
+.zona5melon-container .metric-value {
+  font-size: 26px;
+  font-weight: bold;
+  color: #2d5016;
+}
+
+.zona1melon-container .metric-label,
+.zona2melon-container .metric-label,
+.zona3melon-container .metric-label,
+.zona4melon-container .metric-label,
+.zona5melon-container .metric-label {
+  font-size: 15px;
+  color: #2d5016;
+  font-weight: 600;
+}
+
+/* Plant Image */
+.zona1melon-container .plant-image-container,
+.zona2melon-container .plant-image-container,
+.zona3melon-container .plant-image-container,
+.zona4melon-container .plant-image-container,
+.zona5melon-container .plant-image-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 200px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(45, 80, 22, 0.2);
+  border: 2px solid #2d5016;
+  animation: imageSlideLeft 0.8s ease-out 1s both;
+}
+
+@keyframes imageSlideLeft {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.zona1melon-container .plant-image,
+.zona2melon-container .plant-image,
+.zona3melon-container .plant-image,
+.zona4melon-container .plant-image,
+.zona5melon-container .plant-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.zona1melon-container .plant-image:hover,
+.zona2melon-container .plant-image:hover,
+.zona3melon-container .plant-image:hover,
+.zona4melon-container .plant-image:hover,
+.zona5melon-container .plant-image:hover {
+  transform: scale(1.02);
+}
+
+/* Charts Section - 3 charts layout for melon (no Moist) */
+.zona1melon-container .charts-section,
+.zona2melon-container .charts-section,
+.zona3melon-container .charts-section,
+.zona4melon-container .charts-section,
+.zona5melon-container .charts-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 80px;
+  animation: textSlideRight 0.8s ease-out 1s both;
+}
+
+@keyframes textSlideRight {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.zona1melon-container .chart-container,
+.zona2melon-container .chart-container,
+.zona3melon-container .chart-container,
+.zona4melon-container .chart-container,
+.zona5melon-container .chart-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.zona1melon-container .chart-container:hover,
+.zona2melon-container .chart-container:hover,
+.zona3melon-container .chart-container:hover,
+.zona4melon-container .chart-container:hover,
+.zona5melon-container .chart-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(45, 80, 22, 0.2);
+}
+
+.zona1melon-container .chart-label,
+.zona2melon-container .chart-label,
+.zona3melon-container .chart-label,
+.zona4melon-container .chart-label,
+.zona5melon-container .chart-label {
+  background: #2d5016;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(45, 80, 22, 0.3);
+}
+
+.zona1melon-container .chart,
+.zona2melon-container .chart,
+.zona3melon-container .chart,
+.zona4melon-container .chart,
+.zona5melon-container .chart {
+  position: relative;
+  height: 150px;
+}
+
+.zona1melon-container .chart-svg,
+.zona2melon-container .chart-svg,
+.zona3melon-container .chart-svg,
+.zona4melon-container .chart-svg,
+.zona5melon-container .chart-svg {
+  width: 100%;
+  height: 120px;
+}
+
+.zona1melon-container .chart-time-labels,
+.zona2melon-container .chart-time-labels,
+.zona3melon-container .chart-time-labels,
+.zona4melon-container .chart-time-labels,
+.zona5melon-container .chart-time-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 11px;
+  color: #2d5016;
+  font-weight: bold;
+}
+
+/* Footer Bar */
+.zona1melon-container .footer-bar,
+.zona2melon-container .footer-bar,
+.zona3melon-container .footer-bar,
+.zona4melon-container .footer-bar,
+.zona5melon-container .footer-bar {
+  background: #2d5016;
+  border-radius: 20px;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideInUp 0.8s ease-out 1.2s both;
+  box-shadow: 0 -5px 20px rgba(45, 80, 22, 0.2);
+  position: static;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.zona1melon-container .welcome-text,
+.zona2melon-container .welcome-text,
+.zona3melon-container .welcome-text,
+.zona4melon-container .welcome-text,
+.zona5melon-container .welcome-text {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  animation: textGlow 2s ease-in-out infinite alternate;
+  text-align: center;
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+  to { text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .zona1melon-container .main-content,
+  .zona2melon-container .main-content,
+  .zona3melon-container .main-content,
+  .zona4melon-container .main-content,
+  .zona5melon-container .main-content {
+    gap: 20px;
+  }
+  
+  .zona1melon-container .logo-container,
+  .zona2melon-container .logo-container,
+  .zona3melon-container .logo-container,
+  .zona4melon-container .logo-container,
+  .zona5melon-container .logo-container {
+    gap: 25px;
+    padding: 10px 25px;
+    min-width: 250px;
+    height: 50px;
+  }
+  
+  .zona1melon-container .monitoring-cards,
+  .zona2melon-container .monitoring-cards,
+  .zona3melon-container .monitoring-cards,
+  .zona4melon-container .monitoring-cards,
+  .zona5melon-container .monitoring-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .zona1melon-container .charts-section,
+  .zona2melon-container .charts-section,
+  .zona3melon-container .charts-section,
+  .zona4melon-container .charts-section,
+  .zona5melon-container .charts-section {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 20px;
+  }
+  
+  .zona1melon-container .plant-image-container,
+  .zona2melon-container .plant-image-container,
+  .zona3melon-container .plant-image-container,
+  .zona4melon-container .plant-image-container,
+  .zona5melon-container .plant-image-container {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .zona1melon-container,
+  .zona2melon-container,
+  .zona3melon-container,
+  .zona4melon-container,
+  .zona5melon-container {
+    padding: 16px;
+  }
+  
+  .zona1melon-container .header,
+  .zona2melon-container .header,
+  .zona3melon-container .header,
+  .zona4melon-container .header,
+  .zona5melon-container .header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .zona1melon-container .page-title,
+  .zona2melon-container .page-title,
+  .zona3melon-container .page-title,
+  .zona4melon-container .page-title,
+  .zona5melon-container .page-title {
+    font-size: 20px;
+  }
+  
+  .zona1melon-container .main-content,
+  .zona2melon-container .main-content,
+  .zona3melon-container .main-content,
+  .zona4melon-container .main-content,
+  .zona5melon-container .main-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .zona1melon-container .sidebar,
+  .zona2melon-container .sidebar,
+  .zona3melon-container .sidebar,
+  .zona4melon-container .sidebar,
+  .zona5melon-container .sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+  }
+  
+  .zona1melon-container .zone-btn,
+  .zona2melon-container .zone-btn,
+  .zona3melon-container .zone-btn,
+  .zona4melon-container .zone-btn,
+  .zona5melon-container .zone-btn {
+    min-width: 80px;
+    flex-shrink: 0;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  
+  .zona1melon-container .monitoring-cards,
+  .zona2melon-container .monitoring-cards,
+  .zona3melon-container .monitoring-cards,
+  .zona4melon-container .monitoring-cards,
+  .zona5melon-container .monitoring-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  
+  .zona1melon-container .charts-section,
+  .zona2melon-container .charts-section,
+  .zona3melon-container .charts-section,
+  .zona4melon-container .charts-section,
+  .zona5melon-container .charts-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .zona1melon-container .zone-badge,
+  .zona2melon-container .zone-badge,
+  .zona3melon-container .zone-badge,
+  .zona4melon-container .zone-badge,
+  .zona5melon-container .zone-badge {
+    position: static;
+    align-self: center;
+    margin-bottom: 20px;
+  }
+
+  .zona1melon-container .logo-container,
+  .zona2melon-container .logo-container,
+  .zona3melon-container .logo-container,
+  .zona4melon-container .logo-container,
+  .zona5melon-container .logo-container {
+    gap: 20px;
+    padding: 8px 20px;
+    min-width: 200px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .zona1melon-container,
+  .zona2melon-container,
+  .zona3melon-container,
+  .zona4melon-container,
+  .zona5melon-container {
+    padding: 12px;
+  }
+  
+  .zona1melon-container .page-title,
+  .zona2melon-container .page-title,
+  .zona3melon-container .page-title,
+  .zona4melon-container .page-title,
+  .zona5melon-container .page-title {
+    font-size: 18px;
+  }
+
+  .zona1melon-container .logo-container,
+  .zona2melon-container .logo-container,
+  .zona3melon-container .logo-container,
+  .zona4melon-container .logo-container,
+  .zona5melon-container .logo-container {
+    gap: 15px;
+    padding: 6px 15px;
+    min-width: 180px;
+    height: 40px;
+  }
+}
