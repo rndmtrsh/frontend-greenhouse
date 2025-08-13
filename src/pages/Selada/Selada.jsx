@@ -63,7 +63,6 @@ const Selada = () => {
             <span>SELADA</span>
           </div>
         </div>
-        <h1 className="header-title">MANAGE YOUR PLANT</h1>
       </div>
 
       <div className="main-content">

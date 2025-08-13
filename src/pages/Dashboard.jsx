@@ -1,4 +1,4 @@
-// Dashboard.jsx
+// Dashboard.jsx - Keeping Original Desktop, Enhanced Mobile
 import React, { useState } from 'react';
 import './Dashboard.css';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -36,7 +36,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Video Section */}
+      {/* Video Section - Hidden on mobile */}
       <div className="video-section">
         <video 
           className="dashboard-video" 
@@ -50,7 +50,7 @@ const Dashboard = () => {
         </video>
       </div>
 
-      {/* Logo Container */}
+      {/* Logo Container - Fixed menu on mobile */}
       <div className="logo-container">
         <div className="logo-item" onClick={handleHomeClick}>
           <img src="/home-icon.png" alt="Home" />
@@ -83,24 +83,53 @@ const Dashboard = () => {
         <div className="title">MANAGE YOUR PLANT</div>
       </div>
 
+      {/* Mobile Indicators - Only visible on mobile */}
+      <div className="mobile-indicators">
+        <div className="mobile-indicator kelembapan">
+          <div className="circle">44%</div>
+          <span className="label">KELEMBAPAN</span>
+        </div>
+        <div className="mobile-indicator suhu">
+          <div className="circle">20°C</div>
+          <span className="label">SUHU</span>
+        </div>
+        <div className="mobile-indicator cahaya">
+          <div className="circle">54 LUX</div>
+          <span className="label">INTENSITAS CAHAYA</span>
+        </div>
+      </div>
+
       <div className="main-content">
         <div className="selection-box">
           <h3>SELECTION BOX</h3>
 
           <div className="plant-layout">
-            <div className="box">
+            <div className="box box-cabai" onClick={handleCabaiClick}>
               CABAI 
-              <button className="more" onClick={handleCabaiClick}>More</button>
+              <button className="more">More</button>
+              {/* Mobile image inside box */}
+              <div className="mobile-plant-image">
+                <img src="/cabai.jpg" alt="Cabai" />
+              </div>
             </div>
-            <div className="box">
+            <div className="box box-selada" onClick={handleSeladaClick}>
               SELADA 
-              <button className="more" onClick={handleSeladaClick}>More</button>
+              <button className="more">More</button>
+              {/* Mobile image inside box */}
+              <div className="mobile-plant-image">
+                <img src="/selada.jpg" alt="Selada" />
+              </div>
             </div>
-            <div className="box">
+            <div className="box box-melon" onClick={handleMelonClick}>
               MELON 
-              <button className="more" onClick={handleMelonClick}>More</button>
+              <button className="more">More</button>
+              {/* Mobile image inside box */}
+              <div className="mobile-plant-image">
+                <img src="/melon.jpg" alt="Melon" />
+              </div>
             </div>
 
+            {/* Desktop image section - Hidden on mobile */}
             <div className="image-section">
               <div className="image-row">
                 <img src="/cabai.jpg" alt="Cabai" />
@@ -112,13 +141,14 @@ const Dashboard = () => {
             </div>
 
             <div className="monitoring-text">
-              MONITORING<br />
-              FOR<br />
               KLIK<br />
+              FOR<br />
+              MONITORING<br />
             </div>
           </div>
         </div>
 
+        {/* Desktop Room Condition - Hidden on mobile */}
         <div className="room-condition">
           <h3>ROOM CONDITION</h3>
           <div className="condition-box kelembapan">

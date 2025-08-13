@@ -86,7 +86,7 @@ const Zona6cabai = () => {
         <div className="content-area">
           {/* Zone Badge */}
           <div className="zone-badge">
-            ZONE 5
+            ZONE 6
           </div>
 
           {/* Monitoring Cards */}

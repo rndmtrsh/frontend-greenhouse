@@ -1,4 +1,11 @@
-/* Cabai.css - Updated with Dashboard Menu Styles */
+/* Cabai.css - Clean Orange/Red Theme */
+
+/* ===== GLOBAL RESET & BASE STYLES ===== */
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,24 +14,35 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 50%, #81c784 100%);
+  background: linear-gradient(135deg, #ffeb3b 0%, #ff9800 50%, #ff5722 100%);
   background-attachment: fixed;
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
+/* ===== MAIN CONTAINER ===== */
 .cabai-container {
   width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 50%, #81c784 100%);
+  background: linear-gradient(135deg, #ffeb3b 0%, #ff9800 50%, #ff5722 100%);
   background-attachment: fixed;
   font-family: 'Arial', sans-serif;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas: 
+    "navigation"
+    "page-header"
+    "main-content"
+    "footer";
+  gap: clamp(15px, 2.5vw, 20px);
+  padding: clamp(15px, 2.5vw, 20px);
   animation: fadeIn 1s ease-in-out;
+  margin: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 @keyframes fadeIn {
@@ -32,23 +50,13 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Logo Container - Same as Dashboard */
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  background: #2d5016;
-  border-radius: 20px;
-  padding: 12px 30px;
-  margin: 0 auto;
-  width: fit-content;
-  min-width: 300px;
-  height: 60px;
-  box-shadow: 0 5px 20px rgba(45, 80, 22, 0.3);
+/* ===== NAVIGATION HEADER ===== */
+.cabai-container .navigation-header {
+  grid-area: navigation;
+  position: sticky;
+  top: clamp(10px, 2vw, 20px);
+  z-index: 1000;
   animation: slideInDown 0.8s ease-out;
-  position: relative;
-  z-index: 5;
 }
 
 @keyframes slideInDown {
@@ -56,144 +64,177 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
-.logo-item {
+.cabai-container .logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(30px, 5vw, 50px);
+  background: #d84315;
+  border-radius: clamp(15px, 3vw, 20px);
+  padding: clamp(12px, 2vw, 16px) clamp(20px, 4vw, 40px);
+  margin: 0 auto;
+  width: fit-content;
+  min-width: clamp(300px, 60vw, 450px);
+  max-width: 95vw;
+  height: clamp(60px, 12vw, 80px);
+  box-shadow: 0 5px 20px rgba(216, 67, 21, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.cabai-container .logo-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(216, 67, 21, 0.4);
+}
+
+.cabai-container .logo-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(6px, 1.5vw, 10px);
   cursor: pointer;
-  padding: 8px 15px;
-  border-radius: 12px;
+  padding: clamp(6px, 1.5vw, 8px) clamp(10px, 2.5vw, 15px);
+  border-radius: clamp(8px, 2vw, 12px);
   transition: all 0.3s ease;
   color: white;
   font-weight: bold;
-  font-size: 14px;
+  font-size: clamp(11px, 2.5vw, 14px);
   letter-spacing: 0.5px;
   white-space: nowrap;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
 }
 
-.logo-item:hover {
+.cabai-container .logo-item:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-.logo-item img {
-  width: 24px;
-  height: 24px;
+.cabai-container .logo-item img {
+  width: clamp(18px, 4vw, 24px);
+  height: clamp(18px, 4vw, 24px);
   object-fit: contain;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-.logo-item:hover img {
+.cabai-container .logo-item:hover img {
   transform: scale(1.1);
 }
 
-.logo-item span {
+.cabai-container .logo-item span {
   text-transform: uppercase;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Plant Menu Container */
-.plant-menu-container {
+/* ===== PLANT MENU DROPDOWN ===== */
+.cabai-container .plant-menu-container {
   position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
-.logo-item-inner {
+.cabai-container .logo-item-inner {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(6px, 1.5vw, 10px);
   cursor: pointer;
-  padding: 8px 15px;
-  border-radius: 12px;
+  padding: clamp(6px, 1.5vw, 8px) clamp(10px, 2.5vw, 15px);
+  border-radius: clamp(8px, 2vw, 12px);
   transition: all 0.3s ease;
   color: white;
   font-weight: bold;
-  font-size: 14px;
+  font-size: clamp(11px, 2.5vw, 14px);
   letter-spacing: 0.5px;
   white-space: nowrap;
+  justify-content: center;
+  width: 100%;
 }
 
-.logo-item-inner:hover {
+.cabai-container .logo-item-inner:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-.logo-item-inner img {
-  width: 24px;
-  height: 24px;
+.cabai-container .logo-item-inner img {
+  width: clamp(18px, 4vw, 24px);
+  height: clamp(18px, 4vw, 24px);
   object-fit: contain;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-.logo-item-inner:hover img {
+.cabai-container .logo-item-inner:hover img {
   transform: scale(1.1);
 }
 
-.logo-item-inner span {
+.cabai-container .logo-item-inner span {
   text-transform: uppercase;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Dropdown Arrow */
-.dropdown-arrow {
-  font-size: 10px;
-  margin-left: 5px;
+.cabai-container .dropdown-arrow {
+  font-size: clamp(8px, 2vw, 10px);
+  margin-left: clamp(3px, 1vw, 5px);
   transition: transform 0.3s ease;
   color: white;
+  flex-shrink: 0;
 }
 
-.dropdown-arrow.open {
+.cabai-container .dropdown-arrow.open {
   transform: rotate(180deg);
 }
 
-/* Plant Dropdown */
-.plant-dropdown {
+.cabai-container .plant-dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
-  right: 0;
-  background: #2d5016;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(45, 80, 22, 0.4);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #d84315;
+  border-radius: clamp(10px, 2.5vw, 15px);
+  box-shadow: 0 8px 25px rgba(216, 67, 21, 0.4);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
+  transform: translateX(-50%) translateY(-10px);
   transition: all 0.3s ease;
   z-index: 1000;
-  margin-top: 8px;
-  min-width: 180px;
+  margin-top: clamp(5px, 1vw, 8px);
+  min-width: clamp(160px, 35vw, 200px);
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.plant-dropdown.show {
+.cabai-container .plant-dropdown.show {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
   animation: dropdownSlideIn 0.3s ease-out;
 }
 
 @keyframes dropdownSlideIn {
   from {
     opacity: 0;
-    transform: translateY(-15px) scale(0.95);
+    transform: translateX(-50%) translateY(-15px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 }
 
-/* Dropdown Items */
-.dropdown-item {
+.cabai-container .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: clamp(8px, 2vw, 12px);
+  padding: clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px);
   color: white;
   font-weight: bold;
-  font-size: 13px;
+  font-size: clamp(11px, 2.5vw, 13px);
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -201,64 +242,66 @@ body {
   background: transparent;
 }
 
-.dropdown-item:last-child {
+.cabai-container .dropdown-item:last-child {
   border-bottom: none;
 }
 
-.dropdown-item:hover {
-  background: #6b8e56;
+.cabai-container .dropdown-item:hover {
+  background: #ff5722;
   transform: translateX(5px);
-  padding-left: 20px;
+  padding-left: clamp(16px, 4vw, 20px);
 }
 
-.dropdown-item img {
-  width: 20px;
-  height: 20px;
+.cabai-container .dropdown-item img {
+  width: clamp(16px, 3.5vw, 20px);
+  height: clamp(16px, 3.5vw, 20px);
   object-fit: contain;
   transition: transform 0.3s ease;
   filter: brightness(1.1);
+  flex-shrink: 0;
 }
 
-.dropdown-item:hover img {
+.cabai-container .dropdown-item:hover img {
   transform: scale(1.15) rotate(5deg);
 }
 
-.dropdown-item span {
+.cabai-container .dropdown-item span {
   text-transform: capitalize;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   font-weight: 600;
 }
 
-/* Animation for each dropdown item */
-.plant-dropdown.show .dropdown-item:nth-child(1) {
-  animation: itemSlideIn 0.2s ease-out 0.1s both;
+/* ===== PAGE HEADER ===== */
+.cabai-container .page-header {
+  grid-area: page-header;
+  animation: slideInUp 0.8s ease-out 0.2s both;
 }
 
-.plant-dropdown.show .dropdown-item:nth-child(2) {
-  animation: itemSlideIn 0.2s ease-out 0.15s both;
+@keyframes slideInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-.plant-dropdown.show .dropdown-item:nth-child(3) {
-  animation: itemSlideIn 0.2s ease-out 0.2s both;
-}
-
-@keyframes itemSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Header */
-.header {
+.cabai-container .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  animation: slideInLeft 0.8s ease-out;
+  flex-wrap: wrap;
+  gap: clamp(15px, 3vw, 20px);
+  margin-bottom: clamp(15px, 3vw, 25px);
+}
+
+.cabai-container .greeting {
+  background: #d84315;
+  color: white;
+  padding: clamp(8px, 2vw, 12px) clamp(20px, 4vw, 25px);
+  border-radius: clamp(20px, 4vw, 25px);
+  font-size: clamp(13px, 3vw, 16px);
+  font-weight: bold;
+  animation: slideInLeft 0.8s ease-out 0.3s both;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(216, 67, 21, 0.2);
+  cursor: pointer;
 }
 
 @keyframes slideInLeft {
@@ -266,31 +309,24 @@ body {
   to { transform: translateX(0); opacity: 1; }
 }
 
-.back-btn {
-  background-color: #2d5016;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(45, 80, 22, 0.2);
+.cabai-container .greeting:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(216, 67, 21, 0.3);
 }
 
-.back-btn:hover {
-  background-color: #3a6b1b;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+.cabai-container .greeting-text strong {
+  font-weight: 900;
 }
 
-.page-title {
-  color: #2d5016;
-  font-size: 24px;
+.cabai-container .page-title {
+  font-size: clamp(20px, 5vw, 32px);
   font-weight: bold;
-  letter-spacing: 1px;
-  animation: slideInRight 0.8s ease-out;
+  color: #d84315;
+  letter-spacing: clamp(0.5px, 0.1vw, 1.5px);
+  animation: slideInRight 0.8s ease-out 0.3s both;
+  text-shadow: 0 2px 4px rgba(216, 67, 21, 0.1);
+  text-align: center;
+  flex: 1;
 }
 
 @keyframes slideInRight {
@@ -298,377 +334,773 @@ body {
   to { transform: translateX(0); opacity: 1; }
 }
 
-/* Main Content */
-.main-content {
-  display: flex;
-  flex: 1;
-  gap: 24px;
-  animation: slideInUp 0.8s ease-out 0.3s both;
+/* ===== MAIN CONTENT ===== */
+.cabai-container .main-content {
+  grid-area: main-content;
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 3fr);
+  grid-template-areas: "sidebar content";
+  gap: clamp(20px, 4vw, 40px);
+  align-items: start;
+  animation: contentSlideIn 0.8s ease-out 0.4s both;
 }
 
-@keyframes slideInUp {
+@keyframes contentSlideIn {
   from { transform: translateY(50px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* Sidebar */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-width: 120px;
+/* ===== SIDEBAR NAVIGATION ===== */
+.cabai-container .sidebar-navigation {
+  grid-area: sidebar;
+  background: #d84315;
+  border-radius: clamp(15px, 3vw, 25px);
+  padding: clamp(20px, 4vw, 30px);
+  box-shadow: 0 10px 30px rgba(216, 67, 21, 0.3);
+  backdrop-filter: blur(10px);
+  height: fit-content;
+  animation: sidebarSlideIn 0.8s ease-out 0.6s both;
 }
 
-.zone-btn {
-  background-color: #2d5016;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: center;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 6px rgba(45, 80, 22, 0.2);
-  animation: scaleIn 0.6s ease-out backwards;
-}
-
-.zone-btn:nth-child(1) { animation-delay: 0.4s; }
-.zone-btn:nth-child(2) { animation-delay: 0.5s; }
-.zone-btn:nth-child(3) { animation-delay: 0.6s; }
-.zone-btn:nth-child(4) { animation-delay: 0.7s; }
-.zone-btn:nth-child(5) { animation-delay: 0.8s; }
-.zone-btn:nth-child(6) { animation-delay: 0.9s; }
-.zone-btn:nth-child(7) { animation-delay: 1s; }
-
-@keyframes scaleIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.zone-btn:hover {
-  background-color: #3a6b1b;
-  transform: translateX(5px) scale(1.05);
-  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
-}
-
-.zone-btn.active {
-  background-color: #1a3009;
-  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.5);
-  transform: translateX(3px);
-}
-
-/* Content Area */
-.content-area {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Cabai Title - Center Top */
-.cabai-title-container {
-  text-align: center;
-  margin-bottom: 16px;
-  animation: titleBounce 0.8s ease-out 0.6s both;
-}
-
-@keyframes titleBounce {
-  0% { transform: translateY(-30px) scale(0.8); opacity: 0; }
-  60% { transform: translateY(5px) scale(1.1); opacity: 1; }
-  100% { transform: translateY(0) scale(1); opacity: 1; }
-}
-
-.cabai-title {
-  background-color: #2d5016;
-  border-radius: 50px;
-  padding: 10px 20px;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  margin: 0;
-  display: inline-block;
-  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.cabai-title:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 18px rgba(45, 80, 22, 0.4);
-}
-
-/* Monitoring Section */
-.monitoring-section {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 20px;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  flex: 1;
-  animation: fadeInScale 0.8s ease-out 0.8s both;
-}
-
-@keyframes fadeInScale {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.plant-info {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  height: calc(100% - 20px);
-}
-
-.plant-image {
-  flex: 1;
-  max-width: 320px;
-  animation: imageSlideLeft 0.8s ease-out 1s both;
-}
-
-@keyframes imageSlideLeft {
+@keyframes sidebarSlideIn {
   from { transform: translateX(-50px); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
 
-.plant-image img {
+.cabai-container .nav-title {
+  color: white;
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: clamp(20px, 4vw, 30px);
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cabai-container .zone-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(12px, 2.5vw, 18px);
+}
+
+.cabai-container .zone-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 8px);
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: clamp(12px, 2.5vw, 18px);
+  padding: clamp(15px, 3vw, 20px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  font-size: clamp(12px, 2.5vw, 14px);
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.cabai-container .zone-btn.active {
+  background: #bf360c;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.cabai-container .zone-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 20px;
-  border: 2px solid #2d5016;
-  box-shadow: 0 8px 25px rgba(45, 80, 22, 0.2);
-  transition: transform 0.3s ease;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
 }
 
-.plant-image img:hover {
-  transform: scale(1.02) rotate(1deg);
-  box-shadow: 0 12px 35px rgba(45, 80, 22, 0.3);
+.cabai-container .zone-btn:hover::before {
+  left: 100%;
 }
 
-.plant-description {
-  flex: 1;
-  background-color: #2d5016;
-  padding: 18px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(45, 80, 22, 0.3);
-  height: 200px;
-  overflow-y: auto;
-  animation: textSlideRight 0.8s ease-out 1s both;
-  transition: transform 0.3s ease;
+.cabai-container .zone-btn:hover {
+  background: #bf360c;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes textSlideRight {
+.cabai-container .zone-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.cabai-container .zone-number {
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: 900;
+  color: #ffcc02;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.cabai-container .zone-label {
+  font-size: clamp(10px, 2vw, 12px);
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* ===== CONTENT AREA ===== */
+.cabai-container .content-area {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(25px, 5vw, 40px);
+  animation: contentAreaSlideIn 0.8s ease-out 0.8s both;
+}
+
+@keyframes contentAreaSlideIn {
   from { transform: translateX(50px); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
 
-.plant-description:hover {
+/* ===== PLANT INFO SECTION ===== */
+.cabai-container .plant-info-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: clamp(15px, 3vw, 25px);
+  padding: clamp(20px, 4vw, 30px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(216, 67, 21, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.cabai-container .plant-info-section:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(45, 80, 22, 0.4);
+  box-shadow: 0 15px 40px rgba(216, 67, 21, 0.3);
 }
 
-.plant-description p {
-  color: white;
-  font-size: 14px;
-  line-height: 1.6;
-  text-align: justify;
-  margin: 0;
-}
-
-/* Footer Bar */
-.footer-bar {
-  background: #2d5016;
-  border-radius: 20px;
-  padding: 15px 25px;
+.cabai-container .section-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  animation: slideInUp 0.8s ease-out 1.2s both;
-  box-shadow: 0 -5px 20px rgba(45, 80, 22, 0.2);
+  flex-wrap: wrap;
+  gap: clamp(10px, 2vw, 15px);
+  margin-bottom: clamp(20px, 4vw, 30px);
+  padding-bottom: clamp(15px, 3vw, 20px);
+  border-bottom: 2px solid rgba(216, 67, 21, 0.3);
 }
 
-.welcome-text {
-  color: white;
-  font-size: 16px;
+.cabai-container .section-title {
+  font-size: clamp(18px, 4vw, 24px);
   font-weight: bold;
+  color: #d84315;
   letter-spacing: 1px;
-  animation: textGlow 2s ease-in-out infinite alternate;
+  text-shadow: 0 2px 4px rgba(216, 67, 21, 0.1);
+}
+
+.cabai-container .section-indicator {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 10px);
+  background: #d84315;
+  padding: clamp(6px, 1.5vw, 10px) clamp(12px, 3vw, 15px);
+  border-radius: clamp(15px, 3vw, 20px);
+  color: white;
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: bold;
+}
+
+.cabai-container .indicator-dot {
+  width: clamp(8px, 2vw, 10px);
+  height: clamp(8px, 2vw, 10px);
+  background: #ffcc02;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.cabai-container .indicator-text {
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ===== PLANT INFO GRID ===== */
+.cabai-container .plant-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(20px, 4vw, 30px);
+  align-items: start;
+}
+
+/* Plant Image Card */
+.cabai-container .plant-image-card {
+  background: #d84315;
+  border-radius: clamp(15px, 3vw, 20px);
+  padding: clamp(15px, 3vw, 20px);
+  box-shadow: 0 8px 25px rgba(216, 67, 21, 0.3);
+  transition: all 0.3s ease;
+  animation: cardSlideUp 0.6s ease-out backwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes cardSlideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.cabai-container .plant-image-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(216, 67, 21, 0.4);
+}
+
+.cabai-container .image-container {
+  position: relative;
+  margin-bottom: clamp(15px, 3vw, 20px);
+  border-radius: clamp(12px, 2.5vw, 15px);
+  overflow: hidden;
+}
+
+.cabai-container .plant-image {
+  width: 100%;
+  height: clamp(180px, 35vw, 250px);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  opacity: 0;
+  animation: imageLoad 0.5s ease-out 0.5s forwards;
+}
+
+@keyframes imageLoad {
+  to {
+    opacity: 1;
+  }
+}
+
+.cabai-container .plant-image:hover {
+  transform: scale(1.05);
+}
+
+.cabai-container .image-overlay {
+  position: absolute;
+  top: clamp(10px, 2vw, 15px);
+  right: clamp(10px, 2vw, 15px);
+  background: rgba(255, 204, 2, 0.9);
+  color: #d84315;
+  padding: clamp(4px, 1vw, 6px) clamp(8px, 2vw, 12px);
+  border-radius: clamp(8px, 2vw, 12px);
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(5px);
+}
+
+.cabai-container .plant-status {
+  text-transform: uppercase;
+}
+
+.cabai-container .image-caption {
+  color: white;
   text-align: center;
 }
 
+.cabai-container .image-caption h4 {
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: bold;
+  margin-bottom: clamp(4px, 1vw, 6px);
+  font-style: italic;
+}
+
+.cabai-container .image-caption p {
+  font-size: clamp(12px, 2.5vw, 14px);
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Plant Description Card */
+.cabai-container .plant-description-card {
+  background: #d84315;
+  border-radius: clamp(15px, 3vw, 20px);
+  padding: clamp(20px, 4vw, 25px);
+  box-shadow: 0 8px 25px rgba(216, 67, 21, 0.3);
+  transition: all 0.3s ease;
+  animation: cardSlideUp 0.6s ease-out backwards;
+  animation-delay: 0.4s;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cabai-container .plant-description-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(216, 67, 21, 0.4);
+}
+
+.cabai-container .description-header {
+  margin-bottom: clamp(15px, 3vw, 20px);
+  padding-bottom: clamp(10px, 2vw, 15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cabai-container .description-header h3 {
+  color: white;
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: bold;
+  margin-bottom: clamp(10px, 2vw, 15px);
+  letter-spacing: 0.5px;
+}
+
+.cabai-container .growth-indicator {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2vw, 15px);
+}
+
+.cabai-container .growth-bar {
+  flex: 1;
+  height: clamp(6px, 1.5vw, 8px);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: clamp(3px, 0.75vw, 4px);
+  overflow: hidden;
+}
+
+.cabai-container .growth-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #ffcc02, #ff9800);
+  border-radius: clamp(3px, 0.75vw, 4px);
+  transition: width 1s ease;
+  animation: progressGrow 2s ease-out;
+}
+
+@keyframes progressGrow {
+  from { width: 0; }
+  to { width: 75%; }
+}
+
+.cabai-container .growth-text {
+  color: #ffcc02;
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.cabai-container .description-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2.5vw, 16px);
+}
+
+.cabai-container .description-content p {
+  color: white;
+  font-size: clamp(12px, 2.5vw, 14px);
+  line-height: 1.6;
+  text-align: justify;
+  opacity: 0.95;
+  margin: 0;
+}
+
+.cabai-container .description-content p strong {
+  color: #ffcc02;
+  font-weight: bold;
+}
+
+.cabai-container .key-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: clamp(10px, 2vw, 15px);
+  margin-top: clamp(15px, 3vw, 20px);
+  padding-top: clamp(15px, 3vw, 20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cabai-container .stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(4px, 1vw, 6px);
+}
+
+.cabai-container .stat-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(9px, 2vw, 11px);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cabai-container .stat-value {
+  color: #ffcc02;
+  font-size: clamp(11px, 2.5vw, 13px);
+  font-weight: bold;
+}
+
+/* ===== FOOTER ===== */
+.cabai-container .footer-bar {
+  grid-area: footer;
+  background: #d84315;
+  border-radius: clamp(15px, 3vw, 20px);
+  padding: clamp(12px, 2.5vw, 18px) clamp(20px, 4vw, 30px);
+  animation: slideInUp 0.8s ease-out 1.2s both;
+  box-shadow: 0 -5px 20px rgba(216, 67, 21, 0.2);
+  margin-top: clamp(20px, 4vw, 30px);
+  position: relative;
+  width: 100%;
+  z-index: auto;
+}
+
+.cabai-container .footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(15px, 3vw, 20px);
+  text-align: center;
+}
+
+.cabai-container .welcome-text {
+  color: white;
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: bold;
+  letter-spacing: clamp(0.5px, 0.1vw, 1.5px);
+  animation: textGlow 2s ease-in-out infinite alternate;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 0;
+}
+
 @keyframes textGlow {
-  from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
-  to { text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
+  from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3); }
+  to { text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3); }
 }
 
-/* Responsive adjustments for dropdown */
-@media (max-width: 1200px) {
-  .main-content {
-    gap: 20px;
+.cabai-container .footer-info {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 12px);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(11px, 2.5vw, 14px);
+  font-weight: 500;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Large Desktop - 1200px+ */
+@media (min-width: 1200px) {
+  .cabai-container .main-content {
+    grid-template-columns: 320px 1fr;
+    gap: 50px;
+    max-width: 1600px;
+    margin: 0 auto;
   }
   
-  .logo-container {
-    gap: 25px;
-    padding: 10px 25px;
-    min-width: 250px;
-    height: 50px;
-  }
-  
-  .logo-item img,
-  .logo-item-inner img {
-    width: 20px;
-    height: 20px;
-  }
-
-  .logo-item span,
-  .logo-item-inner span {
-    font-size: 12px;
-  }
-
-  .dropdown-arrow {
-    font-size: 9px;
+  .cabai-container .plant-info-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Responsive Design */
+/* Tablet - 768px to 1024px */
+@media (max-width: 1024px) {
+  .cabai-container {
+    grid-template-rows: auto auto 1fr auto;
+    gap: clamp(12px, 2vw, 18px);
+    padding: clamp(10px, 2vw, 15px);
+  }
+  
+  .cabai-container .main-content {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "sidebar"
+      "content";
+    gap: clamp(20px, 3vw, 30px);
+  }
+  
+  .cabai-container .sidebar-navigation {
+    position: static;
+    max-height: none;
+  }
+  
+  .cabai-container .zone-buttons-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: clamp(10px, 2vw, 15px);
+  }
+  
+  .cabai-container .plant-info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cabai-container .header-content {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Mobile - 768px and below */
 @media (max-width: 768px) {
   .cabai-container {
-    padding: 16px;
+    padding: clamp(8px, 1.5vw, 12px);
+    gap: clamp(10px, 2vw, 15px);
+    width: 100vw;
   }
   
-  .header {
+  /* Fixed Navigation Header for Mobile */
+  .cabai-container .navigation-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: clamp(6px, 1.5vw, 10px) clamp(8px, 1.5vw, 12px);
+    background: rgba(255, 235, 59, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(216, 67, 21, 0.3);
+    box-shadow: 0 2px 15px rgba(216, 67, 21, 0.3);
+    width: 100vw;
+    box-sizing: border-box;
+  }
+  
+  .cabai-container .logo-container {
+    border-radius: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    min-width: auto;
+    height: clamp(45px, 10vw, 55px);
+    gap: clamp(15px, 3vw, 25px);
+    padding: clamp(6px, 1vw, 8px) clamp(15px, 3vw, 20px);
+    justify-content: center;
+  }
+  
+  .cabai-container .logo-item,
+  .cabai-container .logo-item-inner {
+    padding: clamp(4px, 1vw, 6px) clamp(8px, 2vw, 12px);
+    gap: clamp(4px, 1vw, 6px);
+    min-width: 0;
+    flex: 0 1 auto;
+  }
+  
+  .cabai-container .logo-item img,
+  .cabai-container .logo-item-inner img {
+    width: clamp(16px, 3.5vw, 20px);
+    height: clamp(16px, 3.5vw, 20px);
+  }
+  
+  .cabai-container .logo-item span,
+  .cabai-container .logo-item-inner span {
+    font-size: clamp(9px, 2vw, 11px);
+  }
+  
+  .cabai-container .plant-dropdown {
+    position: fixed;
+    top: clamp(45px, 10vw, 55px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: clamp(180px, 40vw, 220px);
+    margin-top: 0;
+    box-shadow: 0 5px 20px rgba(216, 67, 21, 0.5);
+  }
+  
+  /* Adjust for fixed header */
+  .cabai-container .page-header {
+    margin-top: clamp(60px, 13vw, 75px);
+  }
+  
+  .cabai-container .header-content {
     flex-direction: column;
-    gap: 12px;
-    text-align: center;
-    margin-bottom: 16px;
+    gap: clamp(10px, 2vw, 15px);
   }
   
-  .page-title {
-    font-size: 20px;
+  .cabai-container .greeting {
+    order: 2;
   }
   
-  .main-content {
-    flex-direction: column;
-    gap: 16px;
+  .cabai-container .page-title {
+    order: 1;
+    font-size: clamp(16px, 4vw, 22px);
   }
   
-  .sidebar {
-    flex-direction: row;
-    overflow-x: auto;
-    gap: 8px;
+  .cabai-container .zone-buttons-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(8px, 2vw, 12px);
   }
   
-  .zone-btn {
-    min-width: 80px;
-    flex-shrink: 0;
-    padding: 10px 12px;
-    font-size: 12px;
+  .cabai-container .zone-btn {
+    padding: clamp(10px, 2.5vw, 15px);
+    font-size: clamp(10px, 2vw, 12px);
   }
   
-  .cabai-title {
-    font-size: 14px;
-    padding: 8px 16px;
+  .cabai-container .zone-number {
+    font-size: clamp(12px, 3vw, 16px);
   }
   
-  .plant-info {
-    flex-direction: column;
-    gap: 12px;
-    height: auto;
-  }
-  
-  .plant-image img {
-    height: 160px;
-  }
-  
-  .plant-description {
-    height: auto;
-    min-height: 120px;
-  }
-  
-  .monitoring-section {
-    padding: 16px;
-  }
-
-  .plant-dropdown {
-    min-width: 160px;
-    margin-top: 6px;
-  }
-  
-  .dropdown-item {
-    padding: 10px 14px;
-    font-size: 12px;
-  }
-  
-  .dropdown-item img {
-    width: 18px;
-    height: 18px;
-  }
-
-  .logo-container {
-    gap: 20px;
-    padding: 8px 20px;
-    min-width: 200px;
-    height: 45px;
-  }
-  
-  .logo-item,
-  .logo-item-inner {
-    padding: 6px 12px;
-    gap: 8px;
-  }
-  
-  .logo-item img,
-  .logo-item-inner img {
-    width: 18px;
-    height: 18px;
-  }
-
-  .logo-item span,
-  .logo-item-inner span {
-    font-size: 11px;
+  .cabai-container .zone-label {
+    font-size: clamp(8px, 1.8vw, 10px);
   }
 }
 
+/* Small Mobile - 480px and below */
 @media (max-width: 480px) {
   .cabai-container {
-    padding: 12px;
+    padding: clamp(6px, 1vw, 10px);
+    gap: clamp(8px, 1.5vw, 12px);
+    width: 100vw;
   }
   
-  .page-title {
-    font-size: 18px;
+  .cabai-container .logo-container {
+    height: clamp(40px, 9vw, 50px);
+    gap: clamp(10px, 2vw, 20px);
+    padding: clamp(4px, 0.8vw, 6px) clamp(10px, 2vw, 15px);
   }
   
-  .plant-description p {
-    font-size: 12px;
+  .cabai-container .logo-item,
+  .cabai-container .logo-item-inner {
+    padding: clamp(3px, 0.8vw, 5px) clamp(6px, 1.5vw, 10px);
+    gap: clamp(3px, 0.8vw, 5px);
+    flex: 0 1 auto;
   }
   
-  .plant-image img {
-    height: 140px;
+  .cabai-container .logo-item img,
+  .cabai-container .logo-item-inner img {
+    width: clamp(14px, 3vw, 18px);
+    height: clamp(14px, 3vw, 18px);
   }
+  
+  .cabai-container .logo-item span,
+  .cabai-container .logo-item-inner span {
+    font-size: clamp(8px, 1.8vw, 10px);
+  }
+  
+  .cabai-container .page-header {
+    margin-top: clamp(50px, 11vw, 65px);
+  }
+  
+  .cabai-container .page-title {
+    font-size: clamp(14px, 3.5vw, 20px);
+  }
+  
+  .cabai-container .zone-buttons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+  
+  .cabai-container .zone-btn {
+    padding: clamp(8px, 2vw, 12px);
+    font-size: clamp(9px, 1.8vw, 11px);
+  }
+  
+  .cabai-container .zone-number {
+    font-size: clamp(10px, 2.5vw, 14px);
+  }
+  
+  .cabai-container .zone-label {
+    font-size: clamp(7px, 1.5vw, 9px);
+  }
+  
+  .cabai-container .key-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+  
+  .cabai-container .plant-dropdown {
+    min-width: clamp(160px, 35vw, 200px);
+  }
+  
+  .cabai-container .dropdown-item {
+    padding: clamp(8px, 2vw, 12px) clamp(10px, 2.5vw, 14px);
+    font-size: clamp(9px, 2vw, 11px);
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+  
+  .cabai-container .dropdown-item img {
+    width: clamp(12px, 3vw, 16px);
+    height: clamp(12px, 3vw, 16px);
+  }
+}
 
-  .plant-dropdown {
-    min-width: 140px;
+/* Mobile Landscape Optimization */
+@media (max-width: 768px) and (orientation: landscape) and (max-height: 500px) {
+  .cabai-container {
+    padding: clamp(6px, 1vw, 10px);
+    width: 100vw;
   }
   
-  .dropdown-item {
-    padding: 8px 12px;
-    font-size: 11px;
-    gap: 10px;
+  .cabai-container .navigation-header {
+    padding: clamp(4px, 0.8vw, 6px) clamp(6px, 1vw, 10px);
   }
   
-  .dropdown-item img {
-    width: 16px;
-    height: 16px;
+  .cabai-container .logo-container {
+    height: clamp(35px, 8vw, 45px);
+    gap: clamp(10px, 2vw, 20px);
   }
+  
+  .cabai-container .page-header {
+    margin-top: clamp(45px, 10vw, 60px);
+  }
+  
+  .cabai-container .main-content {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "sidebar content";
+    gap: clamp(15px, 3vw, 25px);
+  }
+  
+  .cabai-container .sidebar-navigation {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  .cabai-container .zone-buttons-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+  
+  .cabai-container .zone-btn {
+    padding: clamp(8px, 2vw, 12px);
+    font-size: clamp(9px, 1.8vw, 11px);
+  }
+  
+  .cabai-container .plant-info-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(15px, 3vw, 20px);
+  }
+}
 
-  .logo-container {
-    gap: 15px;
-    padding: 6px 15px;
-    min-width: 180px;
-    height: 40px;
+/* ===== FOCUS STATES & ACCESSIBILITY ===== */
+.cabai-container .zone-btn:focus,
+.cabai-container .logo-item:focus,
+.cabai-container .logo-item-inner:focus,
+.cabai-container .dropdown-item:focus {
+  outline: 2px solid #ffcc02;
+  outline-offset: 2px;
+}
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cabai-container,
+  .cabai-container *,
+  .cabai-container .navigation-header,
+  .cabai-container .page-header,
+  .cabai-container .main-content,
+  .cabai-container .sidebar-navigation,
+  .cabai-container .content-area,
+  .cabai-container .footer-bar {
+    animation: none;
+    transition: none;
+  }
+  
+  .cabai-container .indicator-dot,
+  .cabai-container .growth-progress {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cabai-container .plant-image-card,
+  .cabai-container .plant-description-card {
+    border: 2px solid white;
+  }
+  
+  .cabai-container .zone-btn {
+    border: 1px solid white;
   }
 }

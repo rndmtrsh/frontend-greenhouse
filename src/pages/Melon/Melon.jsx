@@ -1,3 +1,4 @@
+// Melon.jsx - Responsive Structure
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Melon.css';
@@ -36,98 +37,177 @@ const Melon = () => {
 
   return (
     <div className="melon-container">
-      {/* Menu Container */}
-      <div className="menu-container">
-        <div className="menu-item" onClick={handleHomeClick}>
-          <img src="/home-icon.png" alt="Home" />
-          <span>Home</span>
-        </div>
-        <div className="menu-item plant-menu-container">
-          <div className="menu-item-inner" onClick={handlePlantClick}>
-            <img src="/plant-icon.png" alt="Plant" />
-            <span>Plant</span>
-            <span className={`dropdown-arrow ${isPlantDropdownOpen ? 'open' : ''}`}>▼</span>
+      {/* Navigation Header */}
+      <div className="navigation-header">
+        <div className="logo-container">
+          <div className="logo-item" onClick={handleHomeClick}>
+            <img src="/home-icon.png" alt="Home" />
+            <span>Home</span>
           </div>
           
-          {/* Plant Dropdown Menu */}
-          <div className={`plant-dropdown ${isPlantDropdownOpen ? 'show' : ''}`}>
-            <div className="dropdown-item" onClick={() => handlePlantMenuClick('selada')}>
-              <span>Selada</span>
+          <div className="plant-menu-container">
+            <div className="logo-item-inner" onClick={handlePlantClick}>
+              <img src="/plant-icon.png" alt="Plant" />
+              <span>Plant</span>
+              <span className={`dropdown-arrow ${isPlantDropdownOpen ? 'open' : ''}`}>▼</span>
             </div>
-            <div className="dropdown-item" onClick={() => handlePlantMenuClick('cabai')}>
-              <span>Cabai</span>
-            </div>
-            <div className="dropdown-item" onClick={() => handlePlantMenuClick('melon')}>
-              <span>Melon</span>
+            
+            {/* Plant Dropdown Menu */}
+            <div className={`plant-dropdown ${isPlantDropdownOpen ? 'show' : ''}`}>
+              <div className="dropdown-item" onClick={() => handlePlantMenuClick('selada')}>
+                <span>Selada</span>
+              </div>
+              <div className="dropdown-item" onClick={() => handlePlantMenuClick('cabai')}>
+                <span>Cabai</span>
+              </div>
+              <div className="dropdown-item" onClick={() => handlePlantMenuClick('melon')}>
+                <span>Melon</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Back to Dashboard Button */}
-      <div className="back-button-container">
-        <button className="back-btn" onClick={handleBackToDashboard}>
-          Back to Dashboard
-        </button>
+      {/* Page Header */}
+      <div className="page-header">
+        <div className="header-content">
+          <button className="back-button" onClick={handleBackToDashboard}>
+            Back to Dashboard
+          </button>
+        </div>
       </div>
 
-      {/* Main Plant Button */}
-      <div className="main-plant-container">
-        <button 
-          className="main-plant-btn" 
-          onClick={() => handleZoneClick('melon')}
-        >
-          MELON
-        </button>
+      {/* Main Content */}
+      <div className="main-content">
+        {/* Sidebar Navigation */}
+        <div className="sidebar-navigation">
+          <h2 className="nav-title">Melon Zones</h2>
+          <div className="zone-buttons-grid">
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona1')}
+            >
+              <span className="zone-number">1</span>
+              <span className="zone-label">Zona</span>
+            </button>
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona2')}
+            >
+              <span className="zone-number">2</span>
+              <span className="zone-label">Zona</span>
+            </button>
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona3')}
+            >
+              <span className="zone-number">3</span>
+              <span className="zone-label">Zona</span>
+            </button>
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona4')}
+            >
+              <span className="zone-number">4</span>
+              <span className="zone-label">Zona</span>
+            </button>
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona5')}
+            >
+              <span className="zone-number">5</span>
+              <span className="zone-label">Zona</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Content Area */}
+        <div className="content-area">
+          {/* Plant Info Section */}
+          <div className="plant-info-section">
+            <div className="section-header">
+              <h2 className="section-title">Melon Overview</h2>
+              <div className="section-indicator">
+                <div className="indicator-dot"></div>
+                <span className="indicator-text">Active</span>
+              </div>
+            </div>
+
+            <div className="plant-info-grid">
+              {/* Plant Image Card */}
+              <div className="plant-image-card">
+                <div className="image-container">
+                  <img 
+                    src="/melon.jpg" 
+                    alt="Melon Plant" 
+                    className="plant-image"
+                  />
+                  <div className="image-overlay">
+                    <span className="plant-status">Healthy</span>
+                  </div>
+                </div>
+                <div className="image-caption">
+                  <h4>Sweet Cantaloupe</h4>
+                  <p>Growing beautifully in optimal conditions</p>
+                </div>
+              </div>
+
+              {/* Plant Description Card */}
+              <div className="plant-description-card">
+                <div className="description-header">
+                  <h3>Growth Progress</h3>
+                  <div className="growth-indicator">
+                    <div className="growth-bar">
+                      <div className="growth-progress"></div>
+                    </div>
+                    <span className="growth-text">85%</span>
+                  </div>
+                </div>
+
+                <div className="description-content">
+                  <p>
+                    <strong>Melon (Cucumis melo)</strong> adalah tanaman buah dari keluarga labu-labuan 
+                    yang dikenal dengan rasa manis dan segar. Tanaman ini sedang dalam tahap 
+                    <strong> pertumbuhan optimal</strong> dengan kondisi lingkungan yang mendukung.
+                  </p>
+                  
+                  <p>
+                    Saat ini melon berada dalam fase pembentukan buah dengan tingkat kelembaban 
+                    dan suhu yang terkontrol dengan baik. <strong>Prediksi panen</strong> dalam 
+                    2-3 minggu ke depan dengan kualitas buah yang sangat baik.
+                  </p>
+
+                  <div className="key-stats">
+                    <div className="stat-item">
+                      <span className="stat-label">Days to Harvest</span>
+                      <span className="stat-value">15-20</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-label">Plant Health</span>
+                      <span className="stat-value">Excellent</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-label">Growth Rate</span>
+                      <span className="stat-value">Fast</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-label">Water Level</span>
+                      <span className="stat-value">Optimal</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Zone Buttons */}
-      <div className="zone-buttons-container">
-        <button 
-          className="zone-btn" 
-          onClick={() => handleZoneClick('zona1')}
-        >
-          ZONA 1
-        </button>
-        <button 
-          className="zone-btn" 
-          onClick={() => handleZoneClick('zona2')}
-        >
-          ZONA 2
-        </button>
-        <button 
-          className="zone-btn" 
-          onClick={() => handleZoneClick('zona3')}
-        >
-          ZONA 3
-        </button>
-        <button 
-          className="zone-btn" 
-          onClick={() => handleZoneClick('zona4')}
-        >
-          ZONA 4
-        </button>
-        <button 
-          className="zone-btn" 
-          onClick={() => handleZoneClick('zona5')}
-        >
-          ZONA 5
-        </button>
-      </div>
-
-      {/* Central Title */}
-      <div className="central-title">
-        <h2>MONITORING YOUR PLANT</h2>
-      </div>
-      
-      <div className="melon-container">
-        <img src="/melon.jpg" alt="Melon" className="melon-img" />
-      </div>
-      
-      {/* Footer Bar */}
+      {/* Footer */}
       <div className="footer-bar">
-        <div className="welcome-text">
-          WELCOME TO GREENHOUSE
+        <div className="footer-content">
+          <div className="welcome-text">
+            Welcome to Greenhouse - Melon Monitoring System
+          </div>
         </div>
       </div>
     </div>

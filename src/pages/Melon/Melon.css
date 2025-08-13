@@ -1,4 +1,11 @@
-/* Melon.css */
+/* Melon.css - Clean Green Theme */
+
+/* ===== GLOBAL RESET & BASE STYLES ===== */
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,183 +14,227 @@
 
 body {
   font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 50%, #81c784 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
+/* ===== MAIN CONTAINER ===== */
 .melon-container {
   width: 100vw;
-  height: 100vh;
-  background-image: url('/melon.jpg');
-  background-size: 300px auto; /* Ukuran gambar, misalnya lebar 300px */
-  background-position: 30% center; /* 30% dari kiri, tetap di tengah vertikal */
-  background-repeat: no-repeat;
-  background-color: #f5f5f5; /* Tambahan warna background kalau mau */
+  min-height: 100vh;
+  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 50%, #81c784 100%);
+  background-attachment: fixed;
   font-family: 'Arial', sans-serif;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas: 
+    "navigation"
+    "page-header"
+    "main-content"
+    "footer";
+  gap: clamp(15px, 2.5vw, 20px);
+  padding: clamp(15px, 2.5vw, 20px);
+  animation: fadeIn 1s ease-in-out;
+  margin: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
-/* Menu Container - Top Center */
-.menu-container {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== NAVIGATION HEADER ===== */
+.melon-container .navigation-header {
+  grid-area: navigation;
+  position: sticky;
+  top: clamp(10px, 2vw, 20px);
+  z-index: 1000;
+  animation: slideInDown 0.8s ease-out;
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.melon-container .logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  background: rgba(45, 80, 22, 0.9);
-  border-radius: 20px;
-  padding: 12px 30px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  backdrop-filter: blur(10px);
+  gap: clamp(30px, 5vw, 50px);
+  background: #2d5016;
+  border-radius: clamp(15px, 3vw, 20px);
+  padding: clamp(12px, 2vw, 16px) clamp(20px, 4vw, 40px);
+  margin: 0 auto;
   width: fit-content;
-  min-width: 300px;
-  animation: slideInFromTop 0.8s ease-out;
+  min-width: clamp(300px, 60vw, 450px);
+  max-width: 95vw;
+  height: clamp(60px, 12vw, 80px);
+  box-shadow: 0 5px 20px rgba(45, 80, 22, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-@keyframes slideInFromTop {
-  from { 
-    opacity: 0;
-    transform: translateX(-50%) translateY(-30px);
-  }
-  to { 
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+.melon-container .logo-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(45, 80, 22, 0.4);
 }
 
-.menu-item {
+.melon-container .logo-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(6px, 1.5vw, 10px);
   cursor: pointer;
-  padding: 8px 15px;
-  border-radius: 12px;
+  padding: clamp(6px, 1.5vw, 8px) clamp(10px, 2.5vw, 15px);
+  border-radius: clamp(8px, 2vw, 12px);
   transition: all 0.3s ease;
   color: white;
   font-weight: bold;
-  font-size: 14px;
+  font-size: clamp(11px, 2.5vw, 14px);
   letter-spacing: 0.5px;
   white-space: nowrap;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
 }
 
-.menu-item:hover {
+.melon-container .logo-item:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-.menu-item img {
-  width: 24px;
-  height: 24px;
+.melon-container .logo-item img {
+  width: clamp(18px, 4vw, 24px);
+  height: clamp(18px, 4vw, 24px);
   object-fit: contain;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-.menu-item:hover img {
+.melon-container .logo-item:hover img {
   transform: scale(1.1);
 }
 
-.menu-item span {
+.melon-container .logo-item span {
   text-transform: uppercase;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Plant Menu Container */
-.plant-menu-container {
+/* ===== PLANT MENU DROPDOWN ===== */
+.melon-container .plant-menu-container {
   position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
-.menu-item-inner {
+.melon-container .logo-item-inner {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(6px, 1.5vw, 10px);
   cursor: pointer;
-  padding: 8px 15px;
-  border-radius: 12px;
+  padding: clamp(6px, 1.5vw, 8px) clamp(10px, 2.5vw, 15px);
+  border-radius: clamp(8px, 2vw, 12px);
   transition: all 0.3s ease;
   color: white;
   font-weight: bold;
-  font-size: 14px;
+  font-size: clamp(11px, 2.5vw, 14px);
   letter-spacing: 0.5px;
   white-space: nowrap;
+  justify-content: center;
+  width: 100%;
 }
 
-.menu-item-inner:hover {
+.melon-container .logo-item-inner:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-.menu-item-inner img {
-  width: 24px;
-  height: 24px;
+.melon-container .logo-item-inner img {
+  width: clamp(18px, 4vw, 24px);
+  height: clamp(18px, 4vw, 24px);
   object-fit: contain;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
-.menu-item-inner:hover img {
+.melon-container .logo-item-inner:hover img {
   transform: scale(1.1);
 }
 
-.menu-item-inner span {
+.melon-container .logo-item-inner span {
   text-transform: uppercase;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Dropdown Arrow */
-.dropdown-arrow {
-  font-size: 10px;
-  margin-left: 5px;
+.melon-container .dropdown-arrow {
+  font-size: clamp(8px, 2vw, 10px);
+  margin-left: clamp(3px, 1vw, 5px);
   transition: transform 0.3s ease;
   color: white;
+  flex-shrink: 0;
 }
 
-.dropdown-arrow.open {
+.melon-container .dropdown-arrow.open {
   transform: rotate(180deg);
 }
 
-/* Plant Dropdown */
-.plant-dropdown {
+.melon-container .plant-dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
-  right: 0;
-  background: rgba(45, 80, 22, 0.95);
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2d5016;
+  border-radius: clamp(10px, 2.5vw, 15px);
+  box-shadow: 0 8px 25px rgba(45, 80, 22, 0.4);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
+  transform: translateX(-50%) translateY(-10px);
   transition: all 0.3s ease;
-  z-index: 1001;
-  margin-top: 8px;
-  min-width: 180px;
+  z-index: 1000;
+  margin-top: clamp(5px, 1vw, 8px);
+  min-width: clamp(160px, 35vw, 200px);
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
 }
 
-.plant-dropdown.show {
+.melon-container .plant-dropdown.show {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
+  animation: dropdownSlideIn 0.3s ease-out;
 }
 
-/* Dropdown Items */
-.dropdown-item {
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-15px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+.melon-container .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: clamp(8px, 2vw, 12px);
+  padding: clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px);
   color: white;
   font-weight: bold;
-  font-size: 13px;
+  font-size: clamp(11px, 2.5vw, 13px);
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -191,331 +242,859 @@ body {
   background: transparent;
 }
 
-.dropdown-item:last-child {
+.melon-container .dropdown-item:last-child {
   border-bottom: none;
 }
 
-.dropdown-item:hover {
-  background: rgba(107, 142, 86, 0.8);
+.melon-container .dropdown-item:hover {
+  background: #6b8e56;
   transform: translateX(5px);
-  padding-left: 20px;
+  padding-left: clamp(16px, 4vw, 20px);
 }
 
-.dropdown-item span {
+.melon-container .dropdown-item img {
+  width: clamp(16px, 3.5vw, 20px);
+  height: clamp(16px, 3.5vw, 20px);
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  filter: brightness(1.1);
+  flex-shrink: 0;
+}
+
+.melon-container .dropdown-item:hover img {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.melon-container .dropdown-item span {
   text-transform: capitalize;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   font-weight: 600;
 }
 
-/* Back Button Container - Top Left */
-.back-button-container {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 999;
+/* ===== PAGE HEADER ===== */
+.melon-container .page-header {
+  grid-area: page-header;
+  animation: slideInUp 0.8s ease-out 0.2s both;
 }
 
-.back-btn {
-  background: rgba(45, 80, 22, 0.9);
-  border: none;
-  padding: 12px 20px;
-  border-radius: 20px;
+@keyframes slideInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.melon-container .header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(15px, 3vw, 20px);
+  margin-bottom: clamp(15px, 3vw, 25px);
+}
+
+.melon-container .back-button {
+  background: #2d5016;
   color: white;
+  border: none;
+  padding: clamp(8px, 2vw, 12px) clamp(20px, 4vw, 25px);
+  border-radius: clamp(20px, 4vw, 25px);
+  font-size: clamp(13px, 3vw, 16px);
   font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
+  animation: slideInLeft 0.8s ease-out 0.3s both;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(45, 80, 22, 0.2);
+  cursor: pointer;
   letter-spacing: 0.5px;
 }
 
-.back-btn:hover {
-  background: rgba(58, 107, 27, 0.95);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+@keyframes slideInLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
-/* Main Plant Button Container - Top Left */
-.main-plant-container {
-  position: absolute;
-  top: 100px;
-  left: 20px;
-  z-index: 998;
-  animation: slideInLeft 0.8s ease-out 0.4s both;
+.melon-container .back-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(45, 80, 22, 0.3);
+  background: #1a2e0a;
 }
 
-.main-plant-btn {
-  background: rgba(45, 80, 22, 0.9);
-  border: none;
-  padding: 15px 30px;
-  border-radius: 25px;
-  color: white;
+.melon-container .page-title {
+  font-size: clamp(20px, 5vw, 32px);
   font-weight: bold;
-  font-size: 18px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  letter-spacing: 1px;
+  color: #2d5016;
+  letter-spacing: clamp(0.5px, 0.1vw, 1.5px);
+  animation: slideInRight 0.8s ease-out 0.3s both;
+  text-shadow: 0 2px 4px rgba(45, 80, 22, 0.1);
+  text-align: center;
+  flex: 1;
   text-transform: uppercase;
 }
 
-.main-plant-btn:hover {
-  background: rgba(26, 48, 9, 0.95);
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
-/* Zone Buttons Container - Right Side */
-.zone-buttons-container {
-  position: absolute;
-  top: 50%;
-  right: 30px;
-  transform: translateY(-50%);
+/* ===== MAIN CONTENT ===== */
+.melon-container .main-content {
+  grid-area: main-content;
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 3fr);
+  grid-template-areas: "sidebar content";
+  gap: clamp(20px, 4vw, 40px);
+  align-items: start;
+  animation: contentSlideIn 0.8s ease-out 0.4s both;
+}
+
+@keyframes contentSlideIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===== SIDEBAR NAVIGATION ===== */
+.melon-container .sidebar-navigation {
+  grid-area: sidebar;
+  background: #2d5016;
+  border-radius: clamp(15px, 3vw, 25px);
+  padding: clamp(20px, 4vw, 30px);
+  box-shadow: 0 10px 30px rgba(45, 80, 22, 0.3);
+  backdrop-filter: blur(10px);
+  height: fit-content;
+  animation: sidebarSlideIn 0.8s ease-out 0.6s both;
+}
+
+@keyframes sidebarSlideIn {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.melon-container .nav-title {
+  color: white;
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: clamp(20px, 4vw, 30px);
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+}
+
+.melon-container .zone-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(12px, 2.5vw, 18px);
+}
+
+.melon-container .zone-btn {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  z-index: 997;
-}
-
-.zone-btn {
-  background: rgba(45, 80, 22, 0.9);
-  border: none;
-  padding: 18px 35px;
-  border-radius: 25px;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 8px);
+  background: #6b8e56;
   color: white;
-  font-weight: bold;
-  font-size: 16px;
+  border: none;
+  border-radius: clamp(12px, 2.5vw, 18px);
+  padding: clamp(15px, 3vw, 20px);
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  font-size: clamp(12px, 2.5vw, 14px);
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.melon-container .zone-btn.active {
+  background: #4a5d3a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.melon-container .zone-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.melon-container .zone-btn:hover::before {
+  left: 100%;
+}
+
+.melon-container .zone-btn:hover {
+  background: #4a5d3a;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.melon-container .zone-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.melon-container .zone-number {
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: 900;
+  color: #9ccc65;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.melon-container .zone-label {
+  font-size: clamp(10px, 2vw, 12px);
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* ===== CONTENT AREA ===== */
+.melon-container .content-area {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(25px, 5vw, 40px);
+  animation: contentAreaSlideIn 0.8s ease-out 0.8s both;
+}
+
+@keyframes contentAreaSlideIn {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ===== PLANT INFO SECTION ===== */
+.melon-container .plant-info-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: clamp(15px, 3vw, 25px);
+  padding: clamp(20px, 4vw, 30px);
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(45, 80, 22, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.melon-container .plant-info-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(45, 80, 22, 0.3);
+}
+
+.melon-container .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(10px, 2vw, 15px);
+  margin-bottom: clamp(20px, 4vw, 30px);
+  padding-bottom: clamp(15px, 3vw, 20px);
+  border-bottom: 2px solid rgba(45, 80, 22, 0.3);
+}
+
+.melon-container .section-title {
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: bold;
+  color: #2d5016;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(45, 80, 22, 0.1);
+}
+
+.melon-container .section-indicator {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 10px);
+  background: #2d5016;
+  padding: clamp(6px, 1.5vw, 10px) clamp(12px, 3vw, 15px);
+  border-radius: clamp(15px, 3vw, 20px);
+  color: white;
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: bold;
+}
+
+.melon-container .indicator-dot {
+  width: clamp(8px, 2vw, 10px);
+  height: clamp(8px, 2vw, 10px);
+  background: #9ccc65;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.melon-container .indicator-text {
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  min-width: 120px;
-  text-align: center;
 }
 
-.zone-btn:hover {
-  background: rgba(58, 107, 27, 0.95);
-  transform: translateX(-10px) scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+/* ===== PLANT INFO GRID ===== */
+.melon-container .plant-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(20px, 4vw, 30px);
+  align-items: start;
 }
 
-.zone-btn:active {
-  transform: translateX(-5px) scale(0.98);
-}
-
-/* Central Title */
-.central-title {
-  position: absolute;
-  left: 50%;
-  top: 45%;
-  transform: translate(-50%, -50%);
-  z-index: 996;
-}
-
-.central-title h2 {
-  background: rgba(45, 80, 22, 0.9);
-  color: white;
-  padding: 20px 40px;
-  border-radius: 30px;
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  margin: 0;
-  text-transform: uppercase;
+/* Plant Image Card */
+.melon-container .plant-image-card {
+  background: #2d5016;
+  border-radius: clamp(15px, 3vw, 20px);
+  padding: clamp(15px, 3vw, 20px);
+  box-shadow: 0 8px 25px rgba(45, 80, 22, 0.3);
   transition: all 0.3s ease;
+  animation: cardSlideUp 0.6s ease-out backwards;
+  animation-delay: 0.2s;
 }
 
-.central-title h2:hover {
+@keyframes cardSlideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.melon-container .plant-image-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(45, 80, 22, 0.4);
+}
+
+.melon-container .image-container {
+  position: relative;
+  margin-bottom: clamp(15px, 3vw, 20px);
+  border-radius: clamp(12px, 2.5vw, 15px);
+  overflow: hidden;
+}
+
+.melon-container .plant-image {
+  width: 100%;
+  height: clamp(180px, 35vw, 250px);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  opacity: 0;
+  animation: imageLoad 0.5s ease-out 0.5s forwards;
+}
+
+@keyframes imageLoad {
+  to {
+    opacity: 1;
+  }
+}
+
+.melon-container .plant-image:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
 }
 
-/* Footer Bar */
-.footer-bar {
+.melon-container .image-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(45, 80, 22, 0.9);
-  padding: 20px;
+  top: clamp(10px, 2vw, 15px);
+  right: clamp(10px, 2vw, 15px);
+  background: rgba(156, 204, 101, 0.9);
+  color: white;
+  padding: clamp(4px, 1vw, 6px) clamp(8px, 2vw, 12px);
+  border-radius: clamp(8px, 2vw, 12px);
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(5px);
+}
+
+.melon-container .plant-status {
+  text-transform: uppercase;
+}
+
+.melon-container .image-caption {
+  color: white;
+  text-align: center;
+}
+
+.melon-container .image-caption h4 {
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: bold;
+  margin-bottom: clamp(4px, 1vw, 6px);
+  font-style: italic;
+}
+
+.melon-container .image-caption p {
+  font-size: clamp(12px, 2.5vw, 14px);
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Plant Description Card */
+.melon-container .plant-description-card {
+  background: #2d5016;
+  border-radius: clamp(15px, 3vw, 20px);
+  padding: clamp(20px, 4vw, 25px);
+  box-shadow: 0 8px 25px rgba(45, 80, 22, 0.3);
+  transition: all 0.3s ease;
+  animation: cardSlideUp 0.6s ease-out backwards;
+  animation-delay: 0.4s;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.melon-container .plant-description-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(45, 80, 22, 0.4);
+}
+
+.melon-container .description-header {
+  margin-bottom: clamp(15px, 3vw, 20px);
+  padding-bottom: clamp(10px, 2vw, 15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.melon-container .description-header h3 {
+  color: white;
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: bold;
+  margin-bottom: clamp(10px, 2vw, 15px);
+  letter-spacing: 0.5px;
+}
+
+.melon-container .growth-indicator {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2vw, 15px);
+}
+
+.melon-container .growth-bar {
+  flex: 1;
+  height: clamp(6px, 1.5vw, 8px);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: clamp(3px, 0.75vw, 4px);
+  overflow: hidden;
+}
+
+.melon-container .growth-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #9ccc65, #689f38);
+  border-radius: clamp(3px, 0.75vw, 4px);
+  transition: width 1s ease;
+  animation: progressGrow 2s ease-out;
+}
+
+@keyframes progressGrow {
+  from { width: 0; }
+  to { width: 85%; }
+}
+
+.melon-container .growth-text {
+  color: #9ccc65;
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.melon-container .description-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2.5vw, 16px);
+}
+
+.melon-container .description-content p {
+  color: white;
+  font-size: clamp(12px, 2.5vw, 14px);
+  line-height: 1.6;
+  text-align: justify;
+  opacity: 0.95;
+  margin: 0;
+}
+
+.melon-container .description-content p strong {
+  color: #9ccc65;
+  font-weight: bold;
+}
+
+.melon-container .key-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: clamp(10px, 2vw, 15px);
+  margin-top: clamp(15px, 3vw, 20px);
+  padding-top: clamp(15px, 3vw, 20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.melon-container .stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(4px, 1vw, 6px);
+}
+
+.melon-container .stat-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(9px, 2vw, 11px);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.melon-container .stat-value {
+  color: #9ccc65;
+  font-size: clamp(11px, 2.5vw, 13px);
+  font-weight: bold;
+}
+
+/* ===== FOOTER ===== */
+.melon-container .footer-bar {
+  grid-area: footer;
+  background: #2d5016;
+  border-radius: clamp(15px, 3vw, 20px);
+  padding: clamp(12px, 2.5vw, 18px) clamp(20px, 4vw, 30px);
+  animation: slideInUp 0.8s ease-out 1.2s both;
+  box-shadow: 0 -5px 20px rgba(45, 80, 22, 0.2);
+  margin-top: clamp(20px, 4vw, 30px);
+  position: relative;
+  width: 100%;
+  z-index: auto;
+}
+
+.melon-container .footer-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  z-index: 995;
-}
-
-.welcome-text {
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 2px;
+  flex-wrap: wrap;
+  gap: clamp(15px, 3vw, 20px);
   text-align: center;
-  text-transform: uppercase;
+}
+
+.melon-container .welcome-text {
+  color: white;
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: bold;
+  letter-spacing: clamp(0.5px, 0.1vw, 1.5px);
+  animation: textGlow 2s ease-in-out infinite alternate;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 0;
+  text-transform: uppercase;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .zone-buttons-container {
-    right: 20px;
-    gap: 15px;
+@keyframes textGlow {
+  from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3); }
+  to { text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3); }
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Large Desktop - 1200px+ */
+@media (min-width: 1200px) {
+  .melon-container .main-content {
+    grid-template-columns: 320px 1fr;
+    gap: 50px;
+    max-width: 1600px;
+    margin: 0 auto;
   }
   
-  .zone-btn {
-    padding: 15px 28px;
-    font-size: 14px;
-    min-width: 100px;
-  }
-  
-  .central-title h2 {
-    font-size: 20px;
-    padding: 18px 35px;
-    letter-spacing: 1.5px;
+  .melon-container .plant-info-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* Tablet - 768px to 1024px */
+@media (max-width: 1024px) {
+  .melon-container {
+    grid-template-rows: auto auto 1fr auto;
+    gap: clamp(12px, 2vw, 18px);
+    padding: clamp(10px, 2vw, 15px);
+  }
+  
+  .melon-container .main-content {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "sidebar"
+      "content";
+    gap: clamp(20px, 3vw, 30px);
+  }
+  
+  .melon-container .sidebar-navigation {
+    position: static;
+    max-height: none;
+  }
+  
+  .melon-container .zone-buttons-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: clamp(10px, 2vw, 15px);
+  }
+  
+  .melon-container .plant-info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .melon-container .header-content {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Mobile - 768px and below */
 @media (max-width: 768px) {
   .melon-container {
+    padding: clamp(8px, 1.5vw, 12px);
+    gap: clamp(10px, 2vw, 15px);
+    width: 100vw;
+  }
+  
+  /* Fixed Navigation Header for Mobile */
+  .melon-container .navigation-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: clamp(6px, 1.5vw, 10px) clamp(8px, 1.5vw, 12px);
+    background: rgba(200, 230, 201, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(45, 80, 22, 0.3);
+    box-shadow: 0 2px 15px rgba(45, 80, 22, 0.3);
+    width: 100vw;
+    box-sizing: border-box;
+  }
+  
+  .melon-container .logo-container {
+    border-radius: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    min-width: auto;
+    height: clamp(45px, 10vw, 55px);
+    gap: clamp(15px, 3vw, 25px);
+    padding: clamp(6px, 1vw, 8px) clamp(15px, 3vw, 20px);
+    justify-content: center;
+  }
+  
+  .melon-container .logo-item,
+  .melon-container .logo-item-inner {
+    padding: clamp(4px, 1vw, 6px) clamp(8px, 2vw, 12px);
+    gap: clamp(4px, 1vw, 6px);
+    min-width: 0;
+    flex: 0 1 auto;
+  }
+  
+  .melon-container .logo-item img,
+  .melon-container .logo-item-inner img {
+    width: clamp(16px, 3.5vw, 20px);
+    height: clamp(16px, 3.5vw, 20px);
+  }
+  
+  .melon-container .logo-item span,
+  .melon-container .logo-item-inner span {
+    font-size: clamp(9px, 2vw, 11px);
+  }
+  
+  .melon-container .plant-dropdown {
+    position: fixed;
+    top: clamp(45px, 10vw, 55px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: clamp(180px, 40vw, 220px);
+    margin-top: 0;
+    box-shadow: 0 5px 20px rgba(45, 80, 22, 0.5);
+  }
+  
+  /* Adjust for fixed header */
+  .melon-container .page-header {
+    margin-top: clamp(60px, 13vw, 75px);
+  }
+  
+  .melon-container .header-content {
+    flex-direction: column;
+    gap: clamp(10px, 2vw, 15px);
+  }
+  
+  .melon-container .back-button {
+    order: 1;
+  }
+  
+  .melon-container .page-title {
+    order: 2;
+    font-size: clamp(16px, 4vw, 22px);
+  }
+  
+  .melon-container .zone-buttons-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(8px, 2vw, 12px);
+  }
+  
+  .melon-container .zone-btn {
+    padding: clamp(10px, 2.5vw, 15px);
+    font-size: clamp(10px, 2vw, 12px);
+  }
+  
+  .melon-container .zone-number {
+    font-size: clamp(12px, 3vw, 16px);
+  }
+  
+  .melon-container .zone-label {
+    font-size: clamp(8px, 1.8vw, 10px);
+  }
+}
+
+/* Small Mobile - 480px and below */
+@media (max-width: 480px) {
+  .melon-container {
+    padding: clamp(6px, 1vw, 10px);
+    gap: clamp(8px, 1.5vw, 12px);
+    width: 100vw;
+  }
+  
+  .melon-container .logo-container {
+    height: clamp(40px, 9vw, 50px);
+    gap: clamp(10px, 2vw, 20px);
+    padding: clamp(4px, 0.8vw, 6px) clamp(10px, 2vw, 15px);
+  }
+  
+  .melon-container .logo-item,
+  .melon-container .logo-item-inner {
+    padding: clamp(3px, 0.8vw, 5px) clamp(6px, 1.5vw, 10px);
+    gap: clamp(3px, 0.8vw, 5px);
+    flex: 0 1 auto;
+  }
+  
+  .melon-container .logo-item img,
+  .melon-container .logo-item-inner img {
+    width: clamp(14px, 3vw, 18px);
+    height: clamp(14px, 3vw, 18px);
+  }
+  
+  .melon-container .logo-item span,
+  .melon-container .logo-item-inner span {
+    font-size: clamp(8px, 1.8vw, 10px);
+  }
+  
+  .melon-container .page-header {
+    margin-top: clamp(50px, 11vw, 65px);
+  }
+  
+  .melon-container .page-title {
+    font-size: clamp(14px, 3.5vw, 20px);
+  }
+  
+  .melon-container .zone-buttons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+  
+  .melon-container .zone-btn {
+    padding: clamp(8px, 2vw, 12px);
+    font-size: clamp(9px, 1.8vw, 11px);
+  }
+  
+  .melon-container .zone-number {
+    font-size: clamp(10px, 2.5vw, 14px);
+  }
+  
+  .melon-container .zone-label {
+    font-size: clamp(7px, 1.5vw, 9px);
+  }
+  
+  .melon-container .key-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+  
+  .melon-container .plant-dropdown {
+    min-width: clamp(160px, 35vw, 200px);
+  }
+  
+  .melon-container .dropdown-item {
+    padding: clamp(8px, 2vw, 12px) clamp(10px, 2.5vw, 14px);
+    font-size: clamp(9px, 2vw, 11px);
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+  
+  .melon-container .dropdown-item img {
+    width: clamp(12px, 3vw, 16px);
+    height: clamp(12px, 3vw, 16px);
+  }
+}
+
+/* Mobile Landscape Optimization */
+@media (max-width: 768px) and (orientation: landscape) and (max-height: 500px) {
+  .melon-container {
+    padding: clamp(6px, 1vw, 10px);
+    width: 100vw;
+  }
+  
+  .melon-container .navigation-header {
+    padding: clamp(4px, 0.8vw, 6px) clamp(6px, 1vw, 10px);
+  }
+  
+  .melon-container .logo-container {
+    height: clamp(35px, 8vw, 45px);
+    gap: clamp(10px, 2vw, 20px);
+  }
+  
+  .melon-container .page-header {
+    margin-top: clamp(45px, 10vw, 60px);
+  }
+  
+  .melon-container .main-content {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "sidebar content";
+    gap: clamp(15px, 3vw, 25px);
+  }
+  
+  .melon-container .sidebar-navigation {
+    max-height: 70vh;
     overflow-y: auto;
   }
   
-  .menu-container {
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    gap: 20px;
-    padding: 10px 20px;
-    min-width: 250px;
+  .melon-container .zone-buttons-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(6px, 1.5vw, 10px);
   }
   
-  .menu-item,
-  .menu-item-inner {
-    padding: 6px 12px;
-    font-size: 12px;
+  .melon-container .zone-btn {
+    padding: clamp(8px, 2vw, 12px);
+    font-size: clamp(9px, 1.8vw, 11px);
   }
   
-  .menu-item img,
-  .menu-item-inner img {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .main-plant-container {
-    top: 80px;
-    left: 20px;
-    transform: none;
-  }
-  
-  .main-plant-btn {
-    padding: 12px 25px;
-    font-size: 16px;
-  }
-  
-  .zone-buttons-container {
-    position: static;
-    transform: none;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 140px 20px 20px;
-    gap: 12px;
-  }
-  
-  .zone-btn {
-    padding: 12px 20px;
-    font-size: 13px;
-    min-width: 80px;
-    flex: 1;
-    max-width: 120px;
-  }
-  
-  .central-title {
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0 20px;
-  }
-  
-  .central-title h2 {
-    font-size: 16px;
-    padding: 15px 25px;
-    letter-spacing: 1px;
-  }
-  
-  .footer-bar {
-    padding: 15px;
-  }
-  
-  .welcome-text {
-    font-size: 14px;
-    letter-spacing: 1px;
-  }
-  
-  .plant-dropdown {
-    min-width: 160px;
-  }
-  
-  .dropdown-item {
-    padding: 10px 14px;
-    font-size: 11px;
+  .melon-container .plant-info-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(15px, 3vw, 20px);
   }
 }
 
-@media (max-width: 480px) {
-  .menu-container {
-    gap: 15px;
-    padding: 8px 15px;
-    min-width: 200px;
+/* ===== FOCUS STATES & ACCESSIBILITY ===== */
+.melon-container .zone-btn:focus,
+.melon-container .logo-item:focus,
+.melon-container .logo-item-inner:focus,
+.melon-container .dropdown-item:focus,
+.melon-container .back-button:focus {
+  outline: 2px solid #9ccc65;
+  outline-offset: 2px;
+}
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .melon-container,
+  .melon-container *,
+  .melon-container .navigation-header,
+  .melon-container .page-header,
+  .melon-container .main-content,
+  .melon-container .sidebar-navigation,
+  .melon-container .content-area,
+  .melon-container .footer-bar {
+    animation: none;
+    transition: none;
   }
   
-  .menu-item,
-  .menu-item-inner {
-    padding: 5px 10px;
-    font-size: 11px;
-    gap: 6px;
+  .melon-container .indicator-dot,
+  .melon-container .growth-progress {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .melon-container .plant-image-card,
+  .melon-container .plant-description-card {
+    border: 2px solid white;
   }
   
-  .menu-item img,
-  .menu-item-inner img {
-    width: 18px;
-    height: 18px;
-  }
-  
-  .main-plant-btn {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-  
-  .zone-btn {
-    padding: 10px 15px;
-    font-size: 12px;
-    min-width: 70px;
-  }
-  
-  .central-title h2 {
-    font-size: 14px;
-    padding: 12px 20px;
-  }
-  
-  .welcome-text {
-    font-size: 12px;
-  }
-  
-  .plant-dropdown {
-    min-width: 140px;
-  }
-  
-  .dropdown-item {
-    padding: 8px 12px;
-    font-size: 10px;
+  .melon-container .zone-btn {
+    border: 1px solid white;
   }
 }

@@ -36,115 +36,179 @@ const Cabai = () => {
 
   return (
     <div className="cabai-container">
-      {/* Menu Container */}
-      <div className="menu-container">
-        <div className="menu-item" onClick={handleHomeClick}>
-          <img src="/home-icon.png" alt="Home" />
-          <span>Home</span>
-        </div>
-        <div className="menu-item plant-menu-container">
-          <div className="menu-item-inner" onClick={handlePlantClick}>
-            <img src="/plant-icon.png" alt="Plant" />
-            <span>Plant</span>
-            <span className={`dropdown-arrow ${isPlantDropdownOpen ? 'open' : ''}`}>▼</span>
+      {/* Navigation Header */}
+      <div className="navigation-header">
+        <div className="logo-container">
+          <div className="logo-item" onClick={handleHomeClick}>
+            <img src="/home-icon.png" alt="Home" />
+            <span>Home</span>
           </div>
           
-          {/* Plant Dropdown Menu */}
-          <div className={`plant-dropdown ${isPlantDropdownOpen ? 'show' : ''}`}>
-            <div className="dropdown-item" onClick={() => handlePlantMenuClick('selada')}>
-              <span>Selada</span>
+          <div className="plant-menu-container">
+            <div className="logo-item-inner" onClick={handlePlantClick}>
+              <img src="/plant-icon.png" alt="Plant" />
+              <span>Plant</span>
+              <span className={`dropdown-arrow ${isPlantDropdownOpen ? 'open' : ''}`}>▼</span>
             </div>
-            <div className="dropdown-item" onClick={() => handlePlantMenuClick('cabai')}>
-              <span>Cabai</span>
-            </div>
-            <div className="dropdown-item" onClick={() => handlePlantMenuClick('melon')}>
-              <span>Melon</span>
+            
+            {/* Plant Dropdown Menu */}
+            <div className={`plant-dropdown ${isPlantDropdownOpen ? 'show' : ''}`}>
+              <div className="dropdown-item" onClick={() => handlePlantMenuClick('selada')}>
+                <span>Selada</span>
+              </div>
+              <div className="dropdown-item" onClick={() => handlePlantMenuClick('cabai')}>
+                <span>Cabai</span>
+              </div>
+              <div className="dropdown-item" onClick={() => handlePlantMenuClick('melon')}>
+                <span>Melon</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Header */}
-      <div className="header">
-        <button className="back-btn" onClick={handleBackToDashboard}>
-          ← DASHBOARD
-        </button>
-        <h1 className="page-title">MANAGE YOUR PLANT</h1>
+      {/* Page Header */}
+      <div className="page-header">
+        <div className="header-content">
+          <div className="greeting" onClick={handleBackToDashboard}>
+            <span className="greeting-text">
+              <strong>← DASHBOARD</strong>
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Main Content */}
       <div className="main-content">
-        {/* Sidebar with Zone Navigation */}
-        <div className="sidebar">
-          <button 
-            className="zone-btn active" 
-            onClick={() => handleZoneClick('cabai')}
-          >
-            CABAI
-          </button>
-          <button 
-            className="zone-btn" 
-            onClick={() => handleZoneClick('zona1')}
-          >
-            ZONA 1
-          </button>
-          <button 
-            className="zone-btn" 
-            onClick={() => handleZoneClick('zona2')}
-          >
-            ZONA 2
-          </button>
-          <button 
-            className="zone-btn" 
-            onClick={() => handleZoneClick('zona3')}
-          >
-            ZONA 3
-          </button>
-          <button 
-            className="zone-btn" 
-            onClick={() => handleZoneClick('zona4')}
-          >
-            ZONA 4
-          </button>
-          <button 
-            className="zone-btn" 
-            onClick={() => handleZoneClick('zona5')}
-          >
-            ZONA 5
-          </button>
-          <button 
-            className="zone-btn" 
-            onClick={() => handleZoneClick('zona6')}
-          >
-            ZONA 6
-          </button>
+        {/* Sidebar Navigation */}
+        <div className="sidebar-navigation">
+          <h3 className="nav-title">PLANT ZONES</h3>
+          <div className="zone-buttons-grid">
+            <button 
+              className="zone-btn active" 
+              onClick={() => handleZoneClick('cabai')}
+            >
+              <span className="zone-number">🌶️</span>
+              <span className="zone-label">CABAI</span>
+            </button>
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona1')}
+            >
+              <span className="zone-number">1</span>
+              <span className="zone-label">ZONA 1</span>
+            </button>
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona2')}
+            >
+              <span className="zone-number">2</span>
+              <span className="zone-label">ZONA 2</span>
+            </button>
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona3')}
+            >
+              <span className="zone-number">3</span>
+              <span className="zone-label">ZONA 3</span>
+            </button>
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona4')}
+            >
+              <span className="zone-number">4</span>
+              <span className="zone-label">ZONA 4</span>
+            </button>
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona5')}
+            >
+              <span className="zone-number">5</span>
+              <span className="zone-label">ZONA 5</span>
+            </button>
+            <button 
+              className="zone-btn" 
+              onClick={() => handleZoneClick('zona6')}
+            >
+              <span className="zone-number">6</span>
+              <span className="zone-label">ZONA 6</span>
+            </button>
+          </div>
         </div>
 
         {/* Content Area */}
         <div className="content-area">
-          {/* Cabai Title - Center Top */}
-          <div className="cabai-title-container">
-            <h2 className="cabai-title">MONITORING YOUR PLANT</h2>
-          </div>
+          {/* Plant Info Section */}
+          <div className="plant-info-section">
+            <div className="section-header">
+              <h2 className="section-title">MONITORING YOUR PLANT</h2>
+              <div className="section-indicator">
+                <div className="indicator-dot"></div>
+                <span className="indicator-text">LIVE STATUS</span>
+              </div>
+            </div>
 
-          <div className="monitoring-section">
-            <div className="plant-info">
-              <div className="plant-image">
-                <img 
-                  src="/cabai.jpg" 
-                  alt="Chili Plant" 
-                />
+            <div className="plant-info-grid">
+              {/* Plant Image Card */}
+              <div className="plant-image-card">
+                <div className="image-container">
+                  <img 
+                    src="/cabai.jpg" 
+                    alt="Chili Plant"
+                    className="plant-image"
+                  />
+                  <div className="image-overlay">
+                    <span className="plant-status">HEALTHY</span>
+                  </div>
+                </div>
+                <div className="image-caption">
+                  <h4>Capsicum Annuum</h4>
+                  <p>Red Chili Pepper Plant</p>
+                </div>
               </div>
               
-              <div className="plant-description">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  Suspendisse tincidunt, ex a euismod posuere, justo risus fermentum 
-                  tortor, a molestie velit arcu eget est. Vestibulum scelerisque velit ligula, 
-                  sed finibus nibh rutrum vitae. Fusce viverra nulla nec mi porttitor, sit 
-                  amet rutrum massa commodo. Sed consectetur, nunc vel tincidunt hendrerit, 
-                  libero massa efficitur nulla, a cursus magna nisi quis nunc.
-                </p>
+              {/* Plant Description Card */}
+              <div className="plant-description-card">
+                <div className="description-header">
+                  <h3>Plant Overview</h3>
+                  <div className="growth-indicator">
+                    <div className="growth-bar">
+                      <div className="growth-progress" style={{width: '75%'}}></div>
+                    </div>
+                    <span className="growth-text">75% Growth</span>
+                  </div>
+                </div>
+                
+                <div className="description-content">
+                  <p>
+                    <strong>Chili peppers</strong> are an excellent choice for greenhouse cultivation. 
+                    This variety thrives in controlled environments with proper temperature and humidity management.
+                  </p>
+                  <p>
+                    The plant is currently in its <strong>flowering stage</strong>, showing healthy development 
+                    with vibrant green foliage and strong stem structure. Expected harvest time is approximately 
+                    4-6 weeks from current growth stage.
+                  </p>
+                  
+                  <div className="key-stats">
+                    <div className="stat-item">
+                      <span className="stat-label">Age</span>
+                      <span className="stat-value">8 weeks</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-label">Height</span>
+                      <span className="stat-value">45 cm</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-label">Fruits</span>
+                      <span className="stat-value">12 pods</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-label">Health</span>
+                      <span className="stat-value">Excellent</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -153,8 +217,13 @@ const Cabai = () => {
 
       {/* Footer Bar */}
       <div className="footer-bar">
-        <div className="welcome-text">
-          WELCOME TO GREENHOUSE
+        <div className="footer-content">
+          <div className="welcome-text">
+            WELCOME TO GREENHOUSE
+          </div>
+          <div className="footer-info">
+            <span>🌱 Smart Agriculture System</span>
+          </div>
         </div>
       </div>
     </div>
