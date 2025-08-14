@@ -176,25 +176,13 @@ const Melon = () => {
                     dan suhu yang terkontrol dengan baik. <strong>Prediksi panen</strong> dalam 
                     2-3 minggu ke depan dengan kualitas buah yang sangat baik.
                   </p>
-
-                  <div className="key-stats">
-                    <div className="stat-item">
-                      <span className="stat-label">Days to Harvest</span>
-                      <span className="stat-value">15-20</span>
-                    </div>
-                    <div className="stat-item">
-                      <span className="stat-label">Plant Health</span>
-                      <span className="stat-value">Excellent</span>
-                    </div>
-                    <div className="stat-item">
-                      <span className="stat-label">Growth Rate</span>
-                      <span className="stat-value">Fast</span>
-                    </div>
-                    <div className="stat-item">
-                      <span className="stat-label">Water Level</span>
-                      <span className="stat-value">Optimal</span>
-                    </div>
-                  </div>
+                  
+                  <p>
+                    Tanaman melon dikenal memiliki daging buah yang <strong>manis dan segar</strong>, 
+                    kaya akan vitamin A dan C, serta mengandung antioksidan yang baik untuk kesehatan. 
+                    Buah ini sangat cocok untuk dinikmati saat cuaca panas karena kandungan airnya 
+                    yang tinggi dapat membantu <strong>menghidrasi tubuh</strong> secara alami.
+                  </p>
                 </div>
               </div>
             </div>

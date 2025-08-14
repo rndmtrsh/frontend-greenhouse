@@ -181,33 +181,15 @@ const Cabai = () => {
                 
                 <div className="description-content">
                   <p>
-                    <strong>Chili peppers</strong> are an excellent choice for greenhouse cultivation. 
-                    This variety thrives in controlled environments with proper temperature and humidity management.
+                    <strong>Cabai</strong> atau chili pepper merupakan tanaman yang berasal dari Amerika Tengah dan 
+                    Selatan, kini menjadi salah satu komoditas penting di Indonesia. Tanaman ini termasuk dalam 
+                    keluarga Solanaceae dan memiliki nama ilmiah <strong>Capsicum annuum</strong>.
                   </p>
                   <p>
-                    The plant is currently in its <strong>flowering stage</strong>, showing healthy development 
-                    with vibrant green foliage and strong stem structure. Expected harvest time is approximately 
-                    4-6 weeks from current growth stage.
+                    Cabai mengandung <strong>capsaicin</strong> yang memberikan rasa pedas dan memiliki banyak manfaat 
+                    kesehatan seperti meningkatkan metabolisme, anti-inflamasi, dan kaya akan vitamin C. 
+                    Di Indonesia, cabai merupakan bumbu dapur yang sangat penting dan memiliki nilai ekonomi tinggi.
                   </p>
-                  
-                  <div className="key-stats">
-                    <div className="stat-item">
-                      <span className="stat-label">Age</span>
-                      <span className="stat-value">8 weeks</span>
-                    </div>
-                    <div className="stat-item">
-                      <span className="stat-label">Height</span>
-                      <span className="stat-value">45 cm</span>
-                    </div>
-                    <div className="stat-item">
-                      <span className="stat-label">Fruits</span>
-                      <span className="stat-value">12 pods</span>
-                    </div>
-                    <div className="stat-item">
-                      <span className="stat-label">Health</span>
-                      <span className="stat-value">Excellent</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
