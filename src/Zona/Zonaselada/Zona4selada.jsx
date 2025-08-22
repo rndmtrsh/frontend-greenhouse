@@ -1,58 +1,62 @@
-// Zona1cabai.jsx - Fixed refresh interval error
+// ===========================================
+// Zona4selada.jsx - Template untuk Extended Api.js
+// ===========================================
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiService from '../../services/api'; // Using your existing api.js
-import './Zonacabai.css';
+import apiService from '../../services/api';
+import './Zonaselada.css';
 
-const Zona1cabai = () => {
+const Zona4selada = () => {
   const navigate = useNavigate();
   const [isPlantDropdownOpen, setIsPlantDropdownOpen] = useState(false);
   
-  // State for zone data
+  // State untuk zone data
   const [zoneData, setZoneData] = useState({
-    zoneId: 1,
-    plantType: 'cabai',
+    zoneId: 4,
+    plantType: 'selada',
     metrics: {
       ph: 0,
       temperature: 0,
-      ec: 0,
-      moisture: 0
+      tds: 0
     },
     chartData: {
       temperature: [],
-      moisture: [],
       ph: [],
-      ec: []
+      tds: []
     },
     lastUpdated: null,
-    status: 'offline'
+    status: 'offline',
+    alerts: []
   });
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [plantInfo, setPlantInfo] = useState(null);
   const [isOnline, setIsOnline] = useState(apiService.isOnline());
+  const [alerts, setAlerts] = useState([]);
 
-  // Fetch data from database using existing api service
+  // Fetch data menggunakan extended API methods untuk ZONA 4
   const fetchZoneData = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      // Check if user is authenticated
+      // Check authentication
       if (!apiService.isAuthenticated()) {
         setError('Authentication required');
         return;
       }
 
-      // Fetch zone data and plant info in parallel
-      const [zoneResult, plantResult] = await Promise.all([
-        apiService.getZoneData('cabai', 1),
-        apiService.getPlantInfo('cabai')
+      // Fetch zone data, plant info, dan alerts secara parallel untuk ZONA 4
+      const [zoneResult, plantResult, alertsResult] = await Promise.all([
+        apiService.getZoneData('selada', 4), // ZONA 4
+        apiService.getPlantInfo('selada'),
+        apiService.getAlerts('selada', 4) // ZONA 4
       ]);
       
       setZoneData(zoneResult);
       setPlantInfo(plantResult);
+      setAlerts(alertsResult);
       
     } catch (err) {
       setError(err.message || 'Failed to load zone data');
@@ -62,15 +66,31 @@ const Zona1cabai = () => {
     }
   };
 
-  // Auto-refresh data
+  // Fetch chart data untuk specific metric ZONA 4
+  const fetchChartData = async (metric, timeRange = '24h') => {
+    try {
+      const chartData = await apiService.getChartData('selada', 4, metric, timeRange); // ZONA 4
+      setZoneData(prev => ({
+        ...prev,
+        chartData: {
+          ...prev.chartData,
+          [metric]: chartData
+        }
+      }));
+    } catch (err) {
+      console.error(`Error fetching ${metric} chart data:`, err);
+    }
+  };
+
+  // Auto-refresh data menggunakan subscription untuk ZONA 4
   useEffect(() => {
     // Initial fetch
     fetchZoneData();
     
-    // Set up auto-refresh using the subscription method from api service
+    // Set up auto-refresh menggunakan subscription dari API untuk ZONA 4
     const unsubscribe = apiService.subscribeToZoneUpdates(
-      'cabai', 
-      1, 
+      'selada', 
+      4, // ZONA 4
       (data) => {
         setZoneData(data);
         setError(null);
@@ -79,7 +99,16 @@ const Zona1cabai = () => {
     );
     
     // Monitor online status
-    const handleOnlineStatus = () => setIsOnline(navigator.onLine);
+    const handleOnlineStatus = () => {
+      const online = apiService.isOnline();
+      setIsOnline(online);
+      
+      // Reconnect when back online
+      if (online && error) {
+        fetchZoneData();
+      }
+    };
+    
     window.addEventListener('online', handleOnlineStatus);
     window.addEventListener('offline', handleOnlineStatus);
     
@@ -89,40 +118,45 @@ const Zona1cabai = () => {
       window.removeEventListener('online', handleOnlineStatus);
       window.removeEventListener('offline', handleOnlineStatus);
     };
-  }, []);
+  },);
 
   // Manual refresh function
   const handleRefresh = async () => {
     await fetchZoneData();
   };
 
+  // Load specific chart data
+  const handleLoadChartData = async (metric) => {
+    await fetchChartData(metric, '24h');
+  };
+
+  // Mark alert as read
+  const handleMarkAlertAsRead = async (alertId) => {
+    try {
+      await apiService.markAlertAsRead(alertId);
+      setAlerts(prev => prev.filter(alert => alert.id !== alertId));
+    } catch (err) {
+      console.error('Error marking alert as read:', err);
+    }
+  };
+
   // Navigation handlers
-  const handleBackToDashboard = () => {
-    navigate('/dashboard');
-  };
-
-  const handleHomeClick = () => {
-    navigate('/dashboard');
-  };
-
-  const handlePlantClick = () => {
-    setIsPlantDropdownOpen(!isPlantDropdownOpen);
-  };
-
+  const handleBackToDashboard = () => navigate('/dashboard');
+  const handleHomeClick = () => navigate('/dashboard');
+  const handlePlantClick = () => setIsPlantDropdownOpen(!isPlantDropdownOpen);
   const handlePlantMenuClick = (plantType) => {
     setIsPlantDropdownOpen(false);
     navigate(`/${plantType}`);
   };
-
   const handleZoneClick = (zone) => {
-    if (zone === 'cabai') {
-      navigate('/cabai');
+    if (zone === 'selada') {
+      navigate('/selada');
     } else {
-      navigate(`/cabai/${zone}`);
+      navigate(`/selada/${zone}`);
     }
   };
 
-  // Generate SVG path for charts
+  // Generate SVG path untuk charts
   const generateSVGPath = (data) => {
     if (!data || data.length === 0) return '';
     
@@ -153,18 +187,16 @@ const Zona1cabai = () => {
     switch (type) {
       case 'temperature':
         return `${value.toFixed(1)}°C`;
-      case 'moisture':
-        return `${Math.round(value)}%`;
       case 'ph':
         return value.toFixed(1);
-      case 'ec':
-        return value.toFixed(1);
+      case 'tds':
+        return `${value.toFixed(0)} ppm`;
       default:
         return value;
     }
   };
 
-  // Check if metric is within optimal range
+  // Check metric status berdasarkan optimal conditions untuk selada
   const getMetricStatus = (value, type) => {
     if (!plantInfo || !plantInfo.optimalConditions || value === null) return 'normal';
     
@@ -190,7 +222,7 @@ const Zona1cabai = () => {
   };
 
   return (
-    <div className="zona1cabai-container">
+    <div className="zona4selada-container">
       {/* Logo Container */}
       <div className="logo-container">
         <div className="logo-item" onClick={handleHomeClick}>
@@ -219,7 +251,7 @@ const Zona1cabai = () => {
         </div>
       </div>
 
-      {/* Header */}
+      {/* Header dengan enhanced actions */}
       <div className="header">
         <button className="back-btn" onClick={handleBackToDashboard}>
           ← DASHBOARD
@@ -239,6 +271,12 @@ const Zona1cabai = () => {
             <span className="status-dot"></span>
             {getConnectionStatus()}
           </div>
+          {alerts.length > 0 && (
+            <div className="alerts-indicator" title={`${alerts.length} alerts`}>
+              <span className="alert-icon">⚠️</span>
+              <span className="alert-count">{alerts.length}</span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -268,24 +306,41 @@ const Zona1cabai = () => {
         </div>
       )}
 
+      {/* Alerts Section */}
+      {alerts.length > 0 && (
+        <div className="alerts-section">
+          {alerts.map(alert => (
+            <div key={alert.id} className={`alert-item ${alert.severity}`}>
+              <span className="alert-message">{alert.message}</span>
+              <span className="alert-time">{new Date(alert.timestamp).toLocaleTimeString()}</span>
+              <button 
+                className="alert-dismiss"
+                onClick={() => handleMarkAlertAsRead(alert.id)}
+                title="Mark as read"
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Main Content */}
       <div className="main-content">
         {/* Sidebar */}
         <div className="sidebar">
-          <button className="zone-btn" onClick={() => handleZoneClick('cabai')}>CABAI</button>
-          <button className="zone-btn active" onClick={() => handleZoneClick('zona1')}>ZONA 1</button>
+          <button className="zone-btn" onClick={() => handleZoneClick('selada')}>SELADA</button>
+          <button className="zone-btn" onClick={() => handleZoneClick('zona1')}>ZONA 1</button>
           <button className="zone-btn" onClick={() => handleZoneClick('zona2')}>ZONA 2</button>
           <button className="zone-btn" onClick={() => handleZoneClick('zona3')}>ZONA 3</button>
-          <button className="zone-btn" onClick={() => handleZoneClick('zona4')}>ZONA 4</button>
-          <button className="zone-btn" onClick={() => handleZoneClick('zona5')}>ZONA 5</button>
-          <button className="zone-btn" onClick={() => handleZoneClick('zona6')}>ZONA 6</button>
+          <button className="zone-btn active" onClick={() => handleZoneClick('zona4')}>ZONA 4</button>
         </div>
 
         {/* Content Area */}
         <div className="content-area">
-          {/* Zone Badge */}
+          {/* Zone Badge dengan enhanced info */}
           <div className="zone-badge">
-            <span className="zone-title">ZONE 1</span>
+            <span className="zone-title">ZONE 4</span>
             {zoneData.lastUpdated && (
               <span className="last-updated">
                 Last updated: {new Date(zoneData.lastUpdated).toLocaleTimeString()}
@@ -296,9 +351,14 @@ const Zona1cabai = () => {
                 User: {apiService.getCurrentUser().username}
               </span>
             )}
+            {plantInfo && (
+              <span className="plant-info">
+                {plantInfo.name} ({plantInfo.scientificName})
+              </span>
+            )}
           </div>
 
-          {/* Monitoring Cards */}
+          {/* Monitoring Cards - 3 untuk selada (PH, Temperature, TDS) */}
           <div className="monitoring-cards">
             <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.ph, 'ph')}`}>
               <div className="metric-icon">
@@ -311,8 +371,17 @@ const Zona1cabai = () => {
               {plantInfo && (
                 <div className="metric-range">
                   Optimal: {plantInfo.optimalConditions.ph?.optimal}
+                  <br />
+                  Range: {plantInfo.optimalConditions.ph?.min} - {plantInfo.optimalConditions.ph?.max}
                 </div>
               )}
+              <button 
+                className="chart-load-btn"
+                onClick={() => handleLoadChartData('ph')}
+                title="Load pH chart data"
+              >
+                📊
+              </button>
             </div>
 
             <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.temperature, 'temperature')}`}>
@@ -326,62 +395,70 @@ const Zona1cabai = () => {
               {plantInfo && (
                 <div className="metric-range">
                   Optimal: {plantInfo.optimalConditions.temperature?.optimal}°C
+                  <br />
+                  Range: {plantInfo.optimalConditions.temperature?.min}°C - {plantInfo.optimalConditions.temperature?.max}°C
                 </div>
               )}
+              <button 
+                className="chart-load-btn"
+                onClick={() => handleLoadChartData('temperature')}
+                title="Load temperature chart data"
+              >
+                📊
+              </button>
             </div>
 
-            <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.ec, 'ec')}`}>
+            <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.tds, 'tds')}`}>
               <div className="metric-icon">
-                <img src="/ec-icon.png" alt="EC" />
+                <img src="/tds-icon.png" alt="TDS" />
               </div>
               <div className="metric-value">
-                {formatMetricValue(zoneData.metrics.ec, 'ec')}
+                {formatMetricValue(zoneData.metrics.tds, 'tds')}
               </div>
-              <div className="metric-label">EC</div>
+              <div className="metric-label">TDS</div>
               {plantInfo && (
                 <div className="metric-range">
-                  Optimal: {plantInfo.optimalConditions.ec?.optimal}
+                  Optimal: {plantInfo.optimalConditions.tds?.optimal} ppm
+                  <br />
+                  Range: {plantInfo.optimalConditions.tds?.min} - {plantInfo.optimalConditions.tds?.max} ppm
                 </div>
               )}
-            </div>
-
-            <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.moisture, 'moisture')}`}>
-              <div className="metric-icon">
-                <img src="/moist-icon.png" alt="Moist" />
-              </div>
-              <div className="metric-value">
-                {formatMetricValue(zoneData.metrics.moisture, 'moisture')}
-              </div>
-              <div className="metric-label">Moist</div>
-              {plantInfo && (
-                <div className="metric-range">
-                  Optimal: {plantInfo.optimalConditions.moisture?.optimal}%
-                </div>
-              )}
+              <button 
+                className="chart-load-btn"
+                onClick={() => handleLoadChartData('tds')}
+                title="Load TDS chart data"
+              >
+                📊
+              </button>
             </div>
           </div>
 
-          {/* Charts Section */}
+          {/* Charts Section - 3 charts untuk selada (PH, Temperature, TDS) */}
           <div className="charts-section">
             <div className="chart-container">
-              <div className="chart-label">Temp</div>
+              <div className="chart-label">
+                Temperature
+                <span className="chart-info">
+                  Current: {zoneData.metrics.temperature}°C
+                </span>
+              </div>
               <div className="chart">
                 <svg viewBox="0 0 400 200" className="chart-svg">
                   <path
-                    d={generateSVGPath(zoneData.chartData.temperature) || "M20,180 Q100,50 200,80 T380,150"}
-                    stroke="#ffffff"
+                    d={generateSVGPath(zoneData.chartData.temperature) || "M20,160 Q100,40 200,70 T380,130"}
+                    stroke="#4ade80"
                     strokeWidth="3"
                     fill="none"
                   />
                   <defs>
-                    <linearGradient id="tempGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" style={{stopColor: '#ffffff', stopOpacity: 0.3}} />
-                      <stop offset="100%" style={{stopColor: '#ffffff', stopOpacity: 0.1}} />
+                    <linearGradient id="tempGradientSelada4" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" style={{stopColor: '#4ade80', stopOpacity: 0.3}} />
+                      <stop offset="100%" style={{stopColor: '#4ade80', stopOpacity: 0.1}} />
                     </linearGradient>
                   </defs>
                   <path
-                    d={`${generateSVGPath(zoneData.chartData.temperature) || "M20,180 Q100,50 200,80 T380,150"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradient1)"
+                    d={`${generateSVGPath(zoneData.chartData.temperature) || "M20,160 Q100,40 200,70 T380,130"} L380,200 L20,200 Z`}
+                    fill="url(#tempGradientSelada4)"
                   />
                 </svg>
                 <div className="chart-time-labels">
@@ -397,18 +474,23 @@ const Zona1cabai = () => {
             </div>
 
             <div className="chart-container">
-              <div className="chart-label">MOIST</div>
+              <div className="chart-label">
+                pH Level
+                <span className="chart-info">
+                  Current: {zoneData.metrics.ph}
+                </span>
+              </div>
               <div className="chart">
                 <svg viewBox="0 0 400 200" className="chart-svg">
                   <path
-                    d={generateSVGPath(zoneData.chartData.moisture) || "M20,160 Q100,60 200,90 T380,140"}
-                    stroke="#ffffff"
+                    d={generateSVGPath(zoneData.chartData.ph) || "M20,150 Q100,60 200,90 T380,140"}
+                    stroke="#4ade80"
                     strokeWidth="3"
                     fill="none"
                   />
                   <path
-                    d={`${generateSVGPath(zoneData.chartData.moisture) || "M20,160 Q100,60 200,90 T380,140"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradient1)"
+                    d={`${generateSVGPath(zoneData.chartData.ph) || "M20,150 Q100,60 200,90 T380,140"} L380,200 L20,200 Z`}
+                    fill="url(#tempGradientSelada4)"
                   />
                 </svg>
                 <div className="chart-time-labels">
@@ -424,45 +506,23 @@ const Zona1cabai = () => {
             </div>
 
             <div className="chart-container">
-              <div className="chart-label">pH</div>
-              <div className="chart">
-                <svg viewBox="0 0 400 200" className="chart-svg">
-                  <path
-                    d={generateSVGPath(zoneData.chartData.ph) || "M20,170 Q100,70 200,100 T380,160"}
-                    stroke="#ffffff"
-                    strokeWidth="3"
-                    fill="none"
-                  />
-                  <path
-                    d={`${generateSVGPath(zoneData.chartData.ph) || "M20,170 Q100,70 200,100 T380,160"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradient1)"
-                  />
-                </svg>
-                <div className="chart-time-labels">
-                  <span>00:00</span>
-                  <span>04:00</span>
-                  <span>08:00</span>
-                  <span>12:00</span>
-                  <span>16:00</span>
-                  <span>20:00</span>
-                  <span>24:00</span>
-                </div>
+              <div className="chart-label">
+                TDS (Total Dissolved Solids)
+                <span className="chart-info">
+                  Current: {zoneData.metrics.tds} ppm
+                </span>
               </div>
-            </div>
-
-            <div className="chart-container">
-              <div className="chart-label">EC</div>
               <div className="chart">
                 <svg viewBox="0 0 400 200" className="chart-svg">
                   <path
-                    d={generateSVGPath(zoneData.chartData.ec) || "M20,150 Q100,80 200,110 T380,170"}
-                    stroke="#ffffff"
+                    d={generateSVGPath(zoneData.chartData.tds) || "M20,170 Q100,80 200,110 T380,160"}
+                    stroke="#4ade80"
                     strokeWidth="3"
                     fill="none"
                   />
                   <path
-                    d={`${generateSVGPath(zoneData.chartData.ec) || "M20,150 Q100,80 200,110 T380,170"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradient1)"
+                    d={`${generateSVGPath(zoneData.chartData.tds) || "M20,170 Q100,80 200,110 T380,160"} L380,200 L20,200 Z`}
+                    fill="url(#tempGradientSelada4)"
                   />
                 </svg>
                 <div className="chart-time-labels">
@@ -477,6 +537,17 @@ const Zona1cabai = () => {
               </div>
             </div>
           </div>
+
+          {/* Plant Growth Stage Info */}
+          {plantInfo && (
+            <div className="plant-status-section">
+              <h3>Plant Status</h3>
+              <div className="growth-info">
+                <span>Harvest Time: {plantInfo.harvestTime}</span>
+                <span>Growth Stages: {plantInfo.growthStages?.join(' → ')}</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -490,4 +561,4 @@ const Zona1cabai = () => {
   );
 };
 
-export default Zona1cabai;
+export default Zona4selada;

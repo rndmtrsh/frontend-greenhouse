@@ -1,7 +1,8 @@
-// Dashboard.jsx - Keeping Original Desktop, Enhanced Mobile
-import React, { useState } from 'react';
+// Dashboard.jsx - Responsive Fixed dengan API integration
+import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { useLocation, useNavigate } from 'react-router-dom';
+import apiService from '../services/api';
 
 const Dashboard = () => {
   const location = useLocation();
@@ -9,6 +10,54 @@ const Dashboard = () => {
   const { username } = location.state || { username: 'User' };
   const [isPlantDropdownOpen, setIsPlantDropdownOpen] = useState(false);
 
+  // STATE UNTUK API DATA
+  const [roomData, setRoomData] = useState({
+    humidity: 0,        // Default values agar tidak kosong
+    temperature: 0,
+    light_intensity: 0
+  });
+  
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // LOAD DATA DARI API
+  useEffect(() => {
+    loadRoomConditions();
+    
+    // Auto refresh setiap 30 detik
+    const interval = setInterval(loadRoomConditions, 30000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  // FUNCTION UNTUK LOAD DATA
+  const loadRoomConditions = async () => {
+    try {
+      setError(null);
+      const data = await apiService.getRoomConditions();
+      
+      setRoomData({
+        humidity: data.humidity || 44,
+        temperature: data.temperature || 20,
+        light_intensity: data.light_intensity || 54
+      });
+      
+    } catch (err) {
+      console.error('Error loading room conditions:', err);
+      setError('Backend belum terhubung');
+      // Tetap pakai default values jika error
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // FUNCTION UNTUK REFRESH - SIMPLE
+  const handleRefreshData = () => {
+    setLoading(true);
+    loadRoomConditions();
+  };
+
+  // NAVIGATION FUNCTIONS (SAMA PERSIS DENGAN ORIGINAL)
   const handleSeladaClick = () => {
     navigate('/selada');
   };
@@ -36,7 +85,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Video Section - Hidden on mobile */}
+      {/* Video Section - SAMA PERSIS DENGAN ORIGINAL */}
       <div className="video-section">
         <video 
           className="dashboard-video" 
@@ -50,7 +99,7 @@ const Dashboard = () => {
         </video>
       </div>
 
-      {/* Logo Container - Fixed menu on mobile */}
+      {/* Logo Container - SAMA PERSIS DENGAN ORIGINAL */}
       <div className="logo-container">
         <div className="logo-item" onClick={handleHomeClick}>
           <img src="/home-icon.png" alt="Home" />
@@ -78,27 +127,42 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Top Bar - SAMA DENGAN ORIGINAL + Refresh button yang tidak menggangu */}
       <div className="top-bar">
         <div className="greeting">HI!!! <strong>{username.toUpperCase()}</strong></div>
         <div className="title">MANAGE YOUR PLANT</div>
+        
+        {/* REFRESH BUTTON - HANYA DI DESKTOP, TIDAK MENGGANGU MOBILE */}
+        {!loading && error && (
+          <div className="refresh-hint" onClick={handleRefreshData}>
+            <span title="Refresh Data">↻</span>
+          </div>
+        )}
       </div>
 
-      {/* Mobile Indicators - Only visible on mobile */}
+      {/* Mobile Indicators - SAMA PERSIS STRUKTUR, CUMA ISI DATA BERUBAH */}
       <div className="mobile-indicators">
         <div className="mobile-indicator kelembapan">
-          <div className="circle">44%</div>
+          <div className="circle">
+            {loading ? '...' : `${roomData.humidity.toFixed ? roomData.humidity.toFixed(1) : roomData.humidity}%`}
+          </div>
           <span className="label">KELEMBAPAN</span>
         </div>
         <div className="mobile-indicator suhu">
-          <div className="circle">20°C</div>
+          <div className="circle">
+            {loading ? '...' : `${roomData.temperature.toFixed ? roomData.temperature.toFixed(1) : roomData.temperature}°C`}
+          </div>
           <span className="label">SUHU</span>
         </div>
         <div className="mobile-indicator cahaya">
-          <div className="circle">54 LUX</div>
+          <div className="circle">
+            {loading ? '...' : `${roomData.light_intensity.toFixed ? roomData.light_intensity.toFixed(0) : roomData.light_intensity} LUX`}
+          </div>
           <span className="label">INTENSITAS CAHAYA</span>
         </div>
       </div>
 
+      {/* Main Content - SAMA PERSIS DENGAN ORIGINAL */}
       <div className="main-content">
         <div className="selection-box">
           <h3>SELECTION BOX</h3>
@@ -141,33 +205,47 @@ const Dashboard = () => {
             </div>
 
             <div className="monitoring-text">
-              KLIK<br />
-              FOR<br />
-              MONITORING<br />
+              
             </div>
           </div>
         </div>
 
-        {/* Desktop Room Condition - Hidden on mobile */}
+        {/* Desktop Room Condition - SAMA PERSIS STRUKTUR, CUMA ISI DATA BERUBAH */}
         <div className="room-condition">
           <h3>ROOM CONDITION</h3>
+          
           <div className="condition-box kelembapan">
             <span className="label">KELEMBAPAN</span>
-            <div className="circle">44%</div>
+            <div className="circle">
+              {loading ? '...' : `${roomData.humidity.toFixed ? roomData.humidity.toFixed(1) : roomData.humidity}%`}
+            </div>
           </div>
+          
           <div className="condition-box suhu">
-            <div className="circle">20°C</div>
+            <div className="circle">
+              {loading ? '...' : `${roomData.temperature.toFixed ? roomData.temperature.toFixed(1) : roomData.temperature}°C`}
+            </div>
             <span className="label">SUHU</span>
           </div>
+          
           <div className="condition-box cahaya">
             <span className="label">INTENSITAS CAHAYA</span>
-            <div className="circle">54 LUX</div>
+            <div className="circle">
+              {loading ? '...' : `${roomData.light_intensity.toFixed ? roomData.light_intensity.toFixed(0) : roomData.light_intensity} LUX`}
+            </div>
           </div>
         </div>
       </div>
 
+      {/* Footer Bar - SAMA PERSIS DENGAN ORIGINAL */}
       <div className="footer-bar">
         <div className="welcome-text">WELCOME TO GREENHOUSE</div>
+        {/* MINIMAL ERROR INFO DI FOOTER JIKA ADA ERROR */}
+        {error && (
+          <div className="connection-status" onClick={handleRefreshData}>
+            <span>⚠️ {error} - Tap to retry</span>
+          </div>
+        )}
       </div>
     </div>
   );

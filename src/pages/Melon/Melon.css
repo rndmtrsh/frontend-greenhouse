@@ -1,4 +1,4 @@
-/* Melon.css - Clean Green Theme */
+/* Melon.css - Clean Green Theme - Updated for 2 Zones Only */
 
 /* ===== GLOBAL RESET & BASE STYLES ===== */
 html {
@@ -913,7 +913,7 @@ body {
   }
   
   .melon-container .zone-buttons-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: clamp(8px, 2vw, 12px);
   }
   

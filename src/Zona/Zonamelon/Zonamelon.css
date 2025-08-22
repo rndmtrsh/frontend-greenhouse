@@ -1,4 +1,4 @@
-/* Zonamelon.css - Green Theme - Same Layout as Cabai, Only Colors Changed */
+/* Zonamelon.css - Green Theme - Updated for 2 Zones with Moisture */
 
 /* ===== GLOBAL RESET & BASE STYLES ===== */
 html {
@@ -23,12 +23,9 @@ body {
   overflow-x: hidden;
 }
 
-/* Base styles for all zona melon containers */
+/* Base styles for zona melon containers - Updated for 2 zones only */
 .zona1melon-container,
-.zona2melon-container,
-.zona3melon-container,
-.zona4melon-container,
-.zona5melon-container {
+.zona2melon-container {
   width: 100vw;
   min-height: 100vh;
   background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 50%, #81c784 100%);
@@ -47,12 +44,9 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Logo Container - Same as Melon.css Colors */
+/* Logo Container */
 .zona1melon-container .logo-container,
-.zona2melon-container .logo-container,
-.zona3melon-container .logo-container,
-.zona4melon-container .logo-container,
-.zona5melon-container .logo-container {
+.zona2melon-container .logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,10 +70,7 @@ body {
 }
 
 .zona1melon-container .logo-item,
-.zona2melon-container .logo-item,
-.zona3melon-container .logo-item,
-.zona4melon-container .logo-item,
-.zona5melon-container .logo-item {
+.zona2melon-container .logo-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -95,20 +86,14 @@ body {
 }
 
 .zona1melon-container .logo-item:hover,
-.zona2melon-container .logo-item:hover,
-.zona3melon-container .logo-item:hover,
-.zona4melon-container .logo-item:hover,
-.zona5melon-container .logo-item:hover {
+.zona2melon-container .logo-item:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .zona1melon-container .logo-item img,
-.zona2melon-container .logo-item img,
-.zona3melon-container .logo-item img,
-.zona4melon-container .logo-item img,
-.zona5melon-container .logo-item img {
+.zona2melon-container .logo-item img {
   width: 24px;
   height: 24px;
   object-fit: contain;
@@ -116,36 +101,24 @@ body {
 }
 
 .zona1melon-container .logo-item:hover img,
-.zona2melon-container .logo-item:hover img,
-.zona3melon-container .logo-item:hover img,
-.zona4melon-container .logo-item:hover img,
-.zona5melon-container .logo-item:hover img {
+.zona2melon-container .logo-item:hover img {
   transform: scale(1.1);
 }
 
 .zona1melon-container .logo-item span,
-.zona2melon-container .logo-item span,
-.zona3melon-container .logo-item span,
-.zona4melon-container .logo-item span,
-.zona5melon-container .logo-item span {
+.zona2melon-container .logo-item span {
   text-transform: uppercase;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Plant Menu Container */
 .zona1melon-container .plant-menu-container,
-.zona2melon-container .plant-menu-container,
-.zona3melon-container .plant-menu-container,
-.zona4melon-container .plant-menu-container,
-.zona5melon-container .plant-menu-container {
+.zona2melon-container .plant-menu-container {
   position: relative;
 }
 
 .zona1melon-container .logo-item-inner,
-.zona2melon-container .logo-item-inner,
-.zona3melon-container .logo-item-inner,
-.zona4melon-container .logo-item-inner,
-.zona5melon-container .logo-item-inner {
+.zona2melon-container .logo-item-inner {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -161,20 +134,14 @@ body {
 }
 
 .zona1melon-container .logo-item-inner:hover,
-.zona2melon-container .logo-item-inner:hover,
-.zona3melon-container .logo-item-inner:hover,
-.zona4melon-container .logo-item-inner:hover,
-.zona5melon-container .logo-item-inner:hover {
+.zona2melon-container .logo-item-inner:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .zona1melon-container .logo-item-inner img,
-.zona2melon-container .logo-item-inner img,
-.zona3melon-container .logo-item-inner img,
-.zona4melon-container .logo-item-inner img,
-.zona5melon-container .logo-item-inner img {
+.zona2melon-container .logo-item-inner img {
   width: 24px;
   height: 24px;
   object-fit: contain;
@@ -182,28 +149,19 @@ body {
 }
 
 .zona1melon-container .logo-item-inner:hover img,
-.zona2melon-container .logo-item-inner:hover img,
-.zona3melon-container .logo-item-inner:hover img,
-.zona4melon-container .logo-item-inner:hover img,
-.zona5melon-container .logo-item-inner:hover img {
+.zona2melon-container .logo-item-inner:hover img {
   transform: scale(1.1);
 }
 
 .zona1melon-container .logo-item-inner span,
-.zona2melon-container .logo-item-inner span,
-.zona3melon-container .logo-item-inner span,
-.zona4melon-container .logo-item-inner span,
-.zona5melon-container .logo-item-inner span {
+.zona2melon-container .logo-item-inner span {
   text-transform: uppercase;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Dropdown Arrow */
 .zona1melon-container .dropdown-arrow,
-.zona2melon-container .dropdown-arrow,
-.zona3melon-container .dropdown-arrow,
-.zona4melon-container .dropdown-arrow,
-.zona5melon-container .dropdown-arrow {
+.zona2melon-container .dropdown-arrow {
   font-size: 10px;
   margin-left: 5px;
   transition: transform 0.3s ease;
@@ -211,19 +169,13 @@ body {
 }
 
 .zona1melon-container .dropdown-arrow.open,
-.zona2melon-container .dropdown-arrow.open,
-.zona3melon-container .dropdown-arrow.open,
-.zona4melon-container .dropdown-arrow.open,
-.zona5melon-container .dropdown-arrow.open {
+.zona2melon-container .dropdown-arrow.open {
   transform: rotate(180deg);
 }
 
 /* Plant Dropdown */
 .zona1melon-container .plant-dropdown,
-.zona2melon-container .plant-dropdown,
-.zona3melon-container .plant-dropdown,
-.zona4melon-container .plant-dropdown,
-.zona5melon-container .plant-dropdown {
+.zona2melon-container .plant-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
@@ -243,10 +195,7 @@ body {
 }
 
 .zona1melon-container .plant-dropdown.show,
-.zona2melon-container .plant-dropdown.show,
-.zona3melon-container .plant-dropdown.show,
-.zona4melon-container .plant-dropdown.show,
-.zona5melon-container .plant-dropdown.show {
+.zona2melon-container .plant-dropdown.show {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -266,10 +215,7 @@ body {
 
 /* Dropdown Items */
 .zona1melon-container .dropdown-item,
-.zona2melon-container .dropdown-item,
-.zona3melon-container .dropdown-item,
-.zona4melon-container .dropdown-item,
-.zona5melon-container .dropdown-item {
+.zona2melon-container .dropdown-item {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -285,28 +231,19 @@ body {
 }
 
 .zona1melon-container .dropdown-item:last-child,
-.zona2melon-container .dropdown-item:last-child,
-.zona3melon-container .dropdown-item:last-child,
-.zona4melon-container .dropdown-item:last-child,
-.zona5melon-container .dropdown-item:last-child {
+.zona2melon-container .dropdown-item:last-child {
   border-bottom: none;
 }
 
 .zona1melon-container .dropdown-item:hover,
-.zona2melon-container .dropdown-item:hover,
-.zona3melon-container .dropdown-item:hover,
-.zona4melon-container .dropdown-item:hover,
-.zona5melon-container .dropdown-item:hover {
+.zona2melon-container .dropdown-item:hover {
   background: #6b8e56;
   transform: translateX(5px);
   padding-left: 20px;
 }
 
 .zona1melon-container .dropdown-item img,
-.zona2melon-container .dropdown-item img,
-.zona3melon-container .dropdown-item img,
-.zona4melon-container .dropdown-item img,
-.zona5melon-container .dropdown-item img {
+.zona2melon-container .dropdown-item img {
   width: 20px;
   height: 20px;
   object-fit: contain;
@@ -315,29 +252,226 @@ body {
 }
 
 .zona1melon-container .dropdown-item:hover img,
-.zona2melon-container .dropdown-item:hover img,
-.zona3melon-container .dropdown-item:hover img,
-.zona4melon-container .dropdown-item:hover img,
-.zona5melon-container .dropdown-item:hover img {
+.zona2melon-container .dropdown-item:hover img {
   transform: scale(1.15) rotate(5deg);
 }
 
 .zona1melon-container .dropdown-item span,
-.zona2melon-container .dropdown-item span,
-.zona3melon-container .dropdown-item span,
-.zona4melon-container .dropdown-item span,
-.zona5melon-container .dropdown-item span {
+.zona2melon-container .dropdown-item span {
   text-transform: capitalize;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   font-weight: 600;
 }
 
+/* Header Actions Styles */
+.zona1melon-container .header-actions,
+.zona2melon-container .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.zona1melon-container .refresh-btn,
+.zona2melon-container .refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #2d5016;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(45, 80, 22, 0.2);
+}
+
+.zona1melon-container .refresh-btn:hover,
+.zona2melon-container .refresh-btn:hover {
+  background: #6b8e56;
+  transform: translateY(-1px);
+}
+
+.zona1melon-container .refresh-btn:disabled,
+.zona2melon-container .refresh-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.zona1melon-container .refresh-icon,
+.zona2melon-container .refresh-icon {
+  transition: transform 0.3s ease;
+}
+
+.zona1melon-container .refresh-icon.spinning,
+.zona2melon-container .refresh-icon.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.zona1melon-container .status-indicator,
+.zona2melon-container .status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.zona1melon-container .status-indicator.online,
+.zona2melon-container .status-indicator.online {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.zona1melon-container .status-indicator.offline,
+.zona2melon-container .status-indicator.offline {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.zona1melon-container .status-indicator.connecting,
+.zona2melon-container .status-indicator.connecting {
+  background: rgba(251, 191, 36, 0.1);
+  color: #d97706;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.zona1melon-container .status-dot,
+.zona2melon-container .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.zona1melon-container .alerts-indicator,
+.zona2melon-container .alerts-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.zona1melon-container .alert-count,
+.zona2melon-container .alert-count {
+  background: #dc2626;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+/* Error and Alert Messages */
+.zona1melon-container .error-message,
+.zona2melon-container .error-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 15px;
+  margin: 10px 0;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.zona1melon-container .error-retry,
+.zona2melon-container .error-retry {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.zona1melon-container .error-retry:hover,
+.zona2melon-container .error-retry:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.zona1melon-container .alerts-section,
+.zona2melon-container .alerts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.zona1melon-container .alert-item,
+.zona2melon-container .alert-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.zona1melon-container .alert-item.warning,
+.zona2melon-container .alert-item.warning {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.zona1melon-container .alert-item.critical,
+.zona2melon-container .alert-item.critical {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+.zona1melon-container .alert-dismiss,
+.zona2melon-container .alert-dismiss {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.zona1melon-container .alert-dismiss:hover,
+.zona2melon-container .alert-dismiss:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 /* Header */
 .zona1melon-container .header,
-.zona2melon-container .header,
-.zona3melon-container .header,
-.zona4melon-container .header,
-.zona5melon-container .header {
+.zona2melon-container .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -350,10 +484,7 @@ body {
 }
 
 .zona1melon-container .back-btn,
-.zona2melon-container .back-btn,
-.zona3melon-container .back-btn,
-.zona4melon-container .back-btn,
-.zona5melon-container .back-btn {
+.zona2melon-container .back-btn {
   background-color: #2d5016;
   border: none;
   padding: 12px 20px;
@@ -367,20 +498,14 @@ body {
 }
 
 .zona1melon-container .back-btn:hover,
-.zona2melon-container .back-btn:hover,
-.zona3melon-container .back-btn:hover,
-.zona4melon-container .back-btn:hover,
-.zona5melon-container .back-btn:hover {
+.zona2melon-container .back-btn:hover {
   background-color: #6b8e56;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
 }
 
 .zona1melon-container .page-title,
-.zona2melon-container .page-title,
-.zona3melon-container .page-title,
-.zona4melon-container .page-title,
-.zona5melon-container .page-title {
+.zona2melon-container .page-title {
   color: #2d5016;
   font-size: 24px;
   font-weight: bold;
@@ -395,10 +520,7 @@ body {
 
 /* Main Content */
 .zona1melon-container .main-content,
-.zona2melon-container .main-content,
-.zona3melon-container .main-content,
-.zona4melon-container .main-content,
-.zona5melon-container .main-content {
+.zona2melon-container .main-content {
   display: flex;
   flex: 1;
   gap: 24px;
@@ -410,12 +532,9 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* Sidebar - Same Style as Melon.css */
+/* Sidebar - Updated for 2 zones only */
 .zona1melon-container .sidebar,
-.zona2melon-container .sidebar,
-.zona3melon-container .sidebar,
-.zona4melon-container .sidebar,
-.zona5melon-container .sidebar {
+.zona2melon-container .sidebar {
   background: #2d5016;
   border-radius: clamp(15px, 3vw, 25px);
   padding: clamp(20px, 4vw, 30px);
@@ -429,10 +548,7 @@ body {
 }
 
 .zona1melon-container .nav-title,
-.zona2melon-container .nav-title,
-.zona3melon-container .nav-title,
-.zona4melon-container .nav-title,
-.zona5melon-container .nav-title {
+.zona2melon-container .nav-title {
   color: white;
   font-size: clamp(16px, 3.5vw, 20px);
   font-weight: bold;
@@ -443,20 +559,14 @@ body {
 }
 
 .zona1melon-container .zone-buttons-grid,
-.zona2melon-container .zone-buttons-grid,
-.zona3melon-container .zone-buttons-grid,
-.zona4melon-container .zone-buttons-grid,
-.zona5melon-container .zone-buttons-grid {
+.zona2melon-container .zone-buttons-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(12px, 2.5vw, 18px);
 }
 
 .zona1melon-container .zone-btn,
-.zona2melon-container .zone-btn,
-.zona3melon-container .zone-btn,
-.zona4melon-container .zone-btn,
-.zona5melon-container .zone-btn {
+.zona2melon-container .zone-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -477,41 +587,14 @@ body {
   animation: scaleIn 0.6s ease-out backwards;
 }
 
-/* Animation delays for zone buttons - SEMUA ZONA */
+/* Animation delays for zone buttons - 2 ZONES ONLY */
 .zona1melon-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
 .zona1melon-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
 .zona1melon-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
-.zona1melon-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
-.zona1melon-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
-.zona1melon-container .zone-btn:nth-child(6) { animation-delay: 0.9s; }
 
 .zona2melon-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
 .zona2melon-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
 .zona2melon-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
-.zona2melon-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
-.zona2melon-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
-.zona2melon-container .zone-btn:nth-child(6) { animation-delay: 0.9s; }
-
-.zona3melon-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
-.zona3melon-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
-.zona3melon-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
-.zona3melon-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
-.zona3melon-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
-.zona3melon-container .zone-btn:nth-child(6) { animation-delay: 0.9s; }
-
-.zona4melon-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
-.zona4melon-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
-.zona4melon-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
-.zona4melon-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
-.zona4melon-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
-.zona4melon-container .zone-btn:nth-child(6) { animation-delay: 0.9s; }
-
-.zona5melon-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
-.zona5melon-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
-.zona5melon-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
-.zona5melon-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
-.zona5melon-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
-.zona5melon-container .zone-btn:nth-child(6) { animation-delay: 0.9s; }
 
 @keyframes scaleIn {
   from { transform: scale(0.8); opacity: 0; }
@@ -519,10 +602,7 @@ body {
 }
 
 .zona1melon-container .zone-btn::before,
-.zona2melon-container .zone-btn::before,
-.zona3melon-container .zone-btn::before,
-.zona4melon-container .zone-btn::before,
-.zona5melon-container .zone-btn::before {
+.zona2melon-container .zone-btn::before {
   content: '';
   position: absolute;
   top: 0;
@@ -534,38 +614,26 @@ body {
 }
 
 .zona1melon-container .zone-btn:hover::before,
-.zona2melon-container .zone-btn:hover::before,
-.zona3melon-container .zone-btn:hover::before,
-.zona4melon-container .zone-btn:hover::before,
-.zona5melon-container .zone-btn:hover::before {
+.zona2melon-container .zone-btn:hover::before {
   left: 100%;
 }
 
 .zona1melon-container .zone-btn:hover,
-.zona2melon-container .zone-btn:hover,
-.zona3melon-container .zone-btn:hover,
-.zona4melon-container .zone-btn:hover,
-.zona5melon-container .zone-btn:hover {
+.zona2melon-container .zone-btn:hover {
   background: #4a5d3a;
   transform: translateX(5px) scale(1.05);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .zona1melon-container .zone-btn.active,
-.zona2melon-container .zone-btn.active,
-.zona3melon-container .zone-btn.active,
-.zona4melon-container .zone-btn.active,
-.zona5melon-container .zone-btn.active {
+.zona2melon-container .zone-btn.active {
   background: #4a5d3a;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   transform: translateY(-2px);
 }
 
 .zona1melon-container .zone-number,
-.zona2melon-container .zone-number,
-.zona3melon-container .zone-number,
-.zona4melon-container .zone-number,
-.zona5melon-container .zone-number {
+.zona2melon-container .zone-number {
   font-size: clamp(16px, 3.5vw, 20px);
   font-weight: 900;
   color: #9ccc65;
@@ -573,10 +641,7 @@ body {
 }
 
 .zona1melon-container .zone-label,
-.zona2melon-container .zone-label,
-.zona3melon-container .zone-label,
-.zona4melon-container .zone-label,
-.zona5melon-container .zone-label {
+.zona2melon-container .zone-label {
   font-size: clamp(10px, 2vw, 12px);
   text-transform: uppercase;
   opacity: 0.9;
@@ -584,10 +649,7 @@ body {
 
 /* Content Area */
 .zona1melon-container .content-area,
-.zona2melon-container .content-area,
-.zona3melon-container .content-area,
-.zona4melon-container .content-area,
-.zona5melon-container .content-area {
+.zona2melon-container .content-area {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -597,10 +659,7 @@ body {
 
 /* Zone Badge */
 .zona1melon-container .zone-badge,
-.zona2melon-container .zone-badge,
-.zona3melon-container .zone-badge,
-.zona4melon-container .zone-badge,
-.zona5melon-container .zone-badge {
+.zona2melon-container .zone-badge {
   position: absolute;
   top: -30px;
   right: 900px;
@@ -614,6 +673,27 @@ body {
   letter-spacing: 0.5px;
   box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
   animation: titleBounce 0.8s ease-out 0.6s both;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.zona1melon-container .zone-title,
+.zona2melon-container .zone-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.zona1melon-container .last-updated,
+.zona1melon-container .user-info,
+.zona1melon-container .plant-info,
+.zona2melon-container .last-updated,
+.zona2melon-container .user-info,
+.zona2melon-container .plant-info {
+  font-size: 10px;
+  opacity: 0.8;
+  text-align: center;
 }
 
 @keyframes titleBounce {
@@ -622,14 +702,11 @@ body {
   100% { transform: translateY(0) scale(1); opacity: 1; }
 }
 
-/* Monitoring Cards - 3 cards layout for melon (no Moist) */
+/* Monitoring Cards - Updated to 4 cards layout for melon with moisture */
 .zona1melon-container .monitoring-cards,
-.zona2melon-container .monitoring-cards,
-.zona3melon-container .monitoring-cards,
-.zona4melon-container .monitoring-cards,
-.zona5melon-container .monitoring-cards {
+.zona2melon-container .monitoring-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   margin-top: 30px;
   animation: fadeInScale 0.8s ease-out 0.8s both;
@@ -641,10 +718,7 @@ body {
 }
 
 .zona1melon-container .metric-card,
-.zona2melon-container .metric-card,
-.zona3melon-container .metric-card,
-.zona4melon-container .metric-card,
-.zona5melon-container .metric-card {
+.zona2melon-container .metric-card {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   padding: 20px;
@@ -655,22 +729,35 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   border: 2px solid #2d5016;
+  position: relative;
 }
 
 .zona1melon-container .metric-card:hover,
-.zona2melon-container .metric-card:hover,
-.zona3melon-container .metric-card:hover,
-.zona4melon-container .metric-card:hover,
-.zona5melon-container .metric-card:hover {
+.zona2melon-container .metric-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(45, 80, 22, 0.2);
 }
 
+.zona1melon-container .metric-card.loading,
+.zona2melon-container .metric-card.loading {
+  opacity: 0.7;
+  animation: pulse 1.5s infinite;
+}
+
+.zona1melon-container .metric-card.optimal,
+.zona2melon-container .metric-card.optimal {
+  border-color: #16a34a;
+  background: rgba(34, 197, 94, 0.05);
+}
+
+.zona1melon-container .metric-card.warning,
+.zona2melon-container .metric-card.warning {
+  border-color: #f59e0b;
+  background: rgba(251, 191, 36, 0.05);
+}
+
 .zona1melon-container .metric-icon,
-.zona2melon-container .metric-icon,
-.zona3melon-container .metric-icon,
-.zona4melon-container .metric-icon,
-.zona5melon-container .metric-icon {
+.zona2melon-container .metric-icon {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -682,42 +769,63 @@ body {
 }
 
 .zona1melon-container .metric-icon img,
-.zona2melon-container .metric-icon img,
-.zona3melon-container .metric-icon img,
-.zona4melon-container .metric-icon img,
-.zona5melon-container .metric-icon img {
+.zona2melon-container .metric-icon img {
   width: 24px;
   height: 24px;
 }
 
 .zona1melon-container .metric-value,
-.zona2melon-container .metric-value,
-.zona3melon-container .metric-value,
-.zona4melon-container .metric-value,
-.zona5melon-container .metric-value {
+.zona2melon-container .metric-value {
   font-size: 24px;
   font-weight: bold;
   color: #2d5016;
 }
 
 .zona1melon-container .metric-label,
-.zona2melon-container .metric-label,
-.zona3melon-container .metric-label,
-.zona4melon-container .metric-label,
-.zona5melon-container .metric-label {
+.zona2melon-container .metric-label {
   font-size: 14px;
   color: #2d5016;
   font-weight: 500;
 }
 
-/* Charts Section - 3 charts layout for melon (no Moist) */
+.zona1melon-container .metric-range,
+.zona2melon-container .metric-range {
+  font-size: 10px;
+  color: #666;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.zona1melon-container .chart-load-btn,
+.zona2melon-container .chart-load-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #2d5016;
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.zona1melon-container .chart-load-btn:hover,
+.zona2melon-container .chart-load-btn:hover {
+  background: #6b8e56;
+  transform: scale(1.1);
+}
+
+/* Charts Section - Updated to 2x2 grid for 4 charts */
 .zona1melon-container .charts-section,
-.zona2melon-container .charts-section,
-.zona3melon-container .charts-section,
-.zona4melon-container .charts-section,
-.zona5melon-container .charts-section {
+.zona2melon-container .charts-section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   margin-top: 80px;
   animation: textSlideRight 0.8s ease-out 1s both;
@@ -729,10 +837,7 @@ body {
 }
 
 .zona1melon-container .chart-container,
-.zona2melon-container .chart-container,
-.zona3melon-container .chart-container,
-.zona4melon-container .chart-container,
-.zona5melon-container .chart-container {
+.zona2melon-container .chart-container {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 20px;
@@ -743,19 +848,13 @@ body {
 }
 
 .zona1melon-container .chart-container:hover,
-.zona2melon-container .chart-container:hover,
-.zona3melon-container .chart-container:hover,
-.zona4melon-container .chart-container:hover,
-.zona5melon-container .chart-container:hover {
+.zona2melon-container .chart-container:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(45, 80, 22, 0.2);
 }
 
 .zona1melon-container .chart-label,
-.zona2melon-container .chart-label,
-.zona3melon-container .chart-label,
-.zona4melon-container .chart-label,
-.zona5melon-container .chart-label {
+.zona2melon-container .chart-label {
   background: #2d5016;
   color: white;
   padding: 6px 16px;
@@ -766,41 +865,38 @@ body {
   margin-bottom: 15px;
   letter-spacing: 0.5px;
   box-shadow: 0 2px 6px rgba(45, 80, 22, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.zona1melon-container .chart-info,
+.zona2melon-container .chart-info {
+  font-size: 10px;
+  opacity: 0.8;
 }
 
 .zona1melon-container .chart,
-.zona2melon-container .chart,
-.zona3melon-container .chart,
-.zona4melon-container .chart,
-.zona5melon-container .chart {
+.zona2melon-container .chart {
   position: relative;
   height: 150px;
 }
 
 .zona1melon-container .chart-svg,
-.zona2melon-container .chart-svg,
-.zona3melon-container .chart-svg,
-.zona4melon-container .chart-svg,
-.zona5melon-container .chart-svg {
+.zona2melon-container .chart-svg {
   width: 100%;
   height: 120px;
 }
 
-/* Chart Colors - Changed from Orange to White */
+/* Chart Colors - White for melon theme */
 .zona1melon-container .chart-svg path,
-.zona2melon-container .chart-svg path,
-.zona3melon-container .chart-svg path,
-.zona4melon-container .chart-svg path,
-.zona5melon-container .chart-svg path {
+.zona2melon-container .chart-svg path {
   stroke: #ffffff !important;
   fill: rgba(255, 255, 255, 0.2) !important;
 }
 
 .zona1melon-container .chart-time-labels,
-.zona2melon-container .chart-time-labels,
-.zona3melon-container .chart-time-labels,
-.zona4melon-container .chart-time-labels,
-.zona5melon-container .chart-time-labels {
+.zona2melon-container .chart-time-labels {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
@@ -809,12 +905,35 @@ body {
   font-weight: bold;
 }
 
+/* Plant Status Section */
+.zona1melon-container .plant-status-section,
+.zona2melon-container .plant-status-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.zona1melon-container .plant-status-section h3,
+.zona2melon-container .plant-status-section h3 {
+  color: #2d5016;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.zona1melon-container .growth-info,
+.zona2melon-container .growth-info {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #2d5016;
+}
+
 /* Footer Bar */
 .zona1melon-container .footer-bar,
-.zona2melon-container .footer-bar,
-.zona3melon-container .footer-bar,
-.zona4melon-container .footer-bar,
-.zona5melon-container .footer-bar {
+.zona2melon-container .footer-bar {
   background: #2d5016;
   border-radius: 20px;
   padding: 15px 25px;
@@ -829,10 +948,7 @@ body {
 }
 
 .zona1melon-container .welcome-text,
-.zona2melon-container .welcome-text,
-.zona3melon-container .welcome-text,
-.zona4melon-container .welcome-text,
-.zona5melon-container .welcome-text {
+.zona2melon-container .welcome-text {
   color: white;
   font-size: 16px;
   font-weight: bold;
@@ -846,21 +962,15 @@ body {
   to { text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
 }
 
-/* Responsive adjustments for dropdown */
+/* Responsive adjustments for dropdown and 4-card layout */
 @media (max-width: 1200px) {
   .zona1melon-container .main-content,
-  .zona2melon-container .main-content,
-  .zona3melon-container .main-content,
-  .zona4melon-container .main-content,
-  .zona5melon-container .main-content {
+  .zona2melon-container .main-content {
     gap: 20px;
   }
   
   .zona1melon-container .logo-container,
-  .zona2melon-container .logo-container,
-  .zona3melon-container .logo-container,
-  .zona4melon-container .logo-container,
-  .zona5melon-container .logo-container {
+  .zona2melon-container .logo-container {
     gap: 25px;
     padding: 10px 25px;
     min-width: 250px;
@@ -868,43 +978,28 @@ body {
   }
   
   .zona1melon-container .logo-item img, .zona1melon-container .logo-item-inner img,
-  .zona2melon-container .logo-item img, .zona2melon-container .logo-item-inner img,
-  .zona3melon-container .logo-item img, .zona3melon-container .logo-item-inner img,
-  .zona4melon-container .logo-item img, .zona4melon-container .logo-item-inner img,
-  .zona5melon-container .logo-item img, .zona5melon-container .logo-item-inner img {
+  .zona2melon-container .logo-item img, .zona2melon-container .logo-item-inner img {
     width: 20px;
     height: 20px;
   }
 
   .zona1melon-container .logo-item span, .zona1melon-container .logo-item-inner span,
-  .zona2melon-container .logo-item span, .zona2melon-container .logo-item-inner span,
-  .zona3melon-container .logo-item span, .zona3melon-container .logo-item-inner span,
-  .zona4melon-container .logo-item span, .zona4melon-container .logo-item-inner span,
-  .zona5melon-container .logo-item span, .zona5melon-container .logo-item-inner span {
+  .zona2melon-container .logo-item span, .zona2melon-container .logo-item-inner span {
     font-size: 12px;
   }
 
   .zona1melon-container .dropdown-arrow,
-  .zona2melon-container .dropdown-arrow,
-  .zona3melon-container .dropdown-arrow,
-  .zona4melon-container .dropdown-arrow,
-  .zona5melon-container .dropdown-arrow {
+  .zona2melon-container .dropdown-arrow {
     font-size: 9px;
   }
   
   .zona1melon-container .monitoring-cards,
-  .zona2melon-container .monitoring-cards,
-  .zona3melon-container .monitoring-cards,
-  .zona4melon-container .monitoring-cards,
-  .zona5melon-container .monitoring-cards {
+  .zona2melon-container .monitoring-cards {
     grid-template-columns: repeat(2, 1fr);
   }
   
   .zona1melon-container .charts-section,
-  .zona2melon-container .charts-section,
-  .zona3melon-container .charts-section,
-  .zona4melon-container .charts-section,
-  .zona5melon-container .charts-section {
+  .zona2melon-container .charts-section {
     grid-template-columns: repeat(2, 1fr);
     margin-top: 20px;
   }
@@ -913,19 +1008,13 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .zona1melon-container,
-  .zona2melon-container,
-  .zona3melon-container,
-  .zona4melon-container,
-  .zona5melon-container {
+  .zona2melon-container {
     padding: clamp(12px, 2.5vw, 16px);
     gap: clamp(12px, 2.5vw, 16px);
   }
   
   .zona1melon-container .header,
-  .zona2melon-container .header,
-  .zona3melon-container .header,
-  .zona4melon-container .header,
-  .zona5melon-container .header {
+  .zona2melon-container .header {
     flex-direction: column;
     gap: clamp(10px, 2vw, 15px);
     text-align: center;
@@ -933,27 +1022,18 @@ body {
   }
   
   .zona1melon-container .page-title,
-  .zona2melon-container .page-title,
-  .zona3melon-container .page-title,
-  .zona4melon-container .page-title,
-  .zona5melon-container .page-title {
+  .zona2melon-container .page-title {
     font-size: clamp(18px, 4vw, 22px);
   }
   
   .zona1melon-container .main-content,
-  .zona2melon-container .main-content,
-  .zona3melon-container .main-content,
-  .zona4melon-container .main-content,
-  .zona5melon-container .main-content {
+  .zona2melon-container .main-content {
     flex-direction: column;
     gap: clamp(16px, 3vw, 20px);
   }
   
   .zona1melon-container .sidebar,
-  .zona2melon-container .sidebar,
-  .zona3melon-container .sidebar,
-  .zona4melon-container .sidebar,
-  .zona5melon-container .sidebar {
+  .zona2melon-container .sidebar {
     background: #2d5016;
     border-radius: clamp(15px, 3vw, 20px);
     padding: clamp(15px, 3vw, 20px);
@@ -966,35 +1046,24 @@ body {
     display: flex;
     flex-direction: row;
     gap: clamp(8px, 2vw, 12px);
-    /* Smooth scrolling */
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    /* Hide scrollbar but keep functionality */
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
   
   .zona1melon-container .sidebar::-webkit-scrollbar,
-  .zona2melon-container .sidebar::-webkit-scrollbar,
-  .zona3melon-container .sidebar::-webkit-scrollbar,
-  .zona4melon-container .sidebar::-webkit-scrollbar,
-  .zona5melon-container .sidebar::-webkit-scrollbar {
+  .zona2melon-container .sidebar::-webkit-scrollbar {
     display: none;
   }
   
   .zona1melon-container .nav-title,
-  .zona2melon-container .nav-title,
-  .zona3melon-container .nav-title,
-  .zona4melon-container .nav-title,
-  .zona5melon-container .nav-title {
+  .zona2melon-container .nav-title {
     display: none;
   }
   
   .zona1melon-container .zone-buttons-grid,
-  .zona2melon-container .zone-buttons-grid,
-  .zona3melon-container .zone-buttons-grid,
-  .zona4melon-container .zone-buttons-grid,
-  .zona5melon-container .zone-buttons-grid {
+  .zona2melon-container .zone-buttons-grid {
     display: flex;
     flex-direction: row;
     gap: clamp(8px, 2vw, 12px);
@@ -1003,10 +1072,7 @@ body {
   }
   
   .zona1melon-container .zone-btn,
-  .zona2melon-container .zone-btn,
-  .zona3melon-container .zone-btn,
-  .zona4melon-container .zone-btn,
-  .zona5melon-container .zone-btn {
+  .zona2melon-container .zone-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1030,10 +1096,7 @@ body {
   }
   
   .zona1melon-container .zone-number,
-  .zona2melon-container .zone-number,
-  .zona3melon-container .zone-number,
-  .zona4melon-container .zone-number,
-  .zona5melon-container .zone-number {
+  .zona2melon-container .zone-number {
     font-size: clamp(14px, 3vw, 18px);
     font-weight: 900;
     color: #9ccc65;
@@ -1041,10 +1104,7 @@ body {
   }
   
   .zona1melon-container .zone-label,
-  .zona2melon-container .zone-label,
-  .zona3melon-container .zone-label,
-  .zona4melon-container .zone-label,
-  .zona5melon-container .zone-label {
+  .zona2melon-container .zone-label {
     font-size: clamp(8px, 1.8vw, 10px);
     text-transform: uppercase;
     opacity: 0.9;
@@ -1052,64 +1112,43 @@ body {
   }
   
   .zona1melon-container .monitoring-cards,
-  .zona2melon-container .monitoring-cards,
-  .zona3melon-container .monitoring-cards,
-  .zona4melon-container .monitoring-cards,
-  .zona5melon-container .monitoring-cards {
-    grid-template-columns: repeat(3, 1fr);
+  .zona2melon-container .monitoring-cards {
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
   
   .zona1melon-container .charts-section,
-  .zona2melon-container .charts-section,
-  .zona3melon-container .charts-section,
-  .zona4melon-container .charts-section,
-  .zona5melon-container .charts-section {
+  .zona2melon-container .charts-section {
     grid-template-columns: 1fr;
   }
   
   .zona1melon-container .zone-badge,
-  .zona2melon-container .zone-badge,
-  .zona3melon-container .zone-badge,
-  .zona4melon-container .zone-badge,
-  .zona5melon-container .zone-badge {
+  .zona2melon-container .zone-badge {
     position: static;
     align-self: center;
     margin-bottom: 20px;
   }
 
   .zona1melon-container .plant-dropdown,
-  .zona2melon-container .plant-dropdown,
-  .zona3melon-container .plant-dropdown,
-  .zona4melon-container .plant-dropdown,
-  .zona5melon-container .plant-dropdown {
+  .zona2melon-container .plant-dropdown {
     min-width: 160px;
     margin-top: 6px;
   }
   
   .zona1melon-container .dropdown-item,
-  .zona2melon-container .dropdown-item,
-  .zona3melon-container .dropdown-item,
-  .zona4melon-container .dropdown-item,
-  .zona5melon-container .dropdown-item {
+  .zona2melon-container .dropdown-item {
     padding: 10px 14px;
     font-size: 12px;
   }
   
   .zona1melon-container .dropdown-item img,
-  .zona2melon-container .dropdown-item img,
-  .zona3melon-container .dropdown-item img,
-  .zona4melon-container .dropdown-item img,
-  .zona5melon-container .dropdown-item img {
+  .zona2melon-container .dropdown-item img {
     width: 18px;
     height: 18px;
   }
 
   .zona1melon-container .logo-container,
-  .zona2melon-container .logo-container,
-  .zona3melon-container .logo-container,
-  .zona4melon-container .logo-container,
-  .zona5melon-container .logo-container {
+  .zona2melon-container .logo-container {
     gap: 20px;
     padding: 8px 20px;
     min-width: 200px;
@@ -1117,85 +1156,64 @@ body {
   }
   
   .zona1melon-container .logo-item, .zona1melon-container .logo-item-inner,
-  .zona2melon-container .logo-item, .zona2melon-container .logo-item-inner,
-  .zona3melon-container .logo-item, .zona3melon-container .logo-item-inner,
-  .zona4melon-container .logo-item, .zona4melon-container .logo-item-inner,
-  .zona5melon-container .logo-item, .zona5melon-container .logo-item-inner {
+  .zona2melon-container .logo-item, .zona2melon-container .logo-item-inner {
     padding: 6px 12px;
     gap: 8px;
   }
   
   .zona1melon-container .logo-item img, .zona1melon-container .logo-item-inner img,
-  .zona2melon-container .logo-item img, .zona2melon-container .logo-item-inner img,
-  .zona3melon-container .logo-item img, .zona3melon-container .logo-item-inner img,
-  .zona4melon-container .logo-item img, .zona4melon-container .logo-item-inner img,
-  .zona5melon-container .logo-item img, .zona5melon-container .logo-item-inner img {
+  .zona2melon-container .logo-item img, .zona2melon-container .logo-item-inner img {
     width: 18px;
     height: 18px;
   }
 
   .zona1melon-container .logo-item span, .zona1melon-container .logo-item-inner span,
-  .zona2melon-container .logo-item span, .zona2melon-container .logo-item-inner span,
-  .zona3melon-container .logo-item span, .zona3melon-container .logo-item-inner span,
-  .zona4melon-container .logo-item span, .zona4melon-container .logo-item-inner span,
-  .zona5melon-container .logo-item span, .zona5melon-container .logo-item-inner span {
+  .zona2melon-container .logo-item span, .zona2melon-container .logo-item-inner span {
     font-size: 11px;
   }
 }
 
 @media (max-width: 480px) {
   .zona1melon-container,
-  .zona2melon-container,
-  .zona3melon-container,
-  .zona4melon-container,
-  .zona5melon-container {
+  .zona2melon-container {
     padding: 12px;
   }
   
   .zona1melon-container .page-title,
-  .zona2melon-container .page-title,
-  .zona3melon-container .page-title,
-  .zona4melon-container .page-title,
-  .zona5melon-container .page-title {
+  .zona2melon-container .page-title {
     font-size: 18px;
   }
 
   .zona1melon-container .plant-dropdown,
-  .zona2melon-container .plant-dropdown,
-  .zona3melon-container .plant-dropdown,
-  .zona4melon-container .plant-dropdown,
-  .zona5melon-container .plant-dropdown {
+  .zona2melon-container .plant-dropdown {
     min-width: 140px;
   }
   
   .zona1melon-container .dropdown-item,
-  .zona2melon-container .dropdown-item,
-  .zona3melon-container .dropdown-item,
-  .zona4melon-container .dropdown-item,
-  .zona5melon-container .dropdown-item {
+  .zona2melon-container .dropdown-item {
     padding: 8px 12px;
     font-size: 11px;
     gap: 10px;
   }
   
   .zona1melon-container .dropdown-item img,
-  .zona2melon-container .dropdown-item img,
-  .zona3melon-container .dropdown-item img,
-  .zona4melon-container .dropdown-item img,
-  .zona5melon-container .dropdown-item img {
+  .zona2melon-container .dropdown-item img {
     width: 16px;
     height: 16px;
   }
 
   .zona1melon-container .logo-container,
-  .zona2melon-container .logo-container,
-  .zona3melon-container .logo-container,
-  .zona4melon-container .logo-container,
-  .zona5melon-container .logo-container {
+  .zona2melon-container .logo-container {
     gap: 15px;
     padding: 6px 15px;
     min-width: 180px;
     height: 40px;
+  }
+
+  .zona1melon-container .monitoring-cards,
+  .zona2melon-container .monitoring-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
 
@@ -1204,21 +1222,12 @@ body {
   .zona1melon-container .metric-card,
   .zona1melon-container .chart-container,
   .zona2melon-container .metric-card,
-  .zona2melon-container .chart-container,
-  .zona3melon-container .metric-card,
-  .zona3melon-container .chart-container,
-  .zona4melon-container .metric-card,
-  .zona4melon-container .chart-container,
-  .zona5melon-container .metric-card,
-  .zona5melon-container .chart-container {
+  .zona2melon-container .chart-container {
     border: 2px solid white;
   }
   
   .zona1melon-container .zone-btn,
-  .zona2melon-container .zone-btn,
-  .zona3melon-container .zone-btn,
-  .zona4melon-container .zone-btn,
-  .zona5melon-container .zone-btn {
+  .zona2melon-container .zone-btn {
     border: 1px solid white;
   }
 }

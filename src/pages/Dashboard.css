@@ -1265,4 +1265,243 @@ body.dashboard-page {
       gap: 10px;
     }
   }
+
+  /* Additional CSS untuk API integration */
+.error-message {
+  background-color: rgba(244, 67, 54, 0.1);
+  border: 1px solid #f44336;
+  color: #f44336;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px;
+  text-align: center;
+}
+
+.error-message button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.error-message button:hover {
+  background-color: #d32f2f;
+}
+
+/* ===== CSS MINIMAL UNTUK API - TIDAK MENGGANGU RESPONSIVE ===== */
+/* Tambahkan di akhir Dashboard.css, setelah semua CSS responsive yang sudah ada */
+
+/* ===== REFRESH HINT - MINIMAL DAN TIDAK MENGGANGU LAYOUT ===== */
+.dashboard-container .refresh-hint {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  background: rgba(45, 80, 22, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  z-index: 10;
+  opacity: 0.7;
+}
+
+.dashboard-container .refresh-hint:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  background: rgba(45, 80, 22, 1);
+}
+
+.dashboard-container .refresh-hint span {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ===== CONNECTION STATUS DI FOOTER - MINIMAL ===== */
+.dashboard-container .connection-status {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: rgba(244, 67, 54, 0.2);
+}
+
+.dashboard-container .connection-status:hover {
+  color: white;
+  background: rgba(244, 67, 54, 0.4);
+}
+
+/* ===== RESPONSIVE UNTUK ELEMEN BARU ===== */
+
+/* Desktop - elemen baru muncul */
+@media (min-width: 1025px) {
+  .dashboard-container .refresh-hint {
+    display: flex;
+  }
+  
+  .dashboard-container .connection-status {
+    display: block;
+  }
+}
+
+/* Tablet - refresh hint masih ada tapi lebih kecil */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .dashboard-container .refresh-hint {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    top: 3px;
+    right: 3px;
+  }
+  
+  .dashboard-container .connection-status {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 10px;
+  }
+}
+
+/* Mobile - sembunyikan refresh hint, connection status jadi inline */
+@media (max-width: 768px) {
+  .dashboard-container .refresh-hint {
+    display: none; /* Sembunyikan di mobile agar tidak menggangu */
+  }
+  
+  .dashboard-container .connection-status {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  
+  .dashboard-container .footer-bar {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* Small mobile - connection status lebih kecil */
+@media (max-width: 480px) {
+  .dashboard-container .connection-status {
+    font-size: 9px;
+    padding: 2px 6px;
+    margin-top: 5px;
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 320px) {
+  .dashboard-container .connection-status {
+    font-size: 8px;
+    padding: 2px 4px;
+  }
+}
+
+/* ===== LOADING STATE YANG TIDAK MENGGANGU ===== */
+.dashboard-container .circle.loading-state {
+  background: linear-gradient(45deg, #9ccc65, #7cb342);
+  animation: subtle-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* ===== FALLBACK UNTUK DATA YANG TIDAK ADA ===== */
+.dashboard-container .circle.no-data {
+  background: #9e9e9e;
+  opacity: 0.6;
+}
+
+/* ===== MEMASTIKAN TIDAK ADA OVERFLOW ===== */
+.dashboard-container .top-bar {
+  position: relative;
+  overflow: visible; /* Pastikan refresh hint terlihat */
+}
+
+.dashboard-container .footer-bar {
+  position: relative;
+  overflow: visible; /* Pastikan connection status terlihat */
+}
+
+/* ===== HOVER STATES UNTUK CIRCLE DENGAN DATA ===== */
+.dashboard-container .circle:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* ===== MEMASTIKAN Z-INDEX TIDAK MENGGANGU ===== */
+.dashboard-container .refresh-hint,
+.dashboard-container .connection-status {
+  z-index: 5; /* Tidak terlalu tinggi agar tidak menggangu dropdown */
+}
+
+/* ===== SMOOTH TRANSITION UNTUK PERUBAHAN DATA ===== */
+.dashboard-container .circle {
+  transition: all 0.3s ease;
+}
+
+.dashboard-container .mobile-indicator .circle,
+.dashboard-container .condition-box .circle {
+  transition: all 0.3s ease;
+}
+
+/* ===== ENSURE RESPONSIVE LAYOUT TIDAK TERGANGGU ===== */
+/* Override protection - memastikan layout original tidak berubah */
+.dashboard-container .main-content {
+  position: relative; /* Memastikan positioning tetap sama */
+}
+
+.dashboard-container .plant-layout {
+  position: relative; /* Memastikan grid tetap sama */
+}
+
+.dashboard-container .room-condition {
+  position: relative; /* Memastikan positioning tetap sama */
+}
+
+/* ===== ACCESSIBILITY ===== */
+.dashboard-container .refresh-hint:focus {
+  outline: 2px solid #9ccc65;
+  outline-offset: 2px;
+}
+
+.dashboard-container .connection-status:focus {
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 1px;
+}
+
+/* ===== PRINT FRIENDLY ===== */
+@media print {
+  .dashboard-container .refresh-hint,
+  .dashboard-container .connection-status {
+    display: none;
+  }
+}
 }

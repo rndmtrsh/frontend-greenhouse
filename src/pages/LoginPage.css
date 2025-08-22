@@ -1,4 +1,4 @@
-/* LoginPage.css - Mobile Responsive Fix */
+/* LoginPage.css - Fixed Mobile Responsive */
 
 /* Reset and Base Styles */
 * {
@@ -7,7 +7,7 @@
   box-sizing: border-box;
 }
 
-/* Desktop/Windows Layout - Tetap seperti original */
+/* ===== DESKTOP/WINDOWS LAYOUT ===== */
 .page-container {
   position: relative;
   width: 100%;
@@ -124,7 +124,7 @@
 
 .login-form h2 {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: white;
   font-size: 1.8rem;
   font-weight: bold;
@@ -140,12 +140,13 @@
 
 .login-form input {
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
   margin-bottom: 1rem;
   background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
 }
 
 .login-form input:focus {
@@ -177,6 +178,79 @@
   cursor: not-allowed;
 }
 
+/* Error message styling */
+.error-message {
+  background-color: #fee;
+  border: 1px solid #fcc;
+  color: #c33;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Test connection button */
+.test-connection-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 0.6rem;
+  background-color: #2196f3;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.test-connection-btn:hover {
+  background-color: #1976d2;
+}
+
+.test-connection-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Demo info */
+.demo-info {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(46, 125, 50, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(46, 125, 50, 0.3);
+}
+
+.demo-info p {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #2e7d32;
+}
+
+.demo-info p:first-child {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 /* ===== MOBILE RESPONSIVE DESIGN ===== */
 
 /* Mobile Layout - 768px dan ke bawah */
@@ -188,13 +262,13 @@
     position: relative;
   }
 
-  /* HIDE SEMUA LOGO DESKTOP COMPLETELY */
+  /* HIDE SEMUA LOGO DESKTOP */
   .page-container > .square-logo,
   .page-container > .logo-circle {
     display: none !important;
   }
 
-  /* Mobile Header Logo - Brand logo memanjang horizontal */
+  /* Mobile Header Logo */
   .mobile-header-logo {
     position: fixed;
     top: 15px;
@@ -226,7 +300,9 @@
     padding: 25px;
     padding-top: 100px;
     min-height: 100vh;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Mobile Login Form */
@@ -242,7 +318,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    display: block;
+    animation: none;
   }
 
   .mobile-content-container .login-form h2 {
@@ -293,7 +369,28 @@
     box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
   }
 
-  /* Mobile Logo Section - DI LUAR CONTAINER FORM LOGIN */
+  .mobile-content-container .test-connection-btn {
+    background: linear-gradient(135deg, #2196f3, #1976d2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .mobile-content-container .test-connection-btn:hover {
+    background: linear-gradient(135deg, #1976d2, #1565c0);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+  }
+
+  .mobile-content-container .demo-info {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(46, 125, 50, 0.3);
+  }
+
+  .mobile-content-container .demo-info p {
+    color: #2d5016;
+  }
+
+  /* Mobile Bottom Logos */
   .mobile-bottom-logos {
     position: fixed;
     bottom: 25px;
@@ -325,8 +422,8 @@
   }
 
   .mobile-bottom-logos .mobile-logo img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
   }
 }
@@ -355,9 +452,8 @@
   }
 
   .mobile-bottom-logos {
-    margin-top: 25px;
-    gap: 20px;
-    max-width: 320px;
+    bottom: 20px;
+    gap: 15px;
   }
 
   .mobile-bottom-logos .mobile-logo {
@@ -366,9 +462,8 @@
   }
 
   .mobile-bottom-logos .mobile-logo img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+    width: 35px;
+    height: 35px;
   }
 
   .mobile-content-container .login-form h2 {
@@ -417,9 +512,8 @@
   }
 
   .mobile-bottom-logos {
-    margin-top: 20px;
-    gap: 15px;
-    max-width: 280px;
+    bottom: 15px;
+    gap: 12px;
   }
 
   .mobile-bottom-logos .mobile-logo {
@@ -428,9 +522,8 @@
   }
 
   .mobile-bottom-logos .mobile-logo img {
-    width: 40px;
-    height: 0px;
-    object-fit: contain;
+    width: 30px;
+    height: 30px;
   }
 
   .mobile-content-container .login-form h2 {
@@ -473,9 +566,8 @@
   }
 
   .mobile-bottom-logos {
-    margin-top: 15px;
-    gap: 20px;
-    max-width: 400px;
+    bottom: 10px;
+    gap: 15px;
   }
 
   .mobile-bottom-logos .mobile-logo {
@@ -486,7 +578,6 @@
   .mobile-bottom-logos .mobile-logo img {
     width: 28px;
     height: 28px;
-    object-fit: contain;
   }
 
   .mobile-content-container .login-form h2 {
@@ -530,5 +621,9 @@
   .mobile-content-container .login-form input,
   .mobile-content-container .login-form button {
     transition: none;
+  }
+  
+  .loading-spinner {
+    animation: none;
   }
 }

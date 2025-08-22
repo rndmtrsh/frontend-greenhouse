@@ -1,4 +1,4 @@
-// Melon.jsx - Responsive Structure
+// Melon.jsx - Responsive Structure - Updated for 2 Zones Only
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Melon.css';
@@ -24,7 +24,7 @@ const Melon = () => {
     navigate(`/${plantType}`);
   };
 
-  // Function untuk navigasi zona
+  // Function untuk navigasi zona - Updated for 2 zones only
   const handleZoneClick = (zone) => {
     if (zone === 'melon') {
       // Jika klik MELON, tetap di halaman ini (tidak ada navigasi)
@@ -79,7 +79,7 @@ const Melon = () => {
 
       {/* Main Content */}
       <div className="main-content">
-        {/* Sidebar Navigation */}
+        {/* Sidebar Navigation - Updated for 2 zones only */}
         <div className="sidebar-navigation">
           <h2 className="nav-title">Melon Zones</h2>
           <div className="zone-buttons-grid">
@@ -95,27 +95,6 @@ const Melon = () => {
               onClick={() => handleZoneClick('zona2')}
             >
               <span className="zone-number">2</span>
-              <span className="zone-label">Zona</span>
-            </button>
-            <button 
-              className="zone-btn" 
-              onClick={() => handleZoneClick('zona3')}
-            >
-              <span className="zone-number">3</span>
-              <span className="zone-label">Zona</span>
-            </button>
-            <button 
-              className="zone-btn" 
-              onClick={() => handleZoneClick('zona4')}
-            >
-              <span className="zone-number">4</span>
-              <span className="zone-label">Zona</span>
-            </button>
-            <button 
-              className="zone-btn" 
-              onClick={() => handleZoneClick('zona5')}
-            >
-              <span className="zone-number">5</span>
               <span className="zone-label">Zona</span>
             </button>
           </div>

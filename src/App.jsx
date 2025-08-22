@@ -18,6 +18,12 @@ import Zona3melon from './Zona/Zonamelon/Zona3melon';
 import Zona4melon from './Zona/Zonamelon/Zona4melon';
 import Zona5melon from './Zona/Zonamelon/Zona5melon';
 
+
+import Zona1selada from './Zona/Zonaselada/Zona1selada';
+import Zona2selada from './Zona/Zonaselada/Zona2selada';
+import Zona3selada from './Zona/Zonaselada/Zona3selada';
+import Zona4selada from './Zona/Zonaselada/Zona4selada';
+
 import './App.css';
 
 function App() {
@@ -43,6 +49,11 @@ function App() {
         <Route path="/melon/zona3" element={<Zona3melon />} />
         <Route path="/melon/zona4" element={<Zona4melon />} />
         <Route path="/melon/zona5" element={<Zona5melon />} />
+        {/* Selada Zone Routes */}
+        <Route path="/selada/zona1" element={<Zona1selada />} />
+        <Route path="/selada/zona2" element={<Zona2selada />} />
+        <Route path="/selada/zona3" element={<Zona3selada />} />
+        <Route path="/selada/zona4" element={<Zona4selada />} />
         
       </Routes>
     </Router>
