@@ -119,20 +119,6 @@ const Cabai = () => {
               <span className="zone-number">4</span>
               <span className="zone-label">ZONA 4</span>
             </button>
-            <button 
-              className="zone-btn" 
-              onClick={() => handleZoneClick('zona5')}
-            >
-              <span className="zone-number">5</span>
-              <span className="zone-label">ZONA 5</span>
-            </button>
-            <button 
-              className="zone-btn" 
-              onClick={() => handleZoneClick('zona6')}
-            >
-              <span className="zone-number">6</span>
-              <span className="zone-label">ZONA 6</span>
-            </button>
           </div>
         </div>
 

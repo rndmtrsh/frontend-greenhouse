@@ -9,11 +9,14 @@ import Zona1cabai from './Zona/Zonacabai/Zona1cabai';
 import Zona2cabai from './Zona/Zonacabai/Zona2cabai';
 import Zona3cabai from './Zona/Zonacabai/Zona3cabai';
 import Zona4cabai from './Zona/Zonacabai/Zona4cabai';
-
+import Zona5cabai from './Zona/Zonacabai/Zona5cabai';
+import Zona6cabai from './Zona/Zonacabai/Zona6cabai';
 
 import Zona1melon from './Zona/Zonamelon/Zona1melon';
 import Zona2melon from './Zona/Zonamelon/Zona2melon';
-
+import Zona3melon from './Zona/Zonamelon/Zona3melon';
+import Zona4melon from './Zona/Zonamelon/Zona4melon';
+import Zona5melon from './Zona/Zonamelon/Zona5melon';
 
 
 import Zona1selada from './Zona/Zonaselada/Zona1selada';
@@ -38,17 +41,19 @@ function App() {
         <Route path="/cabai/zona2" element={<Zona2cabai />} />
         <Route path="/cabai/zona3" element={<Zona3cabai />} />
         <Route path="/cabai/zona4" element={<Zona4cabai />} />
-        
-        {/* Melon Zone Routes */}
+        <Route path="/cabai/zona5" element={<Zona5cabai />} />
+        <Route path="/cabai/zona6" element={<Zona6cabai />} />
+        {/* //Melon Zone Routes - Ready for future implementation// */}
         <Route path="/melon/zona1" element={<Zona1melon />} /> 
         <Route path="/melon/zona2" element={<Zona2melon />} />
-        
-        {/*Selada Zone Routes */}
+        <Route path="/melon/zona3" element={<Zona3melon />} />
+        <Route path="/melon/zona4" element={<Zona4melon />} />
+        <Route path="/melon/zona5" element={<Zona5melon />} />
+        {/* Selada Zone Routes */}
         <Route path="/selada/zona1" element={<Zona1selada />} />
         <Route path="/selada/zona2" element={<Zona2selada />} />
         <Route path="/selada/zona3" element={<Zona3selada />} />
         <Route path="/selada/zona4" element={<Zona4selada />} />
-       
         
       </Routes>
     </Router>

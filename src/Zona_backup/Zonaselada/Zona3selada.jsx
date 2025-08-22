@@ -1,30 +1,28 @@
 // ===========================================
-// Zona2melon.jsx - Template untuk Extended Api.js with Moisture
+// Zona3selada.jsx - Template untuk Extended Api.js
 // ===========================================
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiService from '../../services/api';
-import './Zonamelon.css';
+import './Zonaselada.css';
 
-const Zona2melon = () => {
+const Zona3selada = () => {
   const navigate = useNavigate();
   const [isPlantDropdownOpen, setIsPlantDropdownOpen] = useState(false);
   
-  // State untuk zone data - Added moisture
+  // State untuk zone data
   const [zoneData, setZoneData] = useState({
-    zoneId: 2,
-    plantType: 'melon',
+    zoneId: 3,
+    plantType: 'selada',
     metrics: {
       ph: 0,
       temperature: 0,
-      ec: 0,
-      moisture: 0  // Added moisture
+      tds: 0
     },
     chartData: {
       temperature: [],
       ph: [],
-      ec: [],
-      moisture: []  // Added moisture chart
+      tds: []
     },
     lastUpdated: null,
     status: 'offline',
@@ -37,7 +35,7 @@ const Zona2melon = () => {
   const [isOnline, setIsOnline] = useState(apiService.isOnline());
   const [alerts, setAlerts] = useState([]);
 
-  // Fetch data menggunakan extended API methods
+  // Fetch data menggunakan extended API methods untuk ZONA 3
   const fetchZoneData = async () => {
     try {
       setLoading(true);
@@ -49,11 +47,11 @@ const Zona2melon = () => {
         return;
       }
 
-      // Fetch zone data, plant info, dan alerts secara parallel
+      // Fetch zone data, plant info, dan alerts secara parallel untuk ZONA 3
       const [zoneResult, plantResult, alertsResult] = await Promise.all([
-        apiService.getZoneData('melon', 2),
-        apiService.getPlantInfo('melon'),
-        apiService.getAlerts('melon', 2)
+        apiService.getZoneData('selada', 3), // ZONA 3
+        apiService.getPlantInfo('selada'),
+        apiService.getAlerts('selada', 3) // ZONA 3
       ]);
       
       setZoneData(zoneResult);
@@ -68,10 +66,10 @@ const Zona2melon = () => {
     }
   };
 
-  // Fetch chart data untuk specific metric
+  // Fetch chart data untuk specific metric ZONA 3
   const fetchChartData = async (metric, timeRange = '24h') => {
     try {
-      const chartData = await apiService.getChartData('melon', 2, metric, timeRange);
+      const chartData = await apiService.getChartData('selada', 3, metric, timeRange); // ZONA 3
       setZoneData(prev => ({
         ...prev,
         chartData: {
@@ -84,15 +82,15 @@ const Zona2melon = () => {
     }
   };
 
-  // Auto-refresh data menggunakan subscription
+  // Auto-refresh data menggunakan subscription untuk ZONA 3
   useEffect(() => {
     // Initial fetch
     fetchZoneData();
     
-    // Set up auto-refresh menggunakan subscription dari API
+    // Set up auto-refresh menggunakan subscription dari API untuk ZONA 3
     const unsubscribe = apiService.subscribeToZoneUpdates(
-      'melon', 
-      2, 
+      'selada', 
+      3, // ZONA 3
       (data) => {
         setZoneData(data);
         setError(null);
@@ -151,10 +149,10 @@ const Zona2melon = () => {
     navigate(`/${plantType}`);
   };
   const handleZoneClick = (zone) => {
-    if (zone === 'melon') {
-      navigate('/melon');
+    if (zone === 'selada') {
+      navigate('/selada');
     } else {
-      navigate(`/melon/${zone}`);
+      navigate(`/selada/${zone}`);
     }
   };
 
@@ -182,7 +180,7 @@ const Zona2melon = () => {
     return `M${points.replace(/,/g, ' ').replace(/ /g, ' L').substring(2)}`;
   };
 
-  // Format metric values - Added moisture
+  // Format metric values
   const formatMetricValue = (value, type) => {
     if (loading || value === null || value === undefined) return '--';
     
@@ -191,16 +189,14 @@ const Zona2melon = () => {
         return `${value.toFixed(1)}°C`;
       case 'ph':
         return value.toFixed(1);
-      case 'ec':
-        return value.toFixed(1);
-      case 'moisture':
-        return `${value.toFixed(1)}%`;  // Added moisture formatting
+      case 'tds':
+        return `${value.toFixed(0)} ppm`;
       default:
         return value;
     }
   };
 
-  // Check metric status berdasarkan optimal conditions - Added moisture
+  // Check metric status berdasarkan optimal conditions untuk selada
   const getMetricStatus = (value, type) => {
     if (!plantInfo || !plantInfo.optimalConditions || value === null) return 'normal';
     
@@ -226,7 +222,7 @@ const Zona2melon = () => {
   };
 
   return (
-    <div className="zona2melon-container">
+    <div className="zona3selada-container">
       {/* Logo Container */}
       <div className="logo-container">
         <div className="logo-item" onClick={handleHomeClick}>
@@ -331,18 +327,20 @@ const Zona2melon = () => {
 
       {/* Main Content */}
       <div className="main-content">
-        {/* Sidebar - Updated for 2 zones only, ZONA 2 is active */}
+        {/* Sidebar */}
         <div className="sidebar">
-          <button className="zone-btn" onClick={() => handleZoneClick('melon')}>MELON</button>
+          <button className="zone-btn" onClick={() => handleZoneClick('selada')}>SELADA</button>
           <button className="zone-btn" onClick={() => handleZoneClick('zona1')}>ZONA 1</button>
-          <button className="zone-btn active" onClick={() => handleZoneClick('zona2')}>ZONA 2</button>
+          <button className="zone-btn" onClick={() => handleZoneClick('zona2')}>ZONA 2</button>
+          <button className="zone-btn active" onClick={() => handleZoneClick('zona3')}>ZONA 3</button>
+          <button className="zone-btn" onClick={() => handleZoneClick('zona4')}>ZONA 4</button>
         </div>
 
         {/* Content Area */}
         <div className="content-area">
           {/* Zone Badge dengan enhanced info */}
           <div className="zone-badge">
-            <span className="zone-title">ZONE 2</span>
+            <span className="zone-title">ZONE 3</span>
             {zoneData.lastUpdated && (
               <span className="last-updated">
                 Last updated: {new Date(zoneData.lastUpdated).toLocaleTimeString()}
@@ -360,7 +358,7 @@ const Zona2melon = () => {
             )}
           </div>
 
-          {/* Monitoring Cards - Now 4 cards for melon (including moisture) */}
+          {/* Monitoring Cards - 3 untuk selada (PH, Temperature, TDS) */}
           <div className="monitoring-cards">
             <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.ph, 'ph')}`}>
               <div className="metric-icon">
@@ -410,57 +408,32 @@ const Zona2melon = () => {
               </button>
             </div>
 
-            <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.ec, 'ec')}`}>
+            <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.tds, 'tds')}`}>
               <div className="metric-icon">
-                <img src="/ec-icon.png" alt="EC" />
+                <img src="/tds-icon.png" alt="TDS" />
               </div>
               <div className="metric-value">
-                {formatMetricValue(zoneData.metrics.ec, 'ec')}
+                {formatMetricValue(zoneData.metrics.tds, 'tds')}
               </div>
-              <div className="metric-label">EC</div>
+              <div className="metric-label">TDS</div>
               {plantInfo && (
                 <div className="metric-range">
-                  Optimal: {plantInfo.optimalConditions.ec?.optimal}
+                  Optimal: {plantInfo.optimalConditions.tds?.optimal} ppm
                   <br />
-                  Range: {plantInfo.optimalConditions.ec?.min} - {plantInfo.optimalConditions.ec?.max}
+                  Range: {plantInfo.optimalConditions.tds?.min} - {plantInfo.optimalConditions.tds?.max} ppm
                 </div>
               )}
               <button 
                 className="chart-load-btn"
-                onClick={() => handleLoadChartData('ec')}
-                title="Load EC chart data"
-              >
-                📊
-              </button>
-            </div>
-
-            {/* Added Moisture Card */}
-            <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.moisture, 'moisture')}`}>
-              <div className="metric-icon">
-                <img src="/moisture-icon.png" alt="Moisture" />
-              </div>
-              <div className="metric-value">
-                {formatMetricValue(zoneData.metrics.moisture, 'moisture')}
-              </div>
-              <div className="metric-label">Moisture</div>
-              {plantInfo && (
-                <div className="metric-range">
-                  Optimal: {plantInfo.optimalConditions.moisture?.optimal}%
-                  <br />
-                  Range: {plantInfo.optimalConditions.moisture?.min}% - {plantInfo.optimalConditions.moisture?.max}%
-                </div>
-              )}
-              <button 
-                className="chart-load-btn"
-                onClick={() => handleLoadChartData('moisture')}
-                title="Load moisture chart data"
+                onClick={() => handleLoadChartData('tds')}
+                title="Load TDS chart data"
               >
                 📊
               </button>
             </div>
           </div>
 
-          {/* Charts Section - Now 4 charts for melon (including moisture) */}
+          {/* Charts Section - 3 charts untuk selada (PH, Temperature, TDS) */}
           <div className="charts-section">
             <div className="chart-container">
               <div className="chart-label">
@@ -478,14 +451,14 @@ const Zona2melon = () => {
                     fill="none"
                   />
                   <defs>
-                    <linearGradient id="tempGradientMelon2" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <linearGradient id="tempGradientSelada3" x1="0%" y1="0%" x2="0%" y2="100%">
                       <stop offset="0%" style={{stopColor: '#4ade80', stopOpacity: 0.3}} />
                       <stop offset="100%" style={{stopColor: '#4ade80', stopOpacity: 0.1}} />
                     </linearGradient>
                   </defs>
                   <path
                     d={`${generateSVGPath(zoneData.chartData.temperature) || "M20,160 Q100,40 200,70 T380,130"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradientMelon2)"
+                    fill="url(#tempGradientSelada3)"
                   />
                 </svg>
                 <div className="chart-time-labels">
@@ -517,7 +490,7 @@ const Zona2melon = () => {
                   />
                   <path
                     d={`${generateSVGPath(zoneData.chartData.ph) || "M20,150 Q100,60 200,90 T380,140"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradientMelon2)"
+                    fill="url(#tempGradientSelada3)"
                   />
                 </svg>
                 <div className="chart-time-labels">
@@ -534,55 +507,22 @@ const Zona2melon = () => {
 
             <div className="chart-container">
               <div className="chart-label">
-                EC (Electrical Conductivity)
+                TDS (Total Dissolved Solids)
                 <span className="chart-info">
-                  Current: {zoneData.metrics.ec}
+                  Current: {zoneData.metrics.tds} ppm
                 </span>
               </div>
               <div className="chart">
                 <svg viewBox="0 0 400 200" className="chart-svg">
                   <path
-                    d={generateSVGPath(zoneData.chartData.ec) || "M20,170 Q100,80 200,110 T380,160"}
+                    d={generateSVGPath(zoneData.chartData.tds) || "M20,170 Q100,80 200,110 T380,160"}
                     stroke="#4ade80"
                     strokeWidth="3"
                     fill="none"
                   />
                   <path
-                    d={`${generateSVGPath(zoneData.chartData.ec) || "M20,170 Q100,80 200,110 T380,160"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradientMelon2)"
-                  />
-                </svg>
-                <div className="chart-time-labels">
-                  <span>00:00</span>
-                  <span>04:00</span>
-                  <span>08:00</span>
-                  <span>12:00</span>
-                  <span>16:00</span>
-                  <span>20:00</span>
-                  <span>24:00</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Added Moisture Chart */}
-            <div className="chart-container">
-              <div className="chart-label">
-                Moisture Level
-                <span className="chart-info">
-                  Current: {zoneData.metrics.moisture}%
-                </span>
-              </div>
-              <div className="chart">
-                <svg viewBox="0 0 400 200" className="chart-svg">
-                  <path
-                    d={generateSVGPath(zoneData.chartData.moisture) || "M20,180 Q100,90 200,120 T380,170"}
-                    stroke="#4ade80"
-                    strokeWidth="3"
-                    fill="none"
-                  />
-                  <path
-                    d={`${generateSVGPath(zoneData.chartData.moisture) || "M20,180 Q100,90 200,120 T380,170"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradientMelon2)"
+                    d={`${generateSVGPath(zoneData.chartData.tds) || "M20,170 Q100,80 200,110 T380,160"} L380,200 L20,200 Z`}
+                    fill="url(#tempGradientSelada3)"
                   />
                 </svg>
                 <div className="chart-time-labels">
@@ -598,7 +538,7 @@ const Zona2melon = () => {
             </div>
           </div>
 
-          {/* Plant Growth Stage Info - New Feature */}
+          {/* Plant Growth Stage Info */}
           {plantInfo && (
             <div className="plant-status-section">
               <h3>Plant Status</h3>
@@ -621,4 +561,4 @@ const Zona2melon = () => {
   );
 };
 
-export default Zona2melon;
+export default Zona3selada;

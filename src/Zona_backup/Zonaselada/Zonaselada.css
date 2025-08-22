@@ -1,0 +1,1230 @@
+/* Zonaselada.css - Fresh Green Theme - Layout sama seperti Melon, Color untuk Selada */
+
+/* ===== GLOBAL RESET & BASE STYLES ===== */
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 50%, #a5d6a7 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Base styles for all zona selada containers */
+.zona1selada-container,
+.zona2selada-container,
+.zona3selada-container,
+.zona4selada-container {
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 50%, #a5d6a7 100%);
+  background-attachment: fixed;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeIn 1s ease-in-out;
+  box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo Container - Fresh Green untuk Selada */
+.zona1selada-container .logo-container,
+.zona2selada-container .logo-container,
+.zona3selada-container .logo-container,
+.zona4selada-container .logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background: #2e7d32;
+  border-radius: 20px;
+  padding: 12px 30px;
+  margin: 0 auto;
+  width: fit-content;
+  min-width: 300px;
+  height: 60px;
+  box-shadow: 0 5px 20px rgba(46, 125, 50, 0.3);
+  animation: slideInDown 0.8s ease-out;
+  position: relative;
+  z-index: 5;
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.zona1selada-container .logo-item,
+.zona2selada-container .logo-item,
+.zona3selada-container .logo-item,
+.zona4selada-container .logo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.zona1selada-container .logo-item:hover,
+.zona2selada-container .logo-item:hover,
+.zona3selada-container .logo-item:hover,
+.zona4selada-container .logo-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.zona1selada-container .logo-item img,
+.zona2selada-container .logo-item img,
+.zona3selada-container .logo-item img,
+.zona4selada-container .logo-item img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.zona1selada-container .logo-item:hover img,
+.zona2selada-container .logo-item:hover img,
+.zona3selada-container .logo-item:hover img,
+.zona4selada-container .logo-item:hover img {
+  transform: scale(1.1);
+}
+
+.zona1selada-container .logo-item span,
+.zona2selada-container .logo-item span,
+.zona3selada-container .logo-item span,
+.zona4selada-container .logo-item span {
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Plant Menu Container */
+.zona1selada-container .plant-menu-container,
+.zona2selada-container .plant-menu-container,
+.zona3selada-container .plant-menu-container,
+.zona4selada-container .plant-menu-container {
+  position: relative;
+}
+
+.zona1selada-container .logo-item-inner,
+.zona2selada-container .logo-item-inner,
+.zona3selada-container .logo-item-inner,
+.zona4selada-container .logo-item-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.zona1selada-container .logo-item-inner:hover,
+.zona2selada-container .logo-item-inner:hover,
+.zona3selada-container .logo-item-inner:hover,
+.zona4selada-container .logo-item-inner:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.zona1selada-container .logo-item-inner img,
+.zona2selada-container .logo-item-inner img,
+.zona3selada-container .logo-item-inner img,
+.zona4selada-container .logo-item-inner img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.zona1selada-container .logo-item-inner:hover img,
+.zona2selada-container .logo-item-inner:hover img,
+.zona3selada-container .logo-item-inner:hover img,
+.zona4selada-container .logo-item-inner:hover img {
+  transform: scale(1.1);
+}
+
+.zona1selada-container .logo-item-inner span,
+.zona2selada-container .logo-item-inner span,
+.zona3selada-container .logo-item-inner span,
+.zona4selada-container .logo-item-inner span {
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Dropdown Arrow */
+.zona1selada-container .dropdown-arrow,
+.zona2selada-container .dropdown-arrow,
+.zona3selada-container .dropdown-arrow,
+.zona4selada-container .dropdown-arrow {
+  font-size: 10px;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.zona1selada-container .dropdown-arrow.open,
+.zona2selada-container .dropdown-arrow.open,
+.zona3selada-container .dropdown-arrow.open,
+.zona4selada-container .dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Plant Dropdown */
+.zona1selada-container .plant-dropdown,
+.zona2selada-container .plant-dropdown,
+.zona3selada-container .plant-dropdown,
+.zona4selada-container .plant-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #2e7d32;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  margin-top: 8px;
+  min-width: 180px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.zona1selada-container .plant-dropdown.show,
+.zona2selada-container .plant-dropdown.show,
+.zona3selada-container .plant-dropdown.show,
+.zona4selada-container .plant-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  animation: dropdownSlideIn 0.3s ease-out;
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Dropdown Items */
+.zona1selada-container .dropdown-item,
+.zona2selada-container .dropdown-item,
+.zona3selada-container .dropdown-item,
+.zona4selada-container .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+}
+
+.zona1selada-container .dropdown-item:last-child,
+.zona2selada-container .dropdown-item:last-child,
+.zona3selada-container .dropdown-item:last-child,
+.zona4selada-container .dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.zona1selada-container .dropdown-item:hover,
+.zona2selada-container .dropdown-item:hover,
+.zona3selada-container .dropdown-item:hover,
+.zona4selada-container .dropdown-item:hover {
+  background: #4caf50;
+  transform: translateX(5px);
+  padding-left: 20px;
+}
+
+.zona1selada-container .dropdown-item img,
+.zona2selada-container .dropdown-item img,
+.zona3selada-container .dropdown-item img,
+.zona4selada-container .dropdown-item img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  filter: brightness(1.1);
+}
+
+.zona1selada-container .dropdown-item:hover img,
+.zona2selada-container .dropdown-item:hover img,
+.zona3selada-container .dropdown-item:hover img,
+.zona4selada-container .dropdown-item:hover img {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.zona1selada-container .dropdown-item span,
+.zona2selada-container .dropdown-item span,
+.zona3selada-container .dropdown-item span,
+.zona4selada-container .dropdown-item span {
+  text-transform: capitalize;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+/* Header */
+.zona1selada-container .header,
+.zona2selada-container .header,
+.zona3selada-container .header,
+.zona4selada-container .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slideInLeft 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.zona1selada-container .back-btn,
+.zona2selada-container .back-btn,
+.zona3selada-container .back-btn,
+.zona4selada-container .back-btn {
+  background-color: #2e7d32;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.2);
+}
+
+.zona1selada-container .back-btn:hover,
+.zona2selada-container .back-btn:hover,
+.zona3selada-container .back-btn:hover,
+.zona4selada-container .back-btn:hover {
+  background-color: #4caf50;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+.zona1selada-container .page-title,
+.zona2selada-container .page-title,
+.zona3selada-container .page-title,
+.zona4selada-container .page-title {
+  color: #2e7d32;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Header Actions untuk Enhanced Features */
+.zona1selada-container .header-actions,
+.zona2selada-container .header-actions,
+.zona3selada-container .header-actions,
+.zona4selada-container .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.zona1selada-container .refresh-btn,
+.zona2selada-container .refresh-btn,
+.zona3selada-container .refresh-btn,
+.zona4selada-container .refresh-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.zona1selada-container .refresh-btn:hover,
+.zona2selada-container .refresh-btn:hover,
+.zona3selada-container .refresh-btn:hover,
+.zona4selada-container .refresh-btn:hover {
+  background: #388e3c;
+  transform: scale(1.05);
+}
+
+.zona1selada-container .refresh-icon,
+.zona2selada-container .refresh-icon,
+.zona3selada-container .refresh-icon,
+.zona4selada-container .refresh-icon {
+  transition: transform 0.3s ease;
+}
+
+.zona1selada-container .refresh-icon.spinning,
+.zona2selada-container .refresh-icon.spinning,
+.zona3selada-container .refresh-icon.spinning,
+.zona4selada-container .refresh-icon.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.zona1selada-container .status-indicator,
+.zona2selada-container .status-indicator,
+.zona3selada-container .status-indicator,
+.zona4selada-container .status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.zona1selada-container .status-indicator.online,
+.zona2selada-container .status-indicator.online,
+.zona3selada-container .status-indicator.online,
+.zona4selada-container .status-indicator.online {
+  background: #4caf50;
+  color: white;
+}
+
+.zona1selada-container .status-indicator.offline,
+.zona2selada-container .status-indicator.offline,
+.zona3selada-container .status-indicator.offline,
+.zona4selada-container .status-indicator.offline {
+  background: #f44336;
+  color: white;
+}
+
+.zona1selada-container .status-indicator.connecting,
+.zona2selada-container .status-indicator.connecting,
+.zona3selada-container .status-indicator.connecting,
+.zona4selada-container .status-indicator.connecting {
+  background: #ff9800;
+  color: white;
+}
+
+.zona1selada-container .status-dot,
+.zona2selada-container .status-dot,
+.zona3selada-container .status-dot,
+.zona4selada-container .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Error Message & Alerts */
+.zona1selada-container .error-message,
+.zona2selada-container .error-message,
+.zona3selada-container .error-message,
+.zona4selada-container .error-message {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+.zona1selada-container .alerts-section,
+.zona2selada-container .alerts-section,
+.zona3selada-container .alerts-section,
+.zona4selada-container .alerts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.zona1selada-container .alert-item,
+.zona2selada-container .alert-item,
+.zona3selada-container .alert-item,
+.zona4selada-container .alert-item {
+  background: rgba(255, 152, 0, 0.9);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+/* Main Content */
+.zona1selada-container .main-content,
+.zona2selada-container .main-content,
+.zona3selada-container .main-content,
+.zona4selada-container .main-content {
+  display: flex;
+  flex: 1;
+  gap: 24px;
+  animation: slideInUp 0.8s ease-out 0.3s both;
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Sidebar - Fresh Green Style untuk Selada */
+.zona1selada-container .sidebar,
+.zona2selada-container .sidebar,
+.zona3selada-container .sidebar,
+.zona4selada-container .sidebar {
+  background: #2e7d32;
+  border-radius: clamp(15px, 3vw, 25px);
+  padding: clamp(20px, 4vw, 30px);
+  box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+  backdrop-filter: blur(10px);
+  height: fit-content;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2.5vw, 18px);
+}
+
+.zona1selada-container .nav-title,
+.zona2selada-container .nav-title,
+.zona3selada-container .nav-title,
+.zona4selada-container .nav-title {
+  color: white;
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: clamp(20px, 4vw, 30px);
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.zona1selada-container .zone-buttons-grid,
+.zona2selada-container .zone-buttons-grid,
+.zona3selada-container .zone-buttons-grid,
+.zona4selada-container .zone-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(12px, 2.5vw, 18px);
+}
+
+.zona1selada-container .zone-btn,
+.zona2selada-container .zone-btn,
+.zona3selada-container .zone-btn,
+.zona4selada-container .zone-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 8px);
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: clamp(12px, 2.5vw, 18px);
+  padding: clamp(15px, 3vw, 20px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  font-size: clamp(12px, 2.5vw, 14px);
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  animation: scaleIn 0.6s ease-out backwards;
+}
+
+/* Animation delays for zone buttons - 4 ZONA untuk SELADA */
+.zona1selada-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
+.zona1selada-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
+.zona1selada-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
+.zona1selada-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
+.zona1selada-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
+
+.zona2selada-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
+.zona2selada-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
+.zona2selada-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
+.zona2selada-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
+.zona2selada-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
+
+.zona3selada-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
+.zona3selada-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
+.zona3selada-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
+.zona3selada-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
+.zona3selada-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
+
+.zona4selada-container .zone-btn:nth-child(1) { animation-delay: 0.4s; }
+.zona4selada-container .zone-btn:nth-child(2) { animation-delay: 0.5s; }
+.zona4selada-container .zone-btn:nth-child(3) { animation-delay: 0.6s; }
+.zona4selada-container .zone-btn:nth-child(4) { animation-delay: 0.7s; }
+.zona4selada-container .zone-btn:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.zona1selada-container .zone-btn::before,
+.zona2selada-container .zone-btn::before,
+.zona3selada-container .zone-btn::before,
+.zona4selada-container .zone-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.zona1selada-container .zone-btn:hover::before,
+.zona2selada-container .zone-btn:hover::before,
+.zona3selada-container .zone-btn:hover::before,
+.zona4selada-container .zone-btn:hover::before {
+  left: 100%;
+}
+
+.zona1selada-container .zone-btn:hover,
+.zona2selada-container .zone-btn:hover,
+.zona3selada-container .zone-btn:hover,
+.zona4selada-container .zone-btn:hover {
+  background: #388e3c;
+  transform: translateX(5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.zona1selada-container .zone-btn.active,
+.zona2selada-container .zone-btn.active,
+.zona3selada-container .zone-btn.active,
+.zona4selada-container .zone-btn.active {
+  background: #388e3c;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.zona1selada-container .zone-number,
+.zona2selada-container .zone-number,
+.zona3selada-container .zone-number,
+.zona4selada-container .zone-number {
+  font-size: clamp(16px, 3.5vw, 20px);
+  font-weight: 900;
+  color: #c8e6c9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.zona1selada-container .zone-label,
+.zona2selada-container .zone-label,
+.zona3selada-container .zone-label,
+.zona4selada-container .zone-label {
+  font-size: clamp(10px, 2vw, 12px);
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* Content Area */
+.zona1selada-container .content-area,
+.zona2selada-container .content-area,
+.zona3selada-container .content-area,
+.zona4selada-container .content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+}
+
+/* Zone Badge */
+.zona1selada-container .zone-badge,
+.zona2selada-container .zone-badge,
+.zona3selada-container .zone-badge,
+.zona4selada-container .zone-badge {
+  position: absolute;
+  top: -30px;
+  right: 900px;
+  background: #2e7d32;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  z-index: 10;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+  animation: titleBounce 0.8s ease-out 0.6s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes titleBounce {
+  0% { transform: translateY(-30px) scale(0.8); opacity: 0; }
+  60% { transform: translateY(5px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.zona1selada-container .zone-title,
+.zona2selada-container .zone-title,
+.zona3selada-container .zone-title,
+.zona4selada-container .zone-title {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.zona1selada-container .last-updated,
+.zona2selada-container .last-updated,
+.zona3selada-container .last-updated,
+.zona4selada-container .last-updated,
+.zona1selada-container .user-info,
+.zona2selada-container .user-info,
+.zona3selada-container .user-info,
+.zona4selada-container .user-info,
+.zona1selada-container .plant-info,
+.zona2selada-container .plant-info,
+.zona3selada-container .plant-info,
+.zona4selada-container .plant-info {
+  font-size: 10px;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* Monitoring Cards - 3 cards layout untuk selada (PH, Temperature, TDS) */
+.zona1selada-container .monitoring-cards,
+.zona2selada-container .monitoring-cards,
+.zona3selada-container .monitoring-cards,
+.zona4selada-container .monitoring-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+  animation: fadeInScale 0.8s ease-out 0.8s both;
+}
+
+@keyframes fadeInScale {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.zona1selada-container .metric-card,
+.zona2selada-container .metric-card,
+.zona3selada-container .metric-card,
+.zona4selada-container .metric-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid #2e7d32;
+  position: relative;
+}
+
+.zona1selada-container .metric-card:hover,
+.zona2selada-container .metric-card:hover,
+.zona3selada-container .metric-card:hover,
+.zona4selada-container .metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(46, 125, 50, 0.2);
+}
+
+.zona1selada-container .metric-card.loading,
+.zona2selada-container .metric-card.loading,
+.zona3selada-container .metric-card.loading,
+.zona4selada-container .metric-card.loading {
+  opacity: 0.7;
+}
+
+.zona1selada-container .metric-card.loading::after,
+.zona2selada-container .metric-card.loading::after,
+.zona3selada-container .metric-card.loading::after,
+.zona4selada-container .metric-card.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.2), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.zona1selada-container .metric-icon,
+.zona2selada-container .metric-icon,
+.zona3selada-container .metric-icon,
+.zona4selada-container .metric-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #2e7d32;
+}
+
+.zona1selada-container .metric-icon img,
+.zona2selada-container .metric-icon img,
+.zona3selada-container .metric-icon img,
+.zona4selada-container .metric-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.zona1selada-container .metric-value,
+.zona2selada-container .metric-value,
+.zona3selada-container .metric-value,
+.zona4selada-container .metric-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.zona1selada-container .metric-label,
+.zona2selada-container .metric-label,
+.zona3selada-container .metric-label,
+.zona4selada-container .metric-label {
+  font-size: 14px;
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.zona1selada-container .metric-range,
+.zona2selada-container .metric-range,
+.zona3selada-container .metric-range,
+.zona4selada-container .metric-range {
+  font-size: 10px;
+  color: #666;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.zona1selada-container .chart-load-btn,
+.zona2selada-container .chart-load-btn,
+.zona3selada-container .chart-load-btn,
+.zona4selada-container .chart-load-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.zona1selada-container .chart-load-btn:hover,
+.zona2selada-container .chart-load-btn:hover,
+.zona3selada-container .chart-load-btn:hover,
+.zona4selada-container .chart-load-btn:hover {
+  background: #388e3c;
+  transform: scale(1.1);
+}
+
+/* Charts Section - 3 charts layout untuk selada (PH, Temperature, TDS) */
+.zona1selada-container .charts-section,
+.zona2selada-container .charts-section,
+.zona3selada-container .charts-section,
+.zona4selada-container .charts-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 80px;
+  animation: textSlideRight 0.8s ease-out 1s both;
+}
+
+@keyframes textSlideRight {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.zona1selada-container .chart-container,
+.zona2selada-container .chart-container,
+.zona3selada-container .chart-container,
+.zona4selada-container .chart-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.zona1selada-container .chart-container:hover,
+.zona2selada-container .chart-container:hover,
+.zona3selada-container .chart-container:hover,
+.zona4selada-container .chart-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(46, 125, 50, 0.2);
+}
+
+.zona1selada-container .chart-label,
+.zona2selada-container .chart-label,
+.zona3selada-container .chart-label,
+.zona4selada-container .chart-label {
+  background: #2e7d32;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.zona1selada-container .chart-info,
+.zona2selada-container .chart-info,
+.zona3selada-container .chart-info,
+.zona4selada-container .chart-info {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.zona1selada-container .chart,
+.zona2selada-container .chart,
+.zona3selada-container .chart,
+.zona4selada-container .chart {
+  position: relative;
+  height: 150px;
+}
+
+.zona1selada-container .chart-svg,
+.zona2selada-container .chart-svg,
+.zona3selada-container .chart-svg,
+.zona4selada-container .chart-svg {
+  width: 100%;
+  height: 120px;
+}
+
+/* Chart Colors - Fresh Green untuk Selada */
+.zona1selada-container .chart-svg path,
+.zona2selada-container .chart-svg path,
+.zona3selada-container .chart-svg path,
+.zona4selada-container .chart-svg path {
+  stroke: #ffffff !important;
+  fill: rgba(255, 255, 255, 0.2) !important;
+}
+
+.zona1selada-container .chart-time-labels,
+.zona2selada-container .chart-time-labels,
+.zona3selada-container .chart-time-labels,
+.zona4selada-container .chart-time-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 11px;
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+/* Plant Status Section */
+.zona1selada-container .plant-status-section,
+.zona2selada-container .plant-status-section,
+.zona3selada-container .plant-status-section,
+.zona4selada-container .plant-status-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: 20px;
+}
+
+.zona1selada-container .plant-status-section h3,
+.zona2selada-container .plant-status-section h3,
+.zona3selada-container .plant-status-section h3,
+.zona4selada-container .plant-status-section h3 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+}
+
+.zona1selada-container .growth-info,
+.zona2selada-container .growth-info,
+.zona3selada-container .growth-info,
+.zona4selada-container .growth-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: #2e7d32;
+}
+
+/* Footer Bar */
+.zona1selada-container .footer-bar,
+.zona2selada-container .footer-bar,
+.zona3selada-container .footer-bar,
+.zona4selada-container .footer-bar {
+  background: #2e7d32;
+  border-radius: 20px;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideInUp 0.8s ease-out 1.2s both;
+  box-shadow: 0 -5px 20px rgba(46, 125, 50, 0.2);
+  position: static;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.zona1selada-container .welcome-text,
+.zona2selada-container .welcome-text,
+.zona3selada-container .welcome-text,
+.zona4selada-container .welcome-text {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  animation: textGlow 2s ease-in-out infinite alternate;
+  text-align: center;
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+  to { text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
+}
+
+/* Responsive adjustments for dropdown */
+@media (max-width: 1200px) {
+  .zona1selada-container .main-content,
+  .zona2selada-container .main-content,
+  .zona3selada-container .main-content,
+  .zona4selada-container .main-content {
+    gap: 20px;
+  }
+  
+  .zona1selada-container .logo-container,
+  .zona2selada-container .logo-container,
+  .zona3selada-container .logo-container,
+  .zona4selada-container .logo-container {
+    gap: 25px;
+    padding: 10px 25px;
+    min-width: 250px;
+    height: 50px;
+  }
+  
+  .zona1selada-container .monitoring-cards,
+  .zona2selada-container .monitoring-cards,
+  .zona3selada-container .monitoring-cards,
+  .zona4selada-container .monitoring-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .zona1selada-container .charts-section,
+  .zona2selada-container .charts-section,
+  .zona3selada-container .charts-section,
+  .zona4selada-container .charts-section {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 20px;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .zona1selada-container,
+  .zona2selada-container,
+  .zona3selada-container,
+  .zona4selada-container {
+    padding: clamp(12px, 2.5vw, 16px);
+    gap: clamp(12px, 2.5vw, 16px);
+  }
+  
+  .zona1selada-container .header,
+  .zona2selada-container .header,
+  .zona3selada-container .header,
+  .zona4selada-container .header {
+    flex-direction: column;
+    gap: clamp(10px, 2vw, 15px);
+    text-align: center;
+    margin-bottom: clamp(12px, 2.5vw, 16px);
+  }
+  
+  .zona1selada-container .main-content,
+  .zona2selada-container .main-content,
+  .zona3selada-container .main-content,
+  .zona4selada-container .main-content {
+    flex-direction: column;
+    gap: clamp(16px, 3vw, 20px);
+  }
+  
+  .zona1selada-container .sidebar,
+  .zona2selada-container .sidebar,
+  .zona3selada-container .sidebar,
+  .zona4selada-container .sidebar {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
+    gap: clamp(8px, 2vw, 12px);
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .zona1selada-container .sidebar::-webkit-scrollbar,
+  .zona2selada-container .sidebar::-webkit-scrollbar,
+  .zona3selada-container .sidebar::-webkit-scrollbar,
+  .zona4selada-container .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .zona1selada-container .zone-buttons-grid,
+  .zona2selada-container .zone-buttons-grid,
+  .zona3selada-container .zone-buttons-grid,
+  .zona4selada-container .zone-buttons-grid {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(8px, 2vw, 12px);
+    width: max-content;
+    min-width: 100%;
+  }
+  
+  .zona1selada-container .zone-btn,
+  .zona2selada-container .zone-btn,
+  .zona3selada-container .zone-btn,
+  .zona4selada-container .zone-btn {
+    min-width: clamp(60px, 15vw, 80px);
+    flex-shrink: 0;
+    padding: clamp(8px, 2vw, 12px) clamp(10px, 2.5vw, 15px);
+    font-size: clamp(10px, 2vw, 12px);
+  }
+  
+  .zona1selada-container .monitoring-cards,
+  .zona2selada-container .monitoring-cards,
+  .zona3selada-container .monitoring-cards,
+  .zona4selada-container .monitoring-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  
+  .zona1selada-container .charts-section,
+  .zona2selada-container .charts-section,
+  .zona3selada-container .charts-section,
+  .zona4selada-container .charts-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .zona1selada-container .zone-badge,
+  .zona2selada-container .zone-badge,
+  .zona3selada-container .zone-badge,
+  .zona4selada-container .zone-badge {
+    position: static;
+    align-self: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .zona1selada-container,
+  .zona2selada-container,
+  .zona3selada-container,
+  .zona4selada-container {
+    padding: 12px;
+  }
+  
+  .zona1selada-container .page-title,
+  .zona2selada-container .page-title,
+  .zona3selada-container .page-title,
+  .zona4selada-container .page-title {
+    font-size: 18px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .zona1selada-container .metric-card,
+  .zona1selada-container .chart-container,
+  .zona2selada-container .metric-card,
+  .zona2selada-container .chart-container,
+  .zona3selada-container .metric-card,
+  .zona3selada-container .chart-container,
+  .zona4selada-container .metric-card,
+  .zona4selada-container .chart-container {
+    border: 2px solid white;
+  }
+  
+  .zona1selada-container .zone-btn,
+  .zona2selada-container .zone-btn,
+  .zona3selada-container .zone-btn,
+  .zona4selada-container .zone-btn {
+    border: 1px solid white;
+  }
+}

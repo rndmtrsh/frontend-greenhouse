@@ -1,18 +1,18 @@
 // ===========================================
-// Zona2melon.jsx - Template untuk Extended Api.js with Moisture
+// Zona1melon.jsx - Template untuk Extended Api.js with Moisture
 // ===========================================
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiService from '../../services/api';
 import './Zonamelon.css';
 
-const Zona2melon = () => {
+const Zona1melon = () => {
   const navigate = useNavigate();
   const [isPlantDropdownOpen, setIsPlantDropdownOpen] = useState(false);
   
   // State untuk zone data - Added moisture
   const [zoneData, setZoneData] = useState({
-    zoneId: 2,
+    zoneId: 1,
     plantType: 'melon',
     metrics: {
       ph: 0,
@@ -51,9 +51,9 @@ const Zona2melon = () => {
 
       // Fetch zone data, plant info, dan alerts secara parallel
       const [zoneResult, plantResult, alertsResult] = await Promise.all([
-        apiService.getZoneData('melon', 2),
+        apiService.getZoneData('melon', 1),
         apiService.getPlantInfo('melon'),
-        apiService.getAlerts('melon', 2)
+        apiService.getAlerts('melon', 1)
       ]);
       
       setZoneData(zoneResult);
@@ -71,7 +71,7 @@ const Zona2melon = () => {
   // Fetch chart data untuk specific metric
   const fetchChartData = async (metric, timeRange = '24h') => {
     try {
-      const chartData = await apiService.getChartData('melon', 2, metric, timeRange);
+      const chartData = await apiService.getChartData('melon', 1, metric, timeRange);
       setZoneData(prev => ({
         ...prev,
         chartData: {
@@ -92,7 +92,7 @@ const Zona2melon = () => {
     // Set up auto-refresh menggunakan subscription dari API
     const unsubscribe = apiService.subscribeToZoneUpdates(
       'melon', 
-      2, 
+      1, 
       (data) => {
         setZoneData(data);
         setError(null);
@@ -120,7 +120,7 @@ const Zona2melon = () => {
       window.removeEventListener('online', handleOnlineStatus);
       window.removeEventListener('offline', handleOnlineStatus);
     };
-  },);
+  }, []);
 
   // Manual refresh function
   const handleRefresh = async () => {
@@ -226,7 +226,7 @@ const Zona2melon = () => {
   };
 
   return (
-    <div className="zona2melon-container">
+    <div className="zona1melon-container">
       {/* Logo Container */}
       <div className="logo-container">
         <div className="logo-item" onClick={handleHomeClick}>
@@ -331,18 +331,18 @@ const Zona2melon = () => {
 
       {/* Main Content */}
       <div className="main-content">
-        {/* Sidebar - Updated for 2 zones only, ZONA 2 is active */}
+        {/* Sidebar - Updated for 2 zones only */}
         <div className="sidebar">
           <button className="zone-btn" onClick={() => handleZoneClick('melon')}>MELON</button>
-          <button className="zone-btn" onClick={() => handleZoneClick('zona1')}>ZONA 1</button>
-          <button className="zone-btn active" onClick={() => handleZoneClick('zona2')}>ZONA 2</button>
+          <button className="zone-btn active" onClick={() => handleZoneClick('zona1')}>ZONA 1</button>
+          <button className="zone-btn" onClick={() => handleZoneClick('zona2')}>ZONA 2</button>
         </div>
 
         {/* Content Area */}
         <div className="content-area">
           {/* Zone Badge dengan enhanced info */}
           <div className="zone-badge">
-            <span className="zone-title">ZONE 2</span>
+            <span className="zone-title">ZONE 1</span>
             {zoneData.lastUpdated && (
               <span className="last-updated">
                 Last updated: {new Date(zoneData.lastUpdated).toLocaleTimeString()}
@@ -478,14 +478,14 @@ const Zona2melon = () => {
                     fill="none"
                   />
                   <defs>
-                    <linearGradient id="tempGradientMelon2" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <linearGradient id="tempGradientMelon1" x1="0%" y1="0%" x2="0%" y2="100%">
                       <stop offset="0%" style={{stopColor: '#4ade80', stopOpacity: 0.3}} />
                       <stop offset="100%" style={{stopColor: '#4ade80', stopOpacity: 0.1}} />
                     </linearGradient>
                   </defs>
                   <path
                     d={`${generateSVGPath(zoneData.chartData.temperature) || "M20,160 Q100,40 200,70 T380,130"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradientMelon2)"
+                    fill="url(#tempGradientMelon1)"
                   />
                 </svg>
                 <div className="chart-time-labels">
@@ -517,7 +517,7 @@ const Zona2melon = () => {
                   />
                   <path
                     d={`${generateSVGPath(zoneData.chartData.ph) || "M20,150 Q100,60 200,90 T380,140"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradientMelon2)"
+                    fill="url(#tempGradientMelon1)"
                   />
                 </svg>
                 <div className="chart-time-labels">
@@ -549,7 +549,7 @@ const Zona2melon = () => {
                   />
                   <path
                     d={`${generateSVGPath(zoneData.chartData.ec) || "M20,170 Q100,80 200,110 T380,160"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradientMelon2)"
+                    fill="url(#tempGradientMelon1)"
                   />
                 </svg>
                 <div className="chart-time-labels">
@@ -582,7 +582,7 @@ const Zona2melon = () => {
                   />
                   <path
                     d={`${generateSVGPath(zoneData.chartData.moisture) || "M20,180 Q100,90 200,120 T380,170"} L380,200 L20,200 Z`}
-                    fill="url(#tempGradientMelon2)"
+                    fill="url(#tempGradientMelon1)"
                   />
                 </svg>
                 <div className="chart-time-labels">
@@ -621,4 +621,4 @@ const Zona2melon = () => {
   );
 };
 
-export default Zona2melon;
+export default Zona1melon;
