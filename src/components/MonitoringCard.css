@@ -1,0 +1,140 @@
+/* src/components/MonitoringCard.css */
+
+.monitoring-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  color: white;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.monitoring-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.monitoring-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Status Colors */
+.monitoring-card.good {
+  border-color: rgba(46, 204, 113, 0.5);
+  background: rgba(46, 204, 113, 0.1);
+}
+
+.monitoring-card.warning {
+  border-color: rgba(241, 196, 15, 0.5);
+  background: rgba(241, 196, 15, 0.1);
+}
+
+.monitoring-card.good::before {
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.2) 0%, transparent 100%);
+}
+
+.monitoring-card.warning::before {
+  background: linear-gradient(135deg, rgba(241, 196, 15, 0.2) 0%, transparent 100%);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-icon {
+  font-size: 1.5em;
+  opacity: 0.8;
+}
+
+.card-title {
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+/* Card Content */
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.card-value {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.card-value .value {
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card-value .unit {
+  font-size: 0.8em;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* Optimal Range */
+.optimal-range {
+  opacity: 0.7;
+  font-size: 0.75em;
+}
+
+/* Error State */
+.card-error {
+  color: rgba(231, 76, 60, 0.9);
+  font-size: 0.75em;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .monitoring-card {
+    padding: 15px;
+    min-height: 100px;
+  }
+  
+  .card-value .value {
+    font-size: 1.6em;
+  }
+  
+  .card-title {
+    font-size: 0.8em;
+  }
+  
+  .card-icon {
+    font-size: 1.2em;
+  }
+}

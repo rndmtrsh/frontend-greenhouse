@@ -1,8 +1,8 @@
-// Dashboard.jsx - Responsive Fixed dengan API integration
+// Dashboard.jsx - Updated untuk GreenhouseAPI dengan format yang sama
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import apiService from '../services/api';
+import apiService from '../services/GreenhouseAPI'; // Update import
 
 const Dashboard = () => {
   const location = useLocation();
@@ -10,7 +10,7 @@ const Dashboard = () => {
   const { username } = location.state || { username: 'User' };
   const [isPlantDropdownOpen, setIsPlantDropdownOpen] = useState(false);
 
-  // STATE UNTUK API DATA
+  // STATE UNTUK API DATA - SAMA PERSIS DENGAN ORIGINAL
   const [roomData, setRoomData] = useState({
     humidity: 0,        // Default values agar tidak kosong
     temperature: 0,
@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // LOAD DATA DARI API
+  // LOAD DATA DARI GREENHOUSE API
   useEffect(() => {
     loadRoomConditions();
     
@@ -30,34 +30,59 @@ const Dashboard = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // FUNCTION UNTUK LOAD DATA
+  // FUNCTION UNTUK LOAD DATA - UPDATED UNTUK GREENHOUSE API
   const loadRoomConditions = async () => {
     try {
       setError(null);
-      const data = await apiService.getRoomConditions();
       
-      setRoomData({
-        humidity: data.humidity || 44,
-        temperature: data.temperature || 20,
-        light_intensity: data.light_intensity || 54
-      });
+      // Fetch latest readings menggunakan GreenhouseAPI
+      const response = await apiService.getLatestReadings();
+      
+      if (response && response.readings) {
+        // Format data untuk dashboard menggunakan built-in formatter
+        const dashboardData = apiService.formatForDashboard(response.readings);
+        
+        if (dashboardData) {
+          setRoomData({
+            humidity: dashboardData.humidity || 44,
+            temperature: dashboardData.temperature || 20,
+            light_intensity: dashboardData.light_intensity || 54
+          });
+        } else {
+          // Jika tidak ada data GZ1, cari manual atau gunakan default
+          setRoomData({
+            humidity: 44,
+            temperature: 20,
+            light_intensity: 54
+          });
+          setError('Data greenhouse tidak tersedia');
+        }
+      } else {
+        throw new Error('Invalid response format');
+      }
       
     } catch (err) {
       console.error('Error loading room conditions:', err);
-      setError('Backend belum terhubung');
+      setError('Koneksi ke server gagal');
+      
       // Tetap pakai default values jika error
+      setRoomData({
+        humidity: 44,
+        temperature: 20,
+        light_intensity: 54
+      });
     } finally {
       setLoading(false);
     }
   };
 
-  // FUNCTION UNTUK REFRESH - SIMPLE
+  // FUNCTION UNTUK REFRESH - SAMA PERSIS
   const handleRefreshData = () => {
     setLoading(true);
     loadRoomConditions();
   };
 
-  // NAVIGATION FUNCTIONS (SAMA PERSIS DENGAN ORIGINAL)
+  // NAVIGATION FUNCTIONS - SAMA PERSIS DENGAN ORIGINAL
   const handleSeladaClick = () => {
     navigate('/selada');
   };

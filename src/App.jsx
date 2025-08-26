@@ -21,7 +21,9 @@ import Zona2selada from './Zona/Zonaselada/Zona2selada';
 import Zona3selada from './Zona/Zonaselada/Zona3selada';
 import Zona4selada from './Zona/Zonaselada/Zona4selada';
 
+
 import './App.css';
+
 
 function App() {
   return (

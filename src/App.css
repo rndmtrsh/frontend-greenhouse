@@ -1,4 +1,5 @@
 /* Fullscreen container */
+@import './components/MonitoringCard.css';
 .page-container {
   position: relative;
   width: 100vw;
