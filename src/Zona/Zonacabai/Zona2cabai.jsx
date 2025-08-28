@@ -1,14 +1,13 @@
-// Zona1cabai.jsx - Fixed refresh interval error
+// src/Zona/Zonacabai/Zona2cabai.jsx - Zona 2 Cabai Component
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiService from '../../services/api'; // Using your existing api.js
+import apiService from '../../services/greenhouseAPI';
 import './Zonacabai.css';
 
 const Zona2cabai = () => {
   const navigate = useNavigate();
   const [isPlantDropdownOpen, setIsPlantDropdownOpen] = useState(false);
   
-  // State for zone data
   const [zoneData, setZoneData] = useState({
     zoneId: 2,
     plantType: 'cabai',
@@ -28,92 +27,137 @@ const Zona2cabai = () => {
     status: 'offline'
   });
   
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [plantInfo, setPlantInfo] = useState(null);
-  const [isOnline, setIsOnline] = useState(apiService.isOnline());
+  const [chartError, setChartError] = useState(null);
+  const [plantInfo] = useState({
+    name: 'Cabai',
+    scientificName: 'Capsicum annuum',
+    optimalConditions: {
+      ph: { min: 6.0, max: 6.8, optimal: 6.4 },
+      temperature: { min: 20, max: 30, optimal: 25 },
+      ec: { min: 1.2, max: 2.5, optimal: 1.8 },
+      moisture: { min: 60, max: 80, optimal: 70 }
+    }
+  });
 
-  // Fetch data from database using existing api service
+  const deviceCode = 'CZ2'; // DEVICE CODE ZONA 2
+
+  // Main data fetch - this determines overall status
   const fetchZoneData = async () => {
     try {
       setLoading(true);
       setError(null);
+      console.log(`Fetching main data for device: ${deviceCode}`);
 
-      // Check if user is authenticated
-      if (!apiService.isAuthenticated()) {
-        setError('Authentication required');
-        return;
-      }
-
-      // Fetch zone data and plant info in parallel
-      const [zoneResult, plantResult] = await Promise.all([
-        apiService.getZoneData('cabai', 2),
-        apiService.getPlantInfo('cabai')
-      ]);
+      const response = await apiService.getDeviceLatestReading(deviceCode);
       
-      setZoneData(zoneResult);
-      setPlantInfo(plantResult);
+      if (response && response.reading) {
+        console.log('Main data response:', response);
+        
+        const decoded = apiService.decodeHexData(response.reading.encoded_data, deviceCode);
+        console.log('Decoded main data:', decoded);
+        
+        if (decoded) {
+          const metrics = {
+            ph: (decoded.pH >= 0 && decoded.pH <= 14) ? decoded.pH : 0,
+            temperature: (decoded.temperature >= -10 && decoded.temperature <= 60) ? decoded.temperature : 0,
+            ec: (decoded.ec >= 0 && decoded.ec <= 10) ? decoded.ec : 0,
+            moisture: (decoded.moisture >= 0 && decoded.moisture <= 100) ? decoded.moisture : 0
+          };
+
+          setZoneData(prev => ({
+            ...prev,
+            metrics,
+            lastUpdated: response.reading.timestamp,
+            status: 'online'
+          }));
+
+          return true;
+        } else {
+          throw new Error('Gagal decode data sensor');
+        }
+      } else {
+        throw new Error(`Data ${deviceCode} tidak ditemukan`);
+      }
       
     } catch (err) {
-      setError(err.message || 'Failed to load zone data');
-      console.error('Error fetching zone data:', err);
+      console.error('Error fetching main zone data:', err);
+      setError(err.message || 'Gagal mengambil data');
+      setZoneData(prev => ({ ...prev, status: 'offline' }));
+      return false;
     } finally {
       setLoading(false);
     }
   };
 
-  // Auto-refresh data
-  useEffect(() => {
-    // Initial fetch
-    fetchZoneData();
-    
-    // Set up auto-refresh using the subscription method from api service
-    const unsubscribe = apiService.subscribeToZoneUpdates(
-      'cabai', 
-      2, 
-      (data) => {
-        setZoneData(data);
-        setError(null);
-      },
-      30000 // 30 seconds interval
-    );
-    
-    // Monitor online status
-    const handleOnlineStatus = () => setIsOnline(navigator.onLine);
-    window.addEventListener('online', handleOnlineStatus);
-    window.addEventListener('offline', handleOnlineStatus);
-    
-    // Cleanup
-    return () => {
-      unsubscribe();
-      window.removeEventListener('online', handleOnlineStatus);
-      window.removeEventListener('offline', handleOnlineStatus);
-    };
-  }, []);
+  // Chart data fetch - separate from main status
+  const fetchChartData = async () => {
+    try {
+      setChartError(null);
+      console.log(`Fetching chart data for: ${deviceCode}`);
+      
+      const response = await apiService.get24HourData(deviceCode);
+      
+      if (response && response.readings) {
+        console.log(`Chart data: ${response.readings.length} points`);
+        
+        const chartData = {
+          temperature: [],
+          moisture: [],
+          ph: [],
+          ec: []
+        };
 
-  // Manual refresh function
+        response.readings.forEach((reading) => {
+          const decoded = apiService.decodeHexData(reading.encoded_data, deviceCode);
+          if (decoded) {
+            const timestamp = new Date(reading.timestamp);
+            chartData.temperature.push({ value: decoded.temperature, timestamp });
+            chartData.moisture.push({ value: decoded.moisture, timestamp });
+            chartData.ph.push({ value: decoded.pH, timestamp });
+            chartData.ec.push({ value: decoded.ec, timestamp });
+          }
+        });
+
+        setZoneData(prev => ({ ...prev, chartData }));
+        console.log('Chart data loaded successfully');
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.error('Error fetching chart data:', err);
+      setChartError('Chart data unavailable (CORS issue)');
+      return false;
+    }
+  };
+
+  // Manual refresh - try both, but main data determines success
   const handleRefresh = async () => {
+    const mainSuccess = await fetchZoneData();
+    
+    if (mainSuccess) {
+      await fetchChartData();
+    }
+  };
+
+  // Refresh only main data (lighter request)
+  const handleRefreshMainOnly = async () => {
     await fetchZoneData();
   };
 
+  useEffect(() => {
+    console.log('Component mounted - ready for manual refresh');
+  }, []);
+
   // Navigation handlers
-  const handleBackToDashboard = () => {
-    navigate('/dashboard');
-  };
-
-  const handleHomeClick = () => {
-    navigate('/dashboard');
-  };
-
-  const handlePlantClick = () => {
-    setIsPlantDropdownOpen(!isPlantDropdownOpen);
-  };
-
+  const handleBackToDashboard = () => navigate('/dashboard');
+  const handleHomeClick = () => navigate('/dashboard');
+  const handlePlantClick = () => setIsPlantDropdownOpen(!isPlantDropdownOpen);
   const handlePlantMenuClick = (plantType) => {
     setIsPlantDropdownOpen(false);
     navigate(`/${plantType}`);
   };
-
   const handleZoneClick = (zone) => {
     if (zone === 'cabai') {
       navigate('/cabai');
@@ -122,16 +166,15 @@ const Zona2cabai = () => {
     }
   };
 
-  // Generate SVG path for charts
   const generateSVGPath = (data) => {
-    if (!data || data.length === 0) return '';
+    if (!data || data.length === 0) return 'M20,180 Q100,50 200,80 T380,150';
     
     const width = 400;
     const height = 200;
     const padding = 20;
     
     const values = data.map(d => d.value).filter(v => v !== null && v !== undefined);
-    if (values.length === 0) return '';
+    if (values.length === 0) return 'M20,180 Q100,50 200,80 T380,150';
     
     const maxValue = Math.max(...values);
     const minValue = Math.min(...values);
@@ -146,9 +189,9 @@ const Zona2cabai = () => {
     return `M${points.replace(/,/g, ' ').replace(/ /g, ' L').substring(2)}`;
   };
 
-  // Format metric values
   const formatMetricValue = (value, type) => {
     if (loading || value === null || value === undefined) return '--';
+    if (typeof value !== 'number') return '--';
     
     switch (type) {
       case 'temperature':
@@ -160,13 +203,14 @@ const Zona2cabai = () => {
       case 'ec':
         return value.toFixed(1);
       default:
-        return value;
+        return value.toString();
     }
   };
 
-  // Check if metric is within optimal range
   const getMetricStatus = (value, type) => {
-    if (!plantInfo || !plantInfo.optimalConditions || value === null) return 'normal';
+    if (!plantInfo || !plantInfo.optimalConditions || value === null || typeof value !== 'number') {
+      return 'normal';
+    }
     
     const conditions = plantInfo.optimalConditions[type];
     if (!conditions) return 'normal';
@@ -176,22 +220,16 @@ const Zona2cabai = () => {
     return 'normal';
   };
 
-  // Get connection status
   const getConnectionStatus = () => {
-    if (!isOnline) return 'offline';
+    if (!navigator.onLine) return 'offline';
     if (loading) return 'connecting';
     if (error) return 'offline';
-    return 'online';
-  };
-
-  // Handle authentication redirect
-  const handleAuthRedirect = () => {
-    navigate('/');
+    return zoneData.status;
   };
 
   return (
-    <div className="zona2cabai-container">
-      {/* Logo Container */}
+    <div className="zona1cabai-container">
+      {/* Header Navigation */}
       <div className="logo-container">
         <div className="logo-item" onClick={handleHomeClick}>
           <img src="/home-icon.png" alt="Home" />
@@ -204,7 +242,6 @@ const Zona2cabai = () => {
             <span className={`dropdown-arrow ${isPlantDropdownOpen ? 'open' : ''}`}>▼</span>
           </div>
           
-          {/* Plant Dropdown Menu */}
           <div className={`plant-dropdown ${isPlantDropdownOpen ? 'show' : ''}`}>
             <div className="dropdown-item" onClick={() => handlePlantMenuClick('selada')}>
               <span>Selada</span>
@@ -217,87 +254,157 @@ const Zona2cabai = () => {
             </div>
           </div>
         </div>
+        
+        {/* ZONE BADGE - ZONA 2 */}
+        <div className="zone-badge-header" style={{
+          marginLeft: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start'
+        }}>
+          <div style={{
+            background: 'rgba(255,255,255,0.1)',
+            padding: '8px 15px',
+            borderRadius: '8px',
+            color: 'white',
+            fontSize: '14px',
+            fontWeight: 'bold',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255,255,255,0.2)'
+          }}>
+            <span>ZONE 2 - {deviceCode}</span>
+            {zoneData.lastUpdated && (
+              <div style={{
+                fontSize: '11px',
+                opacity: 0.8,
+                marginTop: '2px'
+              }}>
+                {new Date(zoneData.lastUpdated).toLocaleTimeString('id-ID')}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
-      {/* Header */}
+      {/* Header with Manual Refresh Controls */}
       <div className="header">
         <button className="back-btn" onClick={handleBackToDashboard}>
           ← DASHBOARD
         </button>
-        <h1 className="page-title">MANAGE YOUR PLANT</h1>
+        <h1 className="page-title">CABAI ZONE 2 - MANUAL MODE</h1>
         <div className="header-actions">
           <button 
             className={`refresh-btn ${loading ? 'loading' : ''}`} 
             onClick={handleRefresh} 
             disabled={loading}
-            title="Refresh data"
+            style={{
+              padding: '10px 15px',
+              fontSize: '13px',
+              fontWeight: 'bold',
+              marginRight: '10px',
+              cursor: loading ? 'not-allowed' : 'pointer'
+            }}
           >
             <span className={`refresh-icon ${loading ? 'spinning' : ''}`}>↻</span>
-            {loading ? 'Loading...' : 'Refresh'}
+            {loading ? 'Loading...' : 'Refresh All'}
           </button>
-          <div className={`status-indicator ${getConnectionStatus()}`} title={`System is ${getConnectionStatus()}`}>
+          
+          <button 
+            className="refresh-btn-quick" 
+            onClick={handleRefreshMainOnly} 
+            disabled={loading}
+            style={{
+              padding: '8px 12px',
+              fontSize: '12px',
+              background: 'rgba(52, 152, 219, 0.8)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              marginRight: '10px'
+            }}
+          >
+            Quick
+          </button>
+          
+          <div className={`status-indicator ${getConnectionStatus()}`}>
             <span className="status-dot"></span>
             {getConnectionStatus()}
           </div>
         </div>
       </div>
 
-      {/* Error Message */}
-      {error && (
-        <div className="error-message">
-          <span className="error-icon">⚠️</span>
-          <span className="error-text">
-            {error === 'Authentication required' ? 
-              'Session expired. Please login again.' : 
-              error
-            }
-          </span>
-          {error === 'Authentication required' ? (
-            <button className="error-retry" onClick={handleAuthRedirect}>Login</button>
-          ) : (
-            <button className="error-retry" onClick={handleRefresh}>Retry</button>
-          )}
+      {/* Instructions */}
+      {!zoneData.lastUpdated && !loading && (
+        <div style={{
+          background: 'linear-gradient(135deg, #3498db, #2980b9)',
+          color: 'white',
+          padding: '12px',
+          margin: '10px',
+          borderRadius: '8px',
+          textAlign: 'center',
+          fontSize: '14px'
+        }}>
+          <strong>Manual Refresh Mode</strong><br/>
+          "Refresh All" = sensor data + charts | "Quick" = sensor data only
         </div>
       )}
 
-      {/* Offline Message */}
-      {!isOnline && (
-        <div className="error-message" style={{background: 'linear-gradient(135deg, #f59e0b, #d97706)'}}>
-          <span className="error-icon">📶</span>
-          <span className="error-text">No internet connection. Showing cached data.</span>
+      {/* Main Data Error */}
+      {error && (
+        <div className="error-message">
+          <span className="error-icon">⚠️</span>
+          <span className="error-text">{error}</span>
+          <button className="error-retry" onClick={handleRefreshMainOnly} disabled={loading}>
+            {loading ? 'Loading...' : 'Retry'}
+          </button>
+        </div>
+      )}
+
+      {/* Chart Error (Separate, less critical) */}
+      {chartError && zoneData.status === 'online' && (
+        <div style={{
+          background: 'linear-gradient(135deg, #f39c12, #e67e22)',
+          color: 'white',
+          padding: '10px',
+          margin: '10px',
+          borderRadius: '6px',
+          fontSize: '13px',
+          textAlign: 'center'
+        }}>
+          <span>📊 {chartError} - Main sensor data is working fine</span>
+          <button 
+            onClick={fetchChartData}
+            style={{
+              marginLeft: '10px',
+              padding: '4px 8px',
+              background: 'rgba(255,255,255,0.2)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '3px',
+              cursor: 'pointer',
+              fontSize: '12px'
+            }}
+          >
+            Retry Charts
+          </button>
         </div>
       )}
 
       {/* Main Content */}
       <div className="main-content">
-        {/* Sidebar */}
+        {/* Sidebar Menu */}
         <div className="sidebar">
           <button className="zone-btn" onClick={() => handleZoneClick('cabai')}>CABAI</button>
           <button className="zone-btn" onClick={() => handleZoneClick('zona1')}>ZONA 1</button>
           <button className="zone-btn active" onClick={() => handleZoneClick('zona2')}>ZONA 2</button>
           <button className="zone-btn" onClick={() => handleZoneClick('zona3')}>ZONA 3</button>
           <button className="zone-btn" onClick={() => handleZoneClick('zona4')}>ZONA 4</button>
-          <button className="zone-btn" onClick={() => handleZoneClick('zona5')}>ZONA 5</button>
-          <button className="zone-btn" onClick={() => handleZoneClick('zona6')}>ZONA 6</button>
         </div>
 
         {/* Content Area */}
         <div className="content-area">
-          {/* Zone Badge */}
-          <div className="zone-badge">
-            <span className="zone-title">ZONE 2</span>
-            {zoneData.lastUpdated && (
-              <span className="last-updated">
-                Last updated: {new Date(zoneData.lastUpdated).toLocaleTimeString()}
-              </span>
-            )}
-            {apiService.getCurrentUser() && (
-              <span className="user-info">
-                User: {apiService.getCurrentUser().username}
-              </span>
-            )}
-          </div>
-
+          
           {/* Monitoring Cards */}
           <div className="monitoring-cards">
             <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.ph, 'ph')}`}>
@@ -308,11 +415,9 @@ const Zona2cabai = () => {
                 {formatMetricValue(zoneData.metrics.ph, 'ph')}
               </div>
               <div className="metric-label">pH</div>
-              {plantInfo && (
-                <div className="metric-range">
-                  Optimal: {plantInfo.optimalConditions.ph?.optimal}
-                </div>
-              )}
+              <div className="metric-range">
+                Optimal: {plantInfo.optimalConditions.ph.optimal}
+              </div>
             </div>
 
             <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.temperature, 'temperature')}`}>
@@ -323,11 +428,9 @@ const Zona2cabai = () => {
                 {formatMetricValue(zoneData.metrics.temperature, 'temperature')}
               </div>
               <div className="metric-label">Temperature</div>
-              {plantInfo && (
-                <div className="metric-range">
-                  Optimal: {plantInfo.optimalConditions.temperature?.optimal}°C
-                </div>
-              )}
+              <div className="metric-range">
+                Optimal: {plantInfo.optimalConditions.temperature.optimal}°C
+              </div>
             </div>
 
             <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.ec, 'ec')}`}>
@@ -338,11 +441,9 @@ const Zona2cabai = () => {
                 {formatMetricValue(zoneData.metrics.ec, 'ec')}
               </div>
               <div className="metric-label">EC</div>
-              {plantInfo && (
-                <div className="metric-range">
-                  Optimal: {plantInfo.optimalConditions.ec?.optimal}
-                </div>
-              )}
+              <div className="metric-range">
+                Optimal: {plantInfo.optimalConditions.ec.optimal}
+              </div>
             </div>
 
             <div className={`metric-card ${loading ? 'loading' : ''} ${getMetricStatus(zoneData.metrics.moisture, 'moisture')}`}>
@@ -352,23 +453,24 @@ const Zona2cabai = () => {
               <div className="metric-value">
                 {formatMetricValue(zoneData.metrics.moisture, 'moisture')}
               </div>
-              <div className="metric-label">Moist</div>
-              {plantInfo && (
-                <div className="metric-range">
-                  Optimal: {plantInfo.optimalConditions.moisture?.optimal}%
-                </div>
-              )}
+              <div className="metric-label">Moisture</div>
+              <div className="metric-range">
+                Optimal: {plantInfo.optimalConditions.moisture.optimal}%
+              </div>
             </div>
           </div>
 
           {/* Charts Section */}
           <div className="charts-section">
             <div className="chart-container">
-              <div className="chart-label">Temp</div>
+              <div className="chart-label">
+                Temperature
+                {chartError && <span style={{color: '#f39c12', fontSize: '11px', marginLeft: '10px'}}>⚠️ Data unavailable</span>}
+              </div>
               <div className="chart">
                 <svg viewBox="0 0 400 200" className="chart-svg">
                   <path
-                    d={generateSVGPath(zoneData.chartData.temperature) || "M20,180 Q100,50 200,80 T380,150"}
+                    d={generateSVGPath(zoneData.chartData.temperature)}
                     stroke="#ffffff"
                     strokeWidth="3"
                     fill="none"
@@ -380,98 +482,99 @@ const Zona2cabai = () => {
                     </linearGradient>
                   </defs>
                   <path
-                    d={`${generateSVGPath(zoneData.chartData.temperature) || "M20,180 Q100,50 200,80 T380,150"} L380,200 L20,200 Z`}
+                    d={`${generateSVGPath(zoneData.chartData.temperature)} L380,200 L20,200 Z`}
                     fill="url(#tempGradient2)"
                   />
                 </svg>
                 <div className="chart-time-labels">
                   <span>00:00</span>
-                  <span>04:00</span>
-                  <span>08:00</span>
+                  <span>06:00</span>
                   <span>12:00</span>
-                  <span>16:00</span>
-                  <span>20:00</span>
+                  <span>18:00</span>
                   <span>24:00</span>
                 </div>
               </div>
             </div>
 
             <div className="chart-container">
-              <div className="chart-label">MOIST</div>
+              <div className="chart-label">
+                Moisture
+                {chartError && <span style={{color: '#f39c12', fontSize: '11px', marginLeft: '10px'}}>⚠️ Data unavailable</span>}
+              </div>
               <div className="chart">
                 <svg viewBox="0 0 400 200" className="chart-svg">
                   <path
-                    d={generateSVGPath(zoneData.chartData.moisture) || "M20,160 Q100,60 200,90 T380,140"}
+                    d={generateSVGPath(zoneData.chartData.moisture)}
                     stroke="#ffffff"
                     strokeWidth="3"
                     fill="none"
                   />
                   <path
-                    d={`${generateSVGPath(zoneData.chartData.moisture) || "M20,160 Q100,60 200,90 T380,140"} L380,200 L20,200 Z`}
+                    d={`${generateSVGPath(zoneData.chartData.moisture)} L380,200 L20,200 Z`}
                     fill="url(#tempGradient2)"
                   />
                 </svg>
                 <div className="chart-time-labels">
                   <span>00:00</span>
-                  <span>04:00</span>
-                  <span>08:00</span>
+                  <span>06:00</span>
                   <span>12:00</span>
-                  <span>16:00</span>
-                  <span>20:00</span>
+                  <span>18:00</span>
                   <span>24:00</span>
                 </div>
               </div>
             </div>
 
             <div className="chart-container">
-              <div className="chart-label">pH</div>
+              <div className="chart-label">
+                pH
+                {chartError && <span style={{color: '#f39c12', fontSize: '11px', marginLeft: '10px'}}>⚠️ Data unavailable</span>}
+              </div>
               <div className="chart">
                 <svg viewBox="0 0 400 200" className="chart-svg">
                   <path
-                    d={generateSVGPath(zoneData.chartData.ph) || "M20,170 Q100,70 200,100 T380,160"}
+                    d={generateSVGPath(zoneData.chartData.ph)}
                     stroke="#ffffff"
                     strokeWidth="3"
                     fill="none"
                   />
                   <path
-                    d={`${generateSVGPath(zoneData.chartData.ph) || "M20,170 Q100,70 200,100 T380,160"} L380,200 L20,200 Z`}
+                    d={`${generateSVGPath(zoneData.chartData.ph)} L380,200 L20,200 Z`}
                     fill="url(#tempGradient2)"
                   />
                 </svg>
                 <div className="chart-time-labels">
                   <span>00:00</span>
-                  <span>04:00</span>
-                  <span>08:00</span>
+                  <span>06:00</span>
                   <span>12:00</span>
-                  <span>16:00</span>
-                  <span>20:00</span>
+                  <span>18:00</span>
                   <span>24:00</span>
                 </div>
               </div>
             </div>
 
             <div className="chart-container">
-              <div className="chart-label">EC</div>
+              <div className="chart-label">
+                EC
+                {chartError && <span style={{color: '#f39c12', fontSize: '11px', marginLeft: '10px'}}>⚠️ Data unavailable</span>}
+              </div>
               <div className="chart">
                 <svg viewBox="0 0 400 200" className="chart-svg">
                   <path
-                    d={generateSVGPath(zoneData.chartData.ec) || "M20,150 Q100,80 200,110 T380,170"}
+                    d={generateSVGPath(zoneData.chartData.ec)}
                     stroke="#ffffff"
                     strokeWidth="3"
                     fill="none"
                   />
                   <path
-                    d={`${generateSVGPath(zoneData.chartData.ec) || "M20,150 Q100,80 200,110 T380,170"} L380,200 L20,200 Z`}
+                    d={`${generateSVGPath(zoneData.chartData.ec)} L380,200 L20,200 Z`}
                     fill="url(#tempGradient2)"
                   />
                 </svg>
                 <div className="chart-time-labels">
                   <span>00:00</span>
-                  <span>04:00</span>
-                  <span>08:00</span>
+                  <span>06:00</span>
                   <span>12:00</span>
-                  <span>16:00</span>
-                  <span>20:00</span>
+                  <span>18:00</span>
                   <span>24:00</span>
                 </div>
               </div>
@@ -480,11 +583,8 @@ const Zona2cabai = () => {
         </div>
       </div>
 
-      {/* Footer Bar */}
       <div className="footer-bar">
-        <div className="welcome-text">
-          WELCOME TO GREENHOUSE
-        </div>
+        <div className="welcome-text">CABAI ZONE 2 - MANUAL REFRESH MODE</div>
       </div>
     </div>
   );
